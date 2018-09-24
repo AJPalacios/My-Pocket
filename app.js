@@ -8,10 +8,12 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
+const passport = require('./helpers/passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
 
 mongoose
-  .connect('mongodb://localhost/my-pocket', {useNewUrlParser: true})
+  .connect(process.env.DB, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -23,6 +25,22 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+
+//passport
+app.use(session({
+  store: new MongoStore({
+    mongooseConnection:mongoose.connection,
+    ttl:24*60*60
+  }),
+  secret:'my-pocket',
+  resave:true,
+  saveUninitialized:true,  
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 // Middleware Setup
 app.use(logger('dev'));
