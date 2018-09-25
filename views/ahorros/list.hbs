@@ -1,0 +1,11 @@
+<h1>Mis ahorros</h1>
+<section>
+{{#each ahorros}}
+  <div>
+    <a href="/ahorros/detail/{{this.id}}">{{this.nombre}}</a>
+  </div>  
+{{/each}}
+
+</section>
+
+<a href="/ahorros/new">Agregar nuevo ahorro</a>

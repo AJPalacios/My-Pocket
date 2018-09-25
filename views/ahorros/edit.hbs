@@ -1,0 +1,14 @@
+<h1>Editar ahorro {{nombre}}</h1>
+<form action="/ahorros/edit/{{this.id}}" method="POST">
+<p>
+  <label for="nombre">Nombre:</label>
+  <input type="text" name="nombre" id="nombre" value="{{nombre}}">
+  <br>
+</p>
+<p>
+  <label for="cantidad" id="cantidad">Cantidad:</label>
+  <input type="number" name="cantidad" id="cantidad" value="{{cantidad}}">
+</p>
+<input type="submit" value="Guardar">
+</form>
+<a href="/ahorros/list">Atrás</a>

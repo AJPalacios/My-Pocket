@@ -1,0 +1,26 @@
+<body>
+    <section>
+      <h3>{{nombre}}</h3>
+      <p>Iniciaste con: ${{cantidadInicial}}</p>
+      <p>Hoy tienes: ${{cantidad}}</p>
+      <button onclick="añadir()">+</button>
+      <input type="number" name="mas" id="mas">
+      <button onclick="getSum()" id="masButton">Save</button>
+    </section>
+  <a href="/ahorros/edit/{{this.id}}">Editar</a>
+  <a href="/ahorros/delete/{{this.id}}">Eliminar</a>  
+  <a href="/ahorros/list">Atrás</a>
+</body>
+
+<script>
+  document.getElementById('mas').style.display="none"
+  document.getElementById('masButton').style.display="none"
+  function añadir(){
+    document.getElementById('mas').style.display="block";
+    document.getElementById('masButton').style.display="block"
+  }
+  function getSum(){
+    const tot = parseFloat({{cantidad}})+parseFloat(document.getElementById('mas').value)
+    console.log(tot)
+  }
+</script>
