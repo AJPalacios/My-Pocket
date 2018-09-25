@@ -9,7 +9,9 @@ const userSchema = new Schema({
   photoURL: String,
   codeConfirmation: String,
   Status:{
-    enum: ['Active', 'Pending']
+    type: String,
+    enum: ['Active', 'Pending'],
+    default: 'Pending'
   }
 },{
   timestamps:{
