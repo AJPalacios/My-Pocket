@@ -3,7 +3,7 @@ const Ingreso = require ('../models/Ingreso')
 const User = require ('../models/User')
 
 router.get('/nuevo_ingreso', (req, res)=>{
-  res.render ('ingreso/nuevo_ingreso')
+  res.render ('ingresos/nuevo_ingreso')
 })
 
 // router.post ('/nuevo_ingreso', (req, res, next)=>{
@@ -17,3 +17,5 @@ router.get('/nuevo_ingreso', (req, res)=>{
 //     })
 //   })
 // })
+
+module.exports = router
