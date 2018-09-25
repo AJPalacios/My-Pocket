@@ -40,28 +40,29 @@ router.get('/detalle/:id', (req, res, next)=>{
 
 router.get('/editar/:id', (req, res, next)=>{
   const {id} = req.params
-  Book.findById(id)
-    .then(book=>{
-      res.render('book-edit-form', book)
-    })
-    .catch (error=>next(error))
+  Ingreso.findById(id)
+    .then(ingresos=>{
+      res.render('ingresos/editar', ingresos)
+    }).catch (error=>next(error))
 })
 
-router.post('/edit/:id', (req, res, next)=>{
+router.post('/editar/:id', (req, res, next)=>{
   const {id} = req.params
-  Book.findByIdAndUpdate(id, {$set:req.body}, {new: true})
-  .then(book=>{
-    console.log(book)
-    res.redirect(`/books/detail/${id}`)
+  Ingreso.findByIdAndUpdate(id, {$set:req.body}, {new: true})
+  .then(ingresos=>{
+    res.redirect(`/ingresos/detalle/${id}`)
   })
-  .catch (error=>next(error))
+  .catch(error=>next(error))
 })
 
 
 //BORRAR
 router.get('/borrar/:id', (req, res, next)=>{
   const {id} = req.params
-  Book.deleteOne(id)
+  Ingreso.findByIdAndRemove(id)
+  .then(ingreso=>{
+    res.redirect('/ingresos/lista')
+  }).catch (error=>next(error))
 })
 
 

@@ -1,11 +1,12 @@
-<h1>lista de Ingresos</h1>
+<h1>Lista de Ingresos</h1>
 
 <div>
   {{#each ingresos}}
-  <h3>{{this.concepto}}</h3>
-  <h4>{{this.cantidad}}</h4>
-  <a href="/ingresos/detalle/{{this._id}}">Ver más</a>
+  <p>
+    <a href="/ingresos/detalle/{{this._id}}">{{this.concepto}} ${{this.cantidad}}</a>
+  </p>
+  
   {{/each}}
 </div>
 
-<a href="/ingresos/new">Agregar Ingreso</a>
+<a href="/ingresos/new"><button>Agregar Ingreso</button></a>
