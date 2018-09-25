@@ -18,6 +18,7 @@ router.get('/new',(req,res,next)=>{
   res.render('gastos/new')
 })
 router.post('/new',(req, res, next)=>{
+  if(req.body.tipoGasto) req.body.tipo=req.body.tipoGasto
   console.log(req.body)
   Gasto.create(req.body)
   //Gasto.create({...req.body,owner:req.user._id})
@@ -28,5 +29,18 @@ router.post('/new',(req, res, next)=>{
       console.log(e)
     })
 })
+
+//detalle de gastos
+router.get('/detail/:id',(req,res,next)=>{
+  const {id} =req.params
+  Gasto.findById(id)
+  .then(gasto=>{
+    res.render('gastos/detail',gasto)
+  })
+  .catch(e=>{
+    console.log(e)
+    next(e)
+  })
+});
 
 module.exports = router

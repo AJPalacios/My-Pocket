@@ -2,12 +2,14 @@
 <form action="/gastos/new" method="POST">
 <p>
   <label for="tipo">Tipo de gasto:</label>
-  <select name="tipo" id="tipo">
+  <select name="tipo" id="tipo" onchange="showfield(this.options[this.selectedIndex].value)">
     <option value="Casa">Casa</option>
     <option value="Transporte">Transporte</option>
     <option value="Alimentación">Alimentación</option>
     <option value="Servicios">Servicios</option>
+    <option value="Otro">Otro</option><input type="text" name="tipoGasto" id="field" placeholder="Tipo de gasto"/>
   </select>
+  <br>
 </p>
 <p>
   <label for="cantidad" id="cantidad">Cantidad:</label>
@@ -22,5 +24,17 @@
     <option value="Mensual">Mensual</option>
   </select>
 </p>
-<input type="submit" value="Agregar">
+<input type="submit" value="Agregar" onclick="seteaValores()">
 </form>
+
+<script type="text/javascript">
+  document.getElementById('field').style.display="none"
+  function showfield(name){
+    if(name=='Otro')document.getElementById('field').style.display="block";
+    else document.getElementById('field').style.display="none";
+  }
+  function seteaValores(){
+    console.log(document.getElementById('field').value)
+    if(document.getElementById('tipo')=="Otro") document.getElementById('tipo').value===document.getElementById('field').value
+  }
+  </script>

@@ -3,9 +3,7 @@ const Schema   = mongoose.Schema;
 
 const gastoSchema = new Schema({
   tipo:{
-    type:String,
-    enum:["Casa","Transporte","Alimentación","Servicios"],
-    default:"Servicios"
+    type:String
   },
   cantidad: {
     type:Number,
