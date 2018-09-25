@@ -1,16 +1,16 @@
 <h1>Nuevo Ingreso</h1>
 
-<form action="/nuevo_ingreso" class="form-inline" method="POST">
-  <div class="form-group">
-    <label for="exampleInputName2">Concepto</label>
-    <input type="text" class="form-control" id="exampleInputName2" placeholder="Transporte">
+<form action="/nuevo_ingreso" method="POST">
+  <div>
+    <label for="Concepto">Concepto</label>
+    <input type="text" class="input is-rounded" id="Concepto" placeholder="Transporte">
   </div>
-  <div class="form-group">
-    <label for="exampleInputEmail2">Cantidad</label>
-    <input type="number" class="form-control" id="exampleInputEmail2" placeholder="1000.00">
+  <div>
+    <label for="Cantidad">Cantidad</label>
+    <input type="number" class="input is-rounded" id="Cantidad" placeholder="1000.00">
   </div>
 
-  <div class="form-group">
+  <div>
     <label for="exampleInputEmail2">Periodicidad</label>
     <select>
       <option value="Diario">Diario</option>
@@ -21,6 +21,6 @@
     </select>
   </div>
 
-  <button type="submit" class="btn btn-default">Añadir</button>
+  <button type="submit">Añadir</button>
 </form>
 
