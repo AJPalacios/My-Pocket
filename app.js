@@ -80,7 +80,7 @@ const users = require('./routes/users')
 app.use('/users', users)
 
 const ingresos = require('./routes/ingresos')
-app.use('/', ingresos)
+app.use('/ingresos', ingresos)
 
 const gastos = require('./routes/gastos')
 app.use('/gastos', gastos)
