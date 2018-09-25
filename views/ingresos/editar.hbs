@@ -12,7 +12,7 @@
 
   <div>
     <label for="periodicidad">Periodicidad</label>
-    <select name="periodicidad" value="{{periodicidad}}">
+    <select name="periodicidad" id="periodicidad">
       <option value="Diario">Diario</option>
       <option value="Semanal">Semanal</option>
       <option value="Quincenal">Quincenal</option>
@@ -24,3 +24,7 @@
   <button type="submit">Guardar Cambios</button>
   <a href="/ingresos/lista"><button>Ingresos</button></a>
 </form>
+
+<script type="text/javascript">
+document.getElementById('periodicidad').value='{{periodicidad}}'
+</script>
