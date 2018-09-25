@@ -76,4 +76,7 @@ app.use('/', index);
 const auth = require('./routes/auth')
 app.use('/', auth)
 
+const ingresos = require('./routes/ingresos')
+app.use('/', ingresos)
+
 module.exports = app;
