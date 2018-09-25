@@ -15,9 +15,12 @@ router.post('/signup',(req, res, next)=>{
   console.log(req.body)
   User.register(req.body, req.body.password)
     .then(user=>{
-      welcomeMail(nombre,email)
       res.redirect('/login')
-    }).catch(error=>{
+    })
+    .then(()=>{
+      welcomeMail(nombre,email)
+    })
+    .catch(error=>{
       res.render('auth/signup',{data:req.body,error})
     })
 })
