@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer')
 const hbs = require('hbs')
 const fs = require ('fs')
 
-const transporter = nodemailer.createTransport({
+let transporter = nodemailer.createTransport({
   service:'Gmail',
   auth:{
     user:process.env.EMAIL,

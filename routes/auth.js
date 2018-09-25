@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const User = require('../models/User')
 const passport = require('../helpers/passport')
-const welcomeMail = require('../helpers/mailer').welcomeMail
+const sendMail = require('../helpers/mailer').welcomeMail
 
 
 // Rutas de registro de usuarios
@@ -15,12 +15,9 @@ router.post('/signup',(req, res, next)=>{
   console.log(req.body)
   User.register(req.body, req.body.password)
     .then(user=>{
+      sendMail(nombre,email)
       res.redirect('/login')
-    })
-    .then(()=>{
-      welcomeMail(nombre,email)
-    })
-    .catch(error=>{
+    }).catch(error=>{
       res.render('auth/signup',{data:req.body,error})
     })
 })
