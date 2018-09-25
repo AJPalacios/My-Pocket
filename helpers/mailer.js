@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-const welcomeTemplate = hbs.compile(fes.readFileSync((__dirname, './views/welcomeMail.hbs'), 'utf8'))
+const welcomeTemplate = hbs.compile(fs.readFileSync((__dirname, './views/welcomeMail.hbs'), 'utf8'))
 
 exports.welcomeMail=(username, email)=>{
   
