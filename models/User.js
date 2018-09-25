@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const schema = mongoose.Schema
+const Schema = mongoose.Schema
 const PLM = require('passport-local-mongoose')
 
 const userSchema = new Schema({ 
@@ -9,7 +9,9 @@ const userSchema = new Schema({
   photoURL: String,
   codeConfirmation: String,
   Status:{
-    enum: ['Active', 'Pending']
+    type: String,
+    enum: ['Active', 'Pending'],
+    default: 'Pending'
   }
 },{
   timestamps:{

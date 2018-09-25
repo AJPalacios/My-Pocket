@@ -45,7 +45,7 @@ app.use(passport.session())
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Express View engine setup
@@ -71,6 +71,16 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+
+const auth = require('./routes/auth')
+app.use('/', auth)
+
+const users = require('./routes/users')
+app.use('/users', users)
+
+const ingresos = require('./routes/ingresos')
+app.use('/', ingresos)
 
 
 module.exports = app;
