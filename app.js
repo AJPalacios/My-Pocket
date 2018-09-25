@@ -76,12 +76,11 @@ app.use('/', index);
 const auth = require('./routes/auth')
 app.use('/', auth)
 
-<<<<<<< HEAD
 const users = require('./routes/users')
 app.use('/users', users)
-=======
+
 const ingresos = require('./routes/ingresos')
 app.use('/', ingresos)
->>>>>>> develop
+
 
 module.exports = app;
