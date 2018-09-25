@@ -3,11 +3,11 @@ const Gasto = require('../models/Gasto')
 const User = require('../models/User')
 
 //lista de gastos
-router.get('/', (req, res, next)=>{
+router.get('/list', (req, res, next)=>{
   Gasto.find().populate('user')
     .then(gastos=>{        
-      //res.render('gastos/list',{gastos})
-      res.send(gastos)
+      res.render('gastos/list',{gastos})
+      //res.send(gastos)
     }).catch(e=>{
       console.log(e)
     })

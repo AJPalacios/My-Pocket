@@ -82,5 +82,7 @@ app.use('/users', users)
 const ingresos = require('./routes/ingresos')
 app.use('/', ingresos)
 
+const gastos = require('./routes/gastos')
+app.use('/gastos', gastos)
 
 module.exports = app;
