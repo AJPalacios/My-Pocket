@@ -33,6 +33,17 @@ li > a {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
 
+.form-control {
+  width: 15rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%; }
+
+.login-btns {
+  margin-top: 3%; }
+
 .img-logotipo {
   width: 10rem; }
 
@@ -55,9 +66,6 @@ li > a {
   font-size: 12px;
   width: 40%; }
 
-.none {
-  display: none; }
-
 .row {
   margin: 0 !important; }
 
@@ -69,13 +77,5 @@ li > a {
   margin: 5px;
   color: #00B7FF;
   font-size: 2.5em; }
-
-.form-control {
-  width: 15rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1%;
-  margin-bottom: 1%; }
 
 /*# sourceMappingURL=style.css.map */

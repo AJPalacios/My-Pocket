@@ -13,20 +13,23 @@
       <div class="logotipo">
         <img class="img-ltipo" src="https://res.cloudinary.com/mishulicious/image/upload/v1537910791/myPocket/logo-mypocket-03.png" alt="myPocket">
       </div>
+      {{#if error}} 
+        <p style="color:red">{{error}}</p> 
+      {{/if}}
       <form action="/signup" method="POST">
           <p>
-            <input class="form-control" type="text" name="usuario" id="usuario" placeholder="@Usuario">
+            <input class="form-control" type="text" name="usuario" id="usuario" placeholder="@Usuario" value="{{usuario}}">
           </p>
           <p>
-            <input class="form-control" type="text" name="nombre" id="name" placeholder="Nombre">
-          </p>
-
-          <p>
-            <input class="form-control" type="text" name="apellido" id="lastName" placeholder="Apellido">
+            <input class="form-control" type="text" name="nombre" id="name" placeholder="Nombre" value="{{nombre}}">
           </p>
 
           <p>
-            <input class="form-control"  type="email" name="email" id="email" placeholder="email@email.com">
+            <input class="form-control" type="text" name="apellido" id="lastName" placeholder="Apellido" value="{{apellido}}">
+          </p>
+
+          <p>
+            <input class="form-control"  type="email" name="email" id="email" placeholder="email@email.com" value="{{email}}">
           </p>
 
         <p>
@@ -43,11 +46,18 @@
 
         <a href="/login"><button type="button" class="btn btn-primary">Ya tengo cuenta</button></a>
 
+
       </form>
     </div>
   </div>
 </div>
 
+{{!-- <script>
+  window.onload=load()
+  function load(){
+    document.getElementById('usuario').value='arroba'
+  }
+</script> --}}
 
 
 
