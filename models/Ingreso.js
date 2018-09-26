@@ -7,7 +7,7 @@ const ingresoSchema = new Schema({
     ref: "User"
   },
   concepto: String,
-  cantidad: String,
+  cantidad: Number,
   periodicidad:{
     type: String,
     enum: ['Diario', 'Semanal', 'Quincenal', 'Mensual', 'Anual'],
