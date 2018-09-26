@@ -10,8 +10,9 @@ const isLogged = (req,res,next)=>{
 
 router.get('/:id',isLogged, (req,res,next)=>{
   const {id} = req.params
+
   console.log(req.params)
-  User.findOne({id})
+  User.findById(id)
   .then(user=>{
     console.log(user)
     res.render('users/profile',user)
