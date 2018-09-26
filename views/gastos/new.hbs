@@ -26,6 +26,7 @@
 </p>
 <input type="submit" value="Agregar" onclick="seteaValores()">
 </form>
+<a href="/gastos/list">Atrás</a>
 
 <script type="text/javascript">
   document.getElementById('field').style.display="none"
@@ -33,8 +34,4 @@
     if(name=='Otro')document.getElementById('field').style.display="block";
     else document.getElementById('field').style.display="none";
   }
-  function seteaValores(){
-    console.log(document.getElementById('field').value)
-    if(document.getElementById('tipo')=="Otro") document.getElementById('tipo').value===document.getElementById('field').value
-  }
-  </script>
+ </script>

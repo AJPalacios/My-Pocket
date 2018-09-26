@@ -4,9 +4,13 @@ const User = require('../models/User')
 
 //R-lista de ahorros
 router.get('/list', (req, res, next)=>{
-  Ahorro.find().populate('user')
-    .then(ahorros=>{        
-      res.render('ahorros/list',{ahorros})
+  Ahorro.find()//.populate('user')
+    .then(ahorros=>{ 
+      let total=0;
+      ahorros.forEach(ahorro=> {
+        total+=ahorro.cantidad;
+      })
+      res.render('ahorros/list',{ahorros,total})
       //res.send(ahorros)
     }).catch(e=>{
       console.log(e)
@@ -26,10 +30,39 @@ router.get('/detail/:id',(req,res,next)=>{
   })
 });
 
-//C-agregar un ahorro
-router.get('/new',(req,res,next)=>{
-  res.render('ahorros/new')
+router.post('/detailmas/:id', (req, res, next) => {
+  const {id} = req.params
+  Ahorro.findById(id)
+  .then(ahorro => {
+    let total = ahorro.cantidad
+    let suma = parseFloat(req.body.cantidad)
+    total += suma
+    console.log(typeof total)
+    Ahorro.findByIdAndUpdate(id, {cantidad: total}, {new: true})
+    .then(result => {
+      res.redirect(`/ahorros/detail/${result._id}`)
+  })
+  })
 })
+router.post('/detailmenos/:id', (req, res, next) => {
+  const {id} = req.params
+  Ahorro.findById(id)
+  .then(ahorro => {
+    let total = ahorro.cantidad
+    let suma = parseFloat(req.body.cantidad)
+    total -= suma
+    console.log(typeof total)
+    Ahorro.findByIdAndUpdate(id, {cantidad: total}, {new: true})
+    .then(result => {
+      res.redirect(`/ahorros/detail/${result._id}`)
+  })
+  })
+})
+
+//C-agregar un ahorro
+// router.get('/new',(req,res,next)=>{
+//   res.render('ahorros/new')
+// })
 router.post('/new',(req, res, next)=>{
   if(req.body.tipoAhorro) req.body.tipo=req.body.tipoAhorro
   //console.log(req.body)
@@ -50,6 +83,17 @@ router.get('/edit/:id',(req,res,next)=>{
     res.render('ahorros/edit',ahorro)
   }).catch(e=>next(e))
 })
+
+router.post('/edit/:id',(req, res, next)=>{
+  const {id} = req.params
+  Ahorro.findByIdAndUpdate(id,{$set:req.body},{new:true})
+    .then(ahorros=>{
+      res.redirect(`/ahorros/detail/${id}`)
+    }).catch(e=>{
+      console.log(e)
+    })
+})
+
 router.post('/edit/:id',(req, res, next)=>{
   const {id} = req.params
   if(req.body.tipoAhorro) req.body.tipo=req.body.tipoAhorro
