@@ -11,6 +11,7 @@ const path         = require('path');
 const passport = require('./helpers/passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash')
 
 mongoose
   .connect(process.env.DB, {useNewUrlParser: true})
@@ -40,6 +41,7 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(flash())
 
 
 // Middleware Setup

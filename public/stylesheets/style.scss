@@ -41,6 +41,18 @@ li>a{
   transform: translate(-50%, -50%);
 }
 
+//******login y signup*****
+.form-control {
+  width: 15rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.login-btns{
+  margin-top: 3%;
+}
 
 .img-logotipo {
   width: 10rem;
@@ -61,16 +73,13 @@ li>a{
 .login , .signup{
   padding-top: 2rem;
 }
+//*************************
+
 
 .tabla-ahorros{
   font-size: 12px;
   width:40%;
 }
-
-.none {
-  display: none;
-}
-
 
 .row{
   margin: 0 !important;
@@ -85,11 +94,3 @@ li>a{
   font-size: 2.5em;
 }
 
-.form-control {
-  width: 15rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1%;
-  margin-bottom: 1%;
-}

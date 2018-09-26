@@ -7,12 +7,16 @@
 </div>
 
 
+
 <div class="row full-height middle-xs center-xs inicial">
   <div class="col-md-12 col-xs-12">
     <div class="box">
       <div class="logotipo">
         <img class="img-ltipo" src="https://res.cloudinary.com/mishulicious/image/upload/v1537910791/myPocket/logo-mypocket-03.png" alt="myPocket">
       </div>
+      {{#if error}} 
+        <p style="color:red">{{message}}</p> 
+      {{/if}}
       <form action="/login" method="POST">
         <p>
           <input class="form-control"  type="email" name="email" id="email" placeholder="email@email.com">
@@ -22,11 +26,16 @@
           <input class="form-control" type="password" name="password" id="password" placeholder="Contraseña">
         </p>
 
+        <div class="login-btns">
         <p>
           <input type="submit" class="btn btn-primary" value="Iniciar sesión">
         </p>
 
         <a href="/signup"><button type="button" class="btn btn-primary">No tengo cuenta</button></a>
+
+
+        </div>
+
 
       </form>
     </div>
