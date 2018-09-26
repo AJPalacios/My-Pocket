@@ -1,7 +1,5 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #FAFAFA;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -11,36 +9,35 @@ a {
 
 //index.hbs
 
-.index-section-dad {
-  display: flex;
-  justify-content: space-around;
+
+iframe{
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  position: absolute;
 }
-
-.index-section-dad div {
-  width: 40vw;
-
-}
-
-.inicio{
+.rightindex {
+  text-align: center;
   border: 1px solid rgb(202, 202, 202);
   background-color: white;
   border-radius: 10px;
-  padding: 5%;
-  height: 80vh;
-
-}
-.img-logotip {
-  width: 30vw;
+  padding: 3rem;
 }
 
-.img-logo {
-  width: 30vw;
+.rightindex .signup{
+  margin-top: 2rem;
 }
 
-
+.img-logotipo {
+  width: 10rem;
+}
 
 .signlog{
   height: 8vh;
   width: 15vw;
   font-size: 1.5em;
+}
+
+.login{
+  padding-top: 2rem;
 }
