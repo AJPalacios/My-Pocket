@@ -1,16 +1,6 @@
-{{!-- <h1>Lista de Ingresos</h1>
-
-<div>
-  {{#each ingresos}}
-  <p>
-    <a href="/ingresos/detalle/{{this._id}}">{{this.concepto}} ${{this.cantidad}}</a>
-  </p>
-  
-  {{/each}}
-</div>
-
-<a href="/ingresos/new"><button>Agregar Ingreso</button></a> --}}
-
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
 <h1>Mis Ingresos</h1>
 <section>
   <table class="table table-hover tabla-ingresos">
@@ -26,13 +16,9 @@
             <td><a href="/ingresos/detail/{{this.id}}">{{this.concepto}}</a></td> 
             <td>{{this.cantidad}}</td> 
             <td>{{this.periodicidad}}</td> 
-            <td><a href="/ingresos/delete/{{this.id}}">x</a></td>
+            <td><a href="/ingresos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
         </tr>
         {{/each}}
-        <tr> 
-            <td><b>TOTAL</b></td> 
-            <td>{{total}} </td>  
-        </tr> 
     </tbody> 
   </table>
 </section><hr>
@@ -52,8 +38,8 @@
         <option value="Mensual" selected>Mensual</option>
         <option value="Anual">Anual</option>
     </select>
-    <button id="check" type="submit" name="check" class="btn btn-primary" title="OK">✓</button>
-    <button onclick="inputsHide()" class="btn btn-primary" title="Cancel">✖</button>
+    <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
+    <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
   </div>
 </form>
 

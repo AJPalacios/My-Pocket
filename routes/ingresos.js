@@ -6,11 +6,7 @@ const User = require ('../models/User')
 router.get('/list', (req, res, next)=>{
   Ingreso.find()
   .then (ingresos=>{
-    let total=0;
-    ingresos.forEach(ingreso=>{
-      total+=ingreso.cantidad;
-    })
-    res.render('ingresos/list', {ingresos,total})
+    res.render('ingresos/list', {ingresos})
   }) .catch(e=>console.log(e))
 })
 
@@ -38,21 +34,6 @@ router.post('/new',(req, res, next)=>{
       console.log(e)
     })
 })
-// router.get('/new', (req, res)=>{
-//   res.render ('ingresos/new')
-// })
-
-// router.post ('/new', (req, res, next)=>{
-//   Ingreso.create(req.body)
-//   .then(ingreso =>{
-//     res.redirect('/ingresos/lista')
-//   }).catch(e=>console.log(e))
-// })
-
-
-
-
-
 
 //EDITAR
 
