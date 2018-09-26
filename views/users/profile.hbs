@@ -13,14 +13,9 @@
 </div>
 
   <a href="/ahorros/list">Mis Ahorros</a>
-<<<<<<< HEAD
   <a href="/gastos/list">Mis Gastos</a>
   <a href="/ingresos/list">Mis Ingresos</a>
-=======
-  <a href="#">Mis gastos</a>
-  <a href="#">Mis ingresos</a>
-  <a id="frase" href="#"></a>
->>>>>>> develop
+  <p id="frase"></p>
 </div>
 
 <div class="row center-xs">
@@ -99,18 +94,18 @@
 
 <script>
   const frases =
-  ['La pasión construye negocios. El miedo no.',
-          'Recuerda que tú puedes ser lo que deseas ser en cualquier cuadrante. Incluso un maestro',
+  ['La pasión construye negocios, el miedo no.',
+          'Recuerda que tú puedes ser lo que deseas ser en cualquier cuadrante, incluso un maestro.',
           'Toma tu pasión y haz que suceda',
           'El mundo del dinero es sólo un sistema: Un "E" trabaja para el sistema. Un "A" es el sistema. Un "D" crea, posee y controla el sistema. Un "I" invierte en el sistema.',
-          'Si quieres estar en el lado derecho del Cuadrante, debes conocer la diferencia entre los hechos y las opiniones',
-          'En la medida que más gente te deba, más rico serás, en la medida en que le debas a más personas, más pobre serás',
-          'Definición de Riqueza: Número de días que puedes sobrevivir sin trabajar físicamente mientras mantienes su estándar de vida',
+          'Si quieres estar en el lado derecho del Cuadrante, debes conocer la diferencia entre los hechos y las opiniones.',
+          'En la medida que más gente te deba, más rico serás, en la medida en que le debas a más personas, más pobre serás.',
+          'Definición de Riqueza: Número de días que puedes sobrevivir sin trabajar físicamente mientras mantienes su estándar de vida.',
           'La mayor parte de la gente piensa, pero nunca hace.',
-          'La razón por la cual la mayoría de la gente tiene problemas financieros es porque aceptan el consejo de personas que también están ciegas mentalmente con respecto del dinero',
-          'La mayoría de la gente invierte el 95% con los ojos y sólo el 5% con la mente. A menudo compran de manera emocional, en vez de hacerlo racionalmente',
-          'Un activo coloca dinero en tu bolsillo. Un pasivo saca dinero de tu bolsillo',
-          'No es cuánto dinero ganes, sino cuánto dinero conservas, qué tan duro trabaja para ti y para cuántas generaciones lo conserva',
+          'La razón por la cual la mayoría de la gente tiene problemas financieros es porque aceptan el consejo de personas que también están ciegas mentalmente con respecto del dinero.',
+          'La mayoría de la gente invierte el 95% con los ojos y sólo el 5% con la mente. A menudo compran de manera emocional, en vez de hacerlo racionalmente.',
+          'Un activo coloca dinero en tu bolsillo. Un pasivo saca dinero de tu bolsillo.',
+          'No es cuánto dinero ganes, sino cuánto dinero conservas, qué tan duro trabaja para ti y para cuántas generaciones lo conserva.',
           'Cómo predecir tu libertad financiera: ¿Cuánto dinero gastas? ¿Cuánto dinero ahorras? ¿Cuánto dinero inviertes?',
           'Si haces algo, cometes errores y es de los errores de lo que aprendemos más',
           'Construir riqueza es una maratón, no una carrera.',
@@ -127,6 +122,6 @@
           'El secreto del éxito está en prepararse para aprovechar las oportunidades en cuanto se presenten. -Disraeli'] 
 let random= Math.floor(Math.random() * 26);
 let frase = frases[random];
-document.getElementById('frase').innerHTML = frase
+document.getElementById('frase').innerHTML = '"'+ frase+'"'
 </script>
 
