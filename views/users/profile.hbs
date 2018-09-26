@@ -10,6 +10,7 @@
   <a href="/ahorros/list">Mis Ahorros</a>
   <a href="#">Mis gastos</a>
   <a href="#">Mis ingresos</a>
+  <a id="dolar"></p>
   <a id="frase" href="#"></a>
 </div>
 
@@ -85,7 +86,7 @@
 
 
 
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
   const frases =
   ['La pasión construye negocios. El miedo no.',
@@ -117,5 +118,21 @@
 let random= Math.floor(Math.random() * 26);
 let frase = frases[random];
 document.getElementById('frase').innerHTML = frase
+
+
+axios.get('https://api.exchangeratesapi.io/latest?base=USD')
+      .then(res => {
+        let dolar = res.data.rates.MXN
+        let template = `
+        <span> <i class="fas fa-dollar-sign"></i> Tipo de cambio</span>
+        USD/MXN: ${dolar}
+        `;
+        document.getElementById('dolar').innerHTML = template
+        console.log(res.data.rates.MXN)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+
 </script>
 

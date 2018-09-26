@@ -105,6 +105,9 @@ li {
 .sidenav a:nth-child(4) {
   color: white; }
 
+.sidenav a:nth-child(5) {
+  color: white; }
+
 .sidenav a:hover {
   color: #f1f1f1; }
 
