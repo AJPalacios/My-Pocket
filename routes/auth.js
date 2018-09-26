@@ -24,7 +24,7 @@ router.post('/signup',(req, res, next)=>{
   }
   User.register(req.body, req.body.password)
     .then(user=>{      
-        sendMail(nombre,email)
+        sendMail(req.body.email)
         res.redirect('/login')
     }).catch(error=>{
       res.render('auth/signup',{data:req.body,error})
