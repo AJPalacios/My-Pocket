@@ -122,7 +122,7 @@ document.getElementById('frase').innerHTML = frase
 
 axios.get('https://api.exchangeratesapi.io/latest?base=USD')
       .then(res => {
-        let dolar = res.data.rates.MXN
+        let dolar = Math.floor(res.data.rates.MXN)
         let template = `
         <span> <i class="fas fa-dollar-sign"></i> Tipo de cambio</span>
         USD/MXN: ${dolar}
