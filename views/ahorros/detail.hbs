@@ -1,0 +1,64 @@
+<body>
+    <section>
+      
+      <table class="table table-hover" id="tabla-ahorros">
+        <thead> 
+          <th>{{nombre}}</th>
+        </thead> 
+        <tbody>
+          <tr>
+            <td>
+              Iniciaste con: ${{cantidadInicial}}
+            </td>
+        </tr>
+
+        <tr>
+          <td>
+            Hoy tienes: ${{cantidad}}
+          </td>
+        </tr>
+        </tbody> 
+      </table>
+
+      <button onclick="seeForm1()">+</button>
+      <button onclick="seeForm2()">-</button>
+
+      <form action="/ahorros/detailmas/{{_id}}" method="POST" id="mas">
+        Añadir: <input type="number" name="cantidad" placeholder="Ahorro" id="cantidad"><br>
+        <input type="submit" name="add" value="✓">
+        <button onclick="inputs1Hide()" class="buttons">✖</button>
+      </form>
+      
+      <form action="/ahorros/detailmenos/{{_id}}" method="POST" id="menos">
+        Quitar: <input type="number" name="cantidad" placeholder="Ahorro" id="cantidad"><br>
+        <input type="submit" name="less" value="✓">
+        <button onclick="inputs2Hide()" class="buttons">✖</button>
+      </form>
+
+    </section> 
+    <br><br><br>
+    <a href="/ahorros/edit/{{this.id}}">Editar</a>
+    <a href="/ahorros/list">Atrás</a>
+</body>
+
+<script>
+  document.getElementById('mas').style.display="none"
+  document.getElementById('menos').style.display="none"
+
+  function seeForm1(){
+    document.getElementById('mas').style.display="block";
+    document.getElementById('menos').style.display="none"
+  }
+
+  function seeForm2(){
+    document.getElementById('menos').style.display="block";
+    document.getElementById('mas').style.display="none"
+  }
+
+  function inputs1Hide(){
+    document.getElementById('mas').style.display="none"
+  }
+  function inputs2Hide(){
+    document.getElementById('menos').style.display="none"
+  }
+</script>

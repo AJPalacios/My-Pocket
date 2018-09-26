@@ -1,0 +1,46 @@
+<h1>Editar gasto {{tipo}}</h1>
+<form action="/gastos/edit/{{this.id}}" method="POST">
+<p>
+  <label for="tipo">Tipo de gasto:</label>
+  <select name="tipo" id="tipo" onchange="showfield(this.options[this.selectedIndex].value)">
+    <option value="Casa">Casa</option>
+    <option value="Transporte">Transporte</option>
+    <option value="Alimentación">Alimentación</option>
+    <option value="Servicios">Servicios</option>
+    <option value="Otro">Otro</option><input type="text" name="tipoGasto" id="field" placeholder="Tipo de gasto"/>
+  </select>
+  <br>
+</p>
+<p>
+  <label for="cantidad" id="cantidad">Cantidad:</label>
+  <input type="number" name="cantidad" id="cantidad" value="{{cantidad}}">
+</p>
+<p>
+  <label for="periodicidad">Periodicidad:</label>
+  <select name="periodicidad" id="periodicidad">
+    <option value="Diario">Diario</option>
+    <option value="Semanal">Semanal</option>
+    <option value="Quincenal">Quincenal</option>
+    <option value="Mensual">Mensual</option>
+  </select>
+</p>
+<input type="submit" value="Guardar">
+</form>
+<a href="/gastos/list">Atrás</a>
+
+<script type="text/javascript">
+  document.getElementById('field').style.display="none"
+  function showfield(name){
+    if(name=='Otro')document.getElementById('field').style.display="block";
+    else document.getElementById('field').style.display="none";
+  }
+
+  document.getElementById('tipo').value = "{{tipo}}";
+  if(document.getElementById('tipo').value === '') {
+    document.getElementById('tipo').value = "Otro"
+    document.getElementById('field').style.display="block";
+    document.getElementById('field').value="{{tipo}}";
+  }
+
+  document.getElementById('periodicidad').value = "{{periodicidad}}";
+</script>

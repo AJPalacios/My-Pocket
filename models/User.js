@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const PLM = require('passport-local-mongoose')
 
-const userSchema = new Schema({ 
+const userSchema = new Schema({
+  usuario:String, 
   nombre: String,
   apellido:String,
   email:String,

@@ -1,0 +1,11 @@
+<h1>Mis gastos recurrentes</h1>
+<section>
+{{#each gastos}}
+  <div>
+    <a href="/gastos/detail/{{this.id}}">{{this.tipo}}</a>
+  </div>  
+{{/each}}
+
+</section>
+
+<a href="/gastos/new">Agregar nuevo gasto</a>

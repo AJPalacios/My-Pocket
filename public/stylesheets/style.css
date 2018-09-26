@@ -1,8 +1,50 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  margin: 0;
+  padding: 0;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF; }
+  color: #00B7FF;
+  text-decoration: none; }
+
+li {
+  font-size: 1.5em; }
+
+li > a {
+  padding: 10px; }
+
+.video-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: absolute; }
+
+.video-container video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.img-logotipo {
+  width: 10rem; }
+
+.signlog {
+  height: 50px;
+  width: 180px;
+  font-size: 1.5em; }
+
+.inicial {
+  padding-top: 5rem; }
+
+.login, .signup {
+  padding-top: 2rem; }
+
+.row {
+  margin: 0 !important; }
 
 /*# sourceMappingURL=style.css.map */

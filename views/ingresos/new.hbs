@@ -1,0 +1,27 @@
+<h1>Nuevo Ingreso</h1>
+
+<form action="/ingresos/new" method="POST">
+  <div>
+    <label for="concepto">Concepto</label>
+    <input type="text" name="concepto" id="concepto" placeholder="Nómina">
+  </div>
+  <div>
+    <label for="cantidad">Cantidad</label>
+    <input type="number" name="cantidad" id="cantidad" placeholder="0">
+  </div>
+
+  <div>
+    <label for="periodicidad">Periodicidad</label>
+    <select name="periodicidad">
+      <option value="Diario">Diario</option>
+      <option value="Semanal">Semanal</option>
+      <option value="Quincenal">Quincenal</option>
+      <option value="Mensual">Mensual</option>
+      <option value="Anual">Anual</option>
+    </select>
+  </div>
+
+  <button type="submit">Añadir</button>
+  <a href="/ingresos/lista"><button>Ingresos</button></a>
+</form>
+

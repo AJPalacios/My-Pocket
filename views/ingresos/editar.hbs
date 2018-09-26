@@ -1,0 +1,30 @@
+<h1>Editar Ingreso</h1>
+
+<form action="/ingresos/editar/{{_id}}" method="POST">
+  <div>
+    <label for="concepto">Concepto</label>
+    <input type="text" name="concepto" id="concepto" value="{{concepto}}">
+  </div>
+  <div>
+    <label for="cantidad">Cantidad</label>
+    <input type="number" name="cantidad" id="cantidad" value="{{cantidad}}">
+  </div>
+
+  <div>
+    <label for="periodicidad">Periodicidad</label>
+    <select name="periodicidad" id="periodicidad">
+      <option value="Diario">Diario</option>
+      <option value="Semanal">Semanal</option>
+      <option value="Quincenal">Quincenal</option>
+      <option value="Mensual">Mensual</option>
+      <option value="Anual">Anual</option>
+    </select>
+  </div>
+
+  <button type="submit">Guardar Cambios</button>
+  <a href="/ingresos/lista"><button>Ingresos</button></a>
+</form>
+
+<script type="text/javascript">
+document.getElementById('periodicidad').value='{{periodicidad}}'
+</script>

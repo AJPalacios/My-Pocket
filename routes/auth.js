@@ -1,8 +1,13 @@
 const router = require('express').Router()
 const User = require('../models/User')
 const passport = require('../helpers/passport')
-const welcomeMail = require('../helpers/mailer').welcomeMail
+const sendMail = require('../helpers/mailer').welcomeMail
 
+const isLogged = (req,res,next)=>{
+  if (req.isAuthenticated())return next()
+    return res.redirect('/login')
+
+}
 
 // Rutas de registro de usuarios
 router.get('/signup',(req, res, next)=>{
@@ -11,12 +16,12 @@ router.get('/signup',(req, res, next)=>{
 
 
 router.post('/signup',(req, res, next)=>{
-  const {nombre,email} = req.body
+  const {nombre,email,usuario} = req.body
   console.log(req.body)
   User.register(req.body, req.body.password)
     .then(user=>{
+      sendMail(nombre,email)
       res.redirect('/login')
-      welcomeMail(nombre,email)
     }).catch(error=>{
       res.render('auth/signup',{data:req.body,error})
     })
@@ -28,12 +33,9 @@ router.get('/login',(req, res, next)=>{
   res.render('auth/login')
 })
 
-router.post('/login',passport.authenticate('local'),(req,res)=>{
+router.post('/login',passport.authenticate('local'),(req,res,next)=>{
   const {email} = req.body
-  //const {name} = req.name
-  //req.app.locals.email = req.email
-  res.render('users/profile.hbs')
-  // console.log(email)
+  res.redirect(`/users/${email}`)
 })
 
 // Logout de usuario
