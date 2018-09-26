@@ -1,8 +1,43 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+//index.hbs
+
+
+iframe{
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  position: absolute;
+}
+.rightindex {
+  text-align: center;
+  border: 1px solid rgb(202, 202, 202);
+  background-color: white;
+  border-radius: 10px;
+  padding: 3rem;
+}
+
+.rightindex .signup{
+  margin-top: 2rem;
+}
+
+.img-logotipo {
+  width: 10rem;
+}
+
+.signlog{
+  height: 8vh;
+  width: 15vw;
+  font-size: 1.5em;
+}
+
+.login{
+  padding-top: 2rem;
 }
