@@ -91,22 +91,23 @@ li {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #999;
   overflow-x: hidden;
   padding-top: 20px; }
 
 .sidenav a {
-  padding: 6px 8px 16px 50px;
+  padding: 10px 0px 10px 0px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;
-  display: block; }
-
-
-.sidenav a:nth-child(4) {
-  color: white; }
+  display: block;
+  text-align: center;
+}
 
 .sidenav a:nth-child(5) {
+  color: white; }
+
+.sidenav a:nth-child(6) {
   color: white; }
 
 .fotoperfil {

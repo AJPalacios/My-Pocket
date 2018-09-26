@@ -8,12 +8,12 @@
 
 <div class="sidenav">
   <div class="profile">
-  <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
-</div>
+    <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
+  </div>
   <a href="/ahorros/list">Mis Ahorros</a>
   <a href="/gastos/list">Mis Gastos</a>
   <a href="/ingresos/list">Mis Ingresos</a>
-  <a id="dolar"></p>
+  <a id="dolar"></a>
   <p id="frase"></p>
 </div>
 
@@ -122,8 +122,7 @@
 let random= Math.floor(Math.random() * 26);
 let frase = frases[random];
 
-document.getElementById('frase').innerHTML = frase
-
+document.getElementById('frase').innerHTML = '"'+frase+'"'
 
 axios.get('https://api.exchangeratesapi.io/latest?base=USD')
       .then(res => {
@@ -139,7 +138,7 @@ axios.get('https://api.exchangeratesapi.io/latest?base=USD')
         console.log(err)
       })
 
-document.getElementById('frase').innerHTML = '"'+ frase+'"'
+
 
 </script>
 
