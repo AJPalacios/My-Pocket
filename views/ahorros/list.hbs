@@ -1,11 +1,48 @@
 <h1>Mis ahorros</h1>
+
 <section>
-{{#each ahorros}}
-  <div>
-    <a href="/ahorros/detail/{{this.id}}">{{this.nombre}}</a>
-  </div>  
-{{/each}}
-
+  <table class="table table-hover" id="tabla-ahorros">
+   <thead> 
+        <th>Nombre</th> 
+        <th>Cantidad</th>
+        <th></th>
+    </thead> 
+    <tbody> 
+        {{#each ahorros}} 
+        <tr> 
+            <td><a href="/ahorros/detail/{{this.id}}">{{this.nombre}}</a></td> 
+            <td>{{this.cantidad}}</td> 
+            <td><a href="/ahorros/delete/{{this.id}}">x</a></td>
+        </tr>
+        {{/each}}
+        <tr> 
+            <td><b>TOTAL</b></td> 
+            <td>{{total}} </td>  
+        </tr> 
+    </tbody> 
+  </table>
 </section>
+<hr>
+<button onclick="inputs()" class="buttons">+</button>
+<br><br>
+<form action="/ahorros/new" method="POST" id="agregar">
+  <input type="text" name="nombre" placeholder="Nombre" id="nombre">
+  <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad"><br>
+  <input type="submit" name="add" value="✓">
+</form>
+<button onclick="inputsHide()" class="buttons" id="t">✖</button>
 
-<a href="/ahorros/new">Agregar nuevo ahorro</a>
+<script>
+  document.getElementById('t').style.display="none"
+  document.getElementById('agregar').style.display="none"
+  function inputs(){
+    document.getElementById('agregar').style.display="block"
+    document.getElementById('t').style.display="block"
+  }
+  function inputsHide(){
+    document.getElementById('t').style.display="none"
+    document.getElementById('nombre').value=""
+    document.getElementById('cantidad').value=""
+    document.getElementById('agregar').style.display="none"
+  }
+</script>
