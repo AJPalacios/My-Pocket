@@ -1,15 +1,34 @@
-<h1>Inicia Sesión</h1>
+<div class="video-container">
+  <video autoplay loop muted>
+    <source src="/video/Head-or-Tails.mp4" type="video/mp4">
+    <source src="/video/Head-or-Tails.ogv" type="video/ogv">
+    <source src="/video/Head-or-Tails.webm" type="video/webm">
+  </video>
+</div>
 
-<form action="/login" method="POST">
-  <p>
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" placeholder="Juan@mail.com">
-  </p>
 
-  <p>
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
-  </p>
-  <input type="submit" value="Iniciar sesión">
-</form>
+<div class="row full-height middle-xs center-xs inicial">
+  <div class="col-md-12 col-xs-12">
+    <div class="box">
+      <div class="logotipo">
+        <img class="img-ltipo" src="https://res.cloudinary.com/mishulicious/image/upload/v1537910791/myPocket/logo-mypocket-03.png" alt="myPocket">
+      </div>
+      <form action="/login" method="POST">
+        <p>
+          <input class="form-control"  type="email" name="email" id="email" placeholder="email@email.com">
+        </p>
 
+        <p>
+          <input class="form-control" type="password" name="password" id="password" placeholder="Contraseña">
+        </p>
+
+        <p>
+          <input type="submit" class="btn btn-primary" value="Iniciar sesión">
+        </p>
+
+        <a href="/signup"><button type="button" class="btn btn-primary">No tengo cuenta</button></a>
+
+      </form>
+    </div>
+  </div>
+</div>
