@@ -11,7 +11,12 @@ a {
 
 //index.hbs
 
-
+li{
+  font-size: 1.5em;
+}
+li>a{
+  padding: 10px;
+}
 .video-container {
   height: 100vh;
   width: 100vw;

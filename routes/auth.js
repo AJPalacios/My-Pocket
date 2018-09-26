@@ -3,6 +3,11 @@ const User = require('../models/User')
 const passport = require('../helpers/passport')
 const sendMail = require('../helpers/mailer').welcomeMail
 
+const isLogged = (req,res,next)=>{
+  if (req.isAuthenticated())return next()
+    return res.redirect('/login')
+
+}
 
 // Rutas de registro de usuarios
 router.get('/signup',(req, res, next)=>{

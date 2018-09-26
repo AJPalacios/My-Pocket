@@ -2,6 +2,8 @@ const router = require('express').Router()
 const Ahorro = require('../models/Ahorro')
 const User = require('../models/User')
 
+
+
 //R-lista de ahorros
 router.get('/list', (req, res, next)=>{
   Ahorro.find()//.populate('user')
