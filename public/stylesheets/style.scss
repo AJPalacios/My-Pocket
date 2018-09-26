@@ -1,8 +1,13 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 
 a {
   color: #00B7FF;
@@ -40,6 +45,10 @@ li>a{
 .img-logotipo {
   width: 10rem;
 }
+.img-ltipo{
+  width: 16rem;
+  margin-bottom: 2%;
+}
 
 .signlog{
   height: 50px;
@@ -58,10 +67,29 @@ li>a{
   width:40%;
 }
 
-*{
-  font-family: 'Montserrat', sans-serif;
+.none {
+  display: none;
 }
+
 
 .row{
   margin: 0 !important;
+}
+.fa-trash-alt{
+  color: red;
+  font-size: 1em;
+}
+.fa-plus-circle{
+  margin: 5px;
+  color: #00B7FF;
+  font-size: 2.5em;
+}
+
+.form-control {
+  width: 15rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
