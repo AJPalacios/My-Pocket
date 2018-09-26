@@ -1,18 +1,18 @@
-<h1>Nuevo Ingreso</h1>
+<h1>Editar Ingreso</h1>
 
-<form action="/ingresos/new" method="POST">
+<form action="/ingresos/edit/{{_id}}" method="POST">
   <div>
     <label for="concepto">Concepto</label>
-    <input type="text" name="concepto" id="concepto" placeholder="Nómina">
+    <input type="text" name="concepto" id="concepto" value="{{concepto}}">
   </div>
   <div>
     <label for="cantidad">Cantidad</label>
-    <input type="number" name="cantidad" id="cantidad" placeholder="0">
+    <input type="number" name="cantidad" id="cantidad" value="{{cantidad}}">
   </div>
 
   <div>
     <label for="periodicidad">Periodicidad</label>
-    <select name="periodicidad">
+    <select name="periodicidad" id="periodicidad">
       <option value="Diario">Diario</option>
       <option value="Semanal">Semanal</option>
       <option value="Quincenal">Quincenal</option>
@@ -21,7 +21,10 @@
     </select>
   </div>
 
-  <button type="submit">Añadir</button>
+  <button type="submit">Guardar Cambios</button>
   <a href="/ingresos/lista"><button>Ingresos</button></a>
 </form>
 
+<script type="text/javascript">
+document.getElementById('periodicidad').value='{{periodicidad}}'
+</script>

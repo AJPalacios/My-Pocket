@@ -1,9 +1,8 @@
 <h1>Mis ahorros</h1>
-
 <section>
   <table class="table table-hover tabla-ahorros">
-    <thead> 
-        <th>Nombre</th> 
+   <thead> 
+        <th>Concepto</th> 
         <th>Cantidad</th>
         <th></th>
     </thead> 
@@ -21,27 +20,38 @@
         </tr> 
     </tbody> 
   </table>
-</section>
-<hr>
-<a onclick="showInputs()" class="buttons"><i class="fas fa-plus-circle"></i></a>
-<br><br>
+</section><hr>
+<button title="Agrega un nuevo ahorro" id="show"  class="btn btn-primary" placeholder="Agrega tu ahorro">+</button><br><br>
 <form action="/ahorros/new" method="POST" id="agregar" class="form-inline">
-  <input type="text" name="nombre" placeholder="Nombre" id="nombre">
-  <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad">
-  <button type="submit" name="add" class="btn-default">✓</button>
+  <div class="form-group">
+    <input type="text" name="nombre" placeholder="Concepto de tu ahorro" id="nombre" class="form-control" required>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <label class="sr-only" for="cantidad">Cantidad</label>
+      <input type="number" name="cantidad" placeholder="¿Con cuánto comienzas?" id="cantidad" class="form-control" required>
+    </div>
+    <button id="check" type="submit" name="check" class="btn btn-primary" title="OK">✓</button>
+    <button onclick="inputsHide()" class="btn btn-primary" title="Cancel">✖</button>
+  </div>
 </form>
-<a name="t" class="btn-default" id="t" onclick="inputsHide()"><i class="fas fa-plus-circle"></i></a>
 
 
 <script>
-  document.getElementById('agregar').style.display="none"
-  document.getElementById('t').style.display="none"
+   window.onload=load()
+   function load() {
+    document.getElementById('agregar').style.display="none"
+  }
+  document.getElementById('show').addEventListener('click',function(){
+    showInputs()
+  })
+  
   function showInputs(){
     document.getElementById('agregar').style.display="block"
-    document.getElementById('t').style.display="block"
+    document.getElementById("nombre").focus()
   }
   function inputsHide(){
+    document.getElementById('nombre').value=""
+    document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
-    document.getElementById('t').style.display="none"
   }
 </script>

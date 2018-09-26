@@ -4,7 +4,10 @@ const Schema = mongoose.Schema
 const ahorroSchema = new Schema({ 
   nombre: String,
   cantidadInicial: Number,
-  cantidad: Number,
+  cantidad: {
+    type:Number,
+    default:'0'
+  },
   porcentaje: Number,
   usuario: {
     type: Schema.Types.ObjectId,
