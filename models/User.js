@@ -7,7 +7,10 @@ const userSchema = new Schema({
   nombre: String,
   apellido:String,
   email:String,
-  photoURL: String,
+  photoURL: {
+    type: String,
+    default: 'https://res.cloudinary.com/mishulicious/image/upload/v1537995855/myPocket/blue-head.jpg'
+  },
   codeConfirmation: String,
   Status:{
     type: String,

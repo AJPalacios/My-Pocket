@@ -1,0 +1,80 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<h1>Mis gastitos</h1>
+
+<section>
+  <table class="table table-hover tabla-gastos">
+   <thead> 
+        <th>Concepto</th> 
+        <th>Fecha</th>
+        <th>Cantidad</th>
+        <th></th>
+    </thead> 
+    <tbody> 
+        {{#each diarios}} 
+        <tr> 
+            <td>{{this.tipo}}</td> 
+            <td>{{dateFormat fecha "D-MMMM-YYYY"}} </td> 
+            <td>{{this.cantidad}}</td> 
+            <td><a href="/diarios/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+        </tr>
+        {{/each}}
+    </tbody> 
+  </table>
+</section><hr>
+<button title="Agrega un nuevo gastito" id="show"  class="btn btn-primary" placeholder="Agrega tu gastito">+</button><br><br>
+<form action="/diarios/new" method="POST" id="agregar" class="form-inline">
+  <div class="form-group">
+    <input type="text" name="tipo" id="tipo" placeholder="Concepto de tu gastito" required>
+    <input type="date" name="fecha" id="fecha" required>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <label class="sr-only" for="cantidad">Cantidad</label>
+      <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad" class="form-control" required>
+    </div>
+    <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
+    <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
+  </div>
+</form>
+
+
+<script>
+   window.onload=load()
+   function load() {
+    document.getElementById('agregar').style.display="none"
+  }
+  document.getElementById('show').addEventListener('click',function(){
+    showInputs()
+    console.log('hola')
+  })
+  
+  function showInputs(){
+    document.getElementById('agregar').style.display="block"
+    document.getElementById("tipo").focus()
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd = '0'+dd
+    } 
+
+    if(mm<10) {
+        mm = '0'+mm
+    } 
+
+    today = yyyy + '-' + mm + '-' + dd;
+    console.log(today)
+    document.getElementById('fecha').value=today
+  }
+  function inputsHide(){
+    document.getElementById('tipo').value=""
+    document.getElementById('fecha').value=""
+    document.getElementById('cantidad').value=""
+    document.getElementById('agregar').style.display="none"
+  }
+  document.getElementById('field').style.display="none"
+  
+</script>
