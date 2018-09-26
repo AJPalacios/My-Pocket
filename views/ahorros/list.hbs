@@ -1,7 +1,7 @@
 <h1>Mis ahorros</h1>
 
 <section>
-  <table class="table table-hover" id="tabla-ahorros">
+  <table class="table table-hover tabla-ahorros">
    <thead> 
         <th>Nombre</th> 
         <th>Cantidad</th>
@@ -23,26 +23,25 @@
   </table>
 </section>
 <hr>
-<button onclick="inputs()" class="buttons">+</button>
+<button onclick="showInputs()" class="buttons">+</button>
 <br><br>
-<form action="/ahorros/new" method="POST" id="agregar">
+<form action="/ahorros/new" method="POST" id="agregar" class="form-inline">
   <input type="text" name="nombre" placeholder="Nombre" id="nombre">
-  <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad"><br>
-  <input type="submit" name="add" value="✓">
+  <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad">
+  <button type="submit" name="add" class="btn-default">✓</button>
 </form>
-<button onclick="inputsHide()" class="buttons" id="t">✖</button>
+<button name="t" class="btn-default" id="t" onclick="inputsHide()">✖</button>
+
 
 <script>
-  document.getElementById('t').style.display="none"
   document.getElementById('agregar').style.display="none"
-  function inputs(){
+  document.getElementById('t').style.display="none"
+  function showInputs(){
     document.getElementById('agregar').style.display="block"
     document.getElementById('t').style.display="block"
   }
   function inputsHide(){
-    document.getElementById('t').style.display="none"
-    document.getElementById('nombre').value=""
-    document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
+    document.getElementById('t').style.display="none"
   }
 </script>

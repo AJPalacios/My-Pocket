@@ -1,7 +1,7 @@
 <body>
     <section>
       
-      <table class="table table-hover" id="tabla-ahorros">
+      <table class="table table-hover tabla-ahorros">
         <thead> 
           <th>{{nombre}}</th>
         </thead> 
@@ -23,16 +23,17 @@
       <button onclick="seeForm1()">+</button>
       <button onclick="seeForm2()">-</button>
 
-      <form action="/ahorros/detailmas/{{_id}}" method="POST" id="mas">
+      
+      <form action="/ahorros/detailmas/{{_id}}" method="POST" id="mas" class="form-inline">
         Añadir: <input type="number" name="cantidad" placeholder="Ahorro" id="cantidad"><br>
-        <input type="submit" name="add" value="✓">
-        <button onclick="inputs1Hide()" class="buttons">✖</button>
+        <button type="submit" name="add" class="btn btn-default">✓</button>
+        <button onclick="inputs1Hide()" class="btn btn-default">✖</button>
       </form>
       
       <form action="/ahorros/detailmenos/{{_id}}" method="POST" id="menos">
         Quitar: <input type="number" name="cantidad" placeholder="Ahorro" id="cantidad"><br>
-        <input type="submit" name="less" value="✓">
-        <button onclick="inputs2Hide()" class="buttons">✖</button>
+        <button type="submit" name="less" class="btn btn-default">✓</button>
+        <button onclick="inputs2Hide()" class="btn btn-default">✖</button>
       </form>
 
     </section> 

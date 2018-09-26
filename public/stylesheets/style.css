@@ -44,6 +44,13 @@ li > a {
 .login, .signup {
   padding-top: 2rem; }
 
+.tabla-ahorros {
+  font-size: 12px;
+  width: 40%; }
+
+* {
+  font-family: 'Montserrat', sans-serif; }
+
 .row {
   margin: 0 !important; }
 
