@@ -1,19 +1,9 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<h1>Mis gastos recurrentes</h1>
-{{!-- <section>
-{{#each gastos}}
-  <div>
-    <a href="/gastos/detail/{{this.id}}">{{this.tipo}}</a>
-  </div>  
-{{/each}}
-
-</section>
-
-<a href="/gastos/new">Agregar nuevo gasto</a> --}}
+<h1>Mis Ingresos</h1>
 <section>
-  <table class="table table-hover tabla-gastos">
+  <table class="table table-hover tabla-ingresos">
    <thead> 
         <th>Concepto</th> 
         <th>Cantidad</th>
@@ -21,28 +11,21 @@
         <th></th>
     </thead> 
     <tbody> 
-        {{#each gastos}} 
+        {{#each ingresos}} 
         <tr> 
-            <td><a href="/gastos/detail/{{this.id}}">{{this.tipo}}</a></td> 
+            <td><a href="/ingresos/detail/{{this.id}}">{{this.concepto}}</a></td> 
             <td>{{this.cantidad}}</td> 
             <td>{{this.periodicidad}}</td> 
-            <td><a href="/gastos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+            <td><a href="/ingresos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
         </tr>
         {{/each}}
     </tbody> 
   </table>
 </section><hr>
-<button title="Agrega un nuevo gasto recurrente" id="show"  class="btn btn-primary" placeholder="Agrega tu gasto recurrente">+</button><br><br>
-<form action="/gastos/new" method="POST" id="agregar" class="form-inline">
+<button title="Agrega un nuevo ingreso" id="show"  class="btn btn-primary" placeholder="Agrega tu ingreso">+</button><br><br>
+<form action="/ingresos/new" method="POST" id="agregar" class="form-inline">
   <div class="form-group">
-    <label for="tipo">Tipo de gasto:</label>
-    <select name="tipo" id="tipo" onchange="showfield(this.options[this.selectedIndex].value)">
-      <option value="Casa">Casa</option>
-      <option value="Transporte">Transporte</option>
-      <option value="Alimentación">Alimentación</option>
-      <option value="Servicios">Servicios</option>
-      <option value="Otro">Otro</option><input type="text" name="tipoGasto" id="field" placeholder="Tipo de gasto"/>
-    </select>
+    <input type="text" name="concepto" placeholder="Concepto de tu ingreso" id="nombre" class="form-control" required>
     <div class="input-group">
       <div class="input-group-addon">$</div>
       <label class="sr-only" for="cantidad">Cantidad</label>
@@ -78,10 +61,5 @@
     document.getElementById('nombre').value=""
     document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
-  }
-  document.getElementById('field').style.display="none"
-  function showfield(name){
-    if(name=='Otro')document.getElementById('field').style.display="block";
-    else document.getElementById('field').style.display="none";
   }
 </script>

@@ -1,3 +1,6 @@
+* {
+  font-family: 'Montserrat', sans-serif; }
+
 body {
   margin: 0;
   padding: 0;
@@ -30,8 +33,23 @@ li > a {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
 
+.form-control {
+  width: 15rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%; }
+
+.login-btns {
+  margin-top: 3%; }
+
 .img-logotipo {
   width: 10rem; }
+
+.img-ltipo {
+  width: 16rem;
+  margin-bottom: 2%; }
 
 .signlog {
   height: 50px;
@@ -44,7 +62,23 @@ li > a {
 .login, .signup {
   padding-top: 2rem; }
 
+.tabla-ahorros {
+  font-size: 12px;
+  width: 40%; }
+
 .row {
   margin: 0 !important; }
+
+.fa-trash-alt {
+  color: red;
+  font-size: 1em; }
+
+.fa-plus-circle {
+  margin: 5px;
+  color: #00B7FF;
+  font-size: 2.5em; }
+
+.card {
+  margin: 50px !important; }
 
 /*# sourceMappingURL=style.css.map */

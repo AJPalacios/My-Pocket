@@ -8,9 +8,10 @@ const isLogged = (req,res,next)=>{
 
 }
 
-router.get('/:email',isLogged, (req,res,next)=>{
-  const {email} = req.params
-  User.findOne({email})
+router.get('/:id',isLogged, (req,res,next)=>{
+  const {id} = req.params
+  console.log(req.params)
+  User.findOne({id})
   .then(user=>{
     console.log(user)
     res.render('users/profile',user)

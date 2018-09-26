@@ -1,9 +1,11 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
 <h1>Mis ahorros</h1>
-
 <section>
-  <table class="table table-hover" id="tabla-ahorros">
+  <table class="table table-hover tabla-ahorros">
    <thead> 
-        <th>Nombre</th> 
+        <th>Concepto</th> 
         <th>Cantidad</th>
         <th></th>
     </thead> 
@@ -12,7 +14,7 @@
         <tr> 
             <td><a href="/ahorros/detail/{{this.id}}">{{this.nombre}}</a></td> 
             <td>{{this.cantidad}}</td> 
-            <td><a href="/ahorros/delete/{{this.id}}">x</a></td>
+            <td><a href="/ahorros/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
         </tr>
         {{/each}}
         <tr> 
@@ -21,26 +23,36 @@
         </tr> 
     </tbody> 
   </table>
-</section>
-<hr>
-<button onclick="inputs()" class="buttons">+</button>
-<br><br>
-<form action="/ahorros/new" method="POST" id="agregar">
-  <input type="text" name="nombre" placeholder="Nombre" id="nombre">
-  <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad"><br>
-  <input type="submit" name="add" value="✓">
+</section><hr>
+<button title="Agrega un nuevo ahorro" id="show"  class="btn btn-primary" placeholder="Agrega tu ahorro">+</button><br><br>
+<form action="/ahorros/new" method="POST" id="agregar" class="form-inline">
+  <div class="form-group">
+    <input type="text" name="nombre" placeholder="Concepto de tu ahorro" id="nombre" class="form-control" required>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <label class="sr-only" for="cantidad">Cantidad</label>
+      <input type="number" name="cantidad" placeholder="¿Con cuánto comienzas?" id="cantidad" class="form-control" required>
+    </div>
+    <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
+    <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
+  </div>
 </form>
-<button onclick="inputsHide()" class="buttons" id="t">✖</button>
+
 
 <script>
-  document.getElementById('t').style.display="none"
-  document.getElementById('agregar').style.display="none"
-  function inputs(){
+   window.onload=load()
+   function load() {
+    document.getElementById('agregar').style.display="none"
+  }
+  document.getElementById('show').addEventListener('click',function(){
+    showInputs()
+  })
+  
+  function showInputs(){
     document.getElementById('agregar').style.display="block"
-    document.getElementById('t').style.display="block"
+    document.getElementById("nombre").focus()
   }
   function inputsHide(){
-    document.getElementById('t').style.display="none"
     document.getElementById('nombre').value=""
     document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"

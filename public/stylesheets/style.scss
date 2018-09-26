@@ -1,8 +1,13 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 
 a {
   color: #00B7FF;
@@ -36,9 +41,25 @@ li>a{
   transform: translate(-50%, -50%);
 }
 
+//******login y signup*****
+.form-control {
+  width: 15rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.login-btns{
+  margin-top: 3%;
+}
 
 .img-logotipo {
   width: 10rem;
+}
+.img-ltipo{
+  width: 16rem;
+  margin-bottom: 2%;
 }
 
 .signlog{
@@ -52,6 +73,28 @@ li>a{
 .login , .signup{
   padding-top: 2rem;
 }
+//*************************
+
+
+.tabla-ahorros{
+  font-size: 12px;
+  width:40%;
+}
+
 .row{
   margin: 0 !important;
+}
+.fa-trash-alt{
+  color: red;
+  font-size: 1em;
+}
+.fa-plus-circle{
+  margin: 5px;
+  color: #00B7FF;
+  font-size: 2.5em;
+}
+
+// Cards layouts
+.card{
+  margin: 50px !important;
 }
