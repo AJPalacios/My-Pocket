@@ -12,6 +12,7 @@ const passport = require('./helpers/passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash')
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 mongoose
   .connect(process.env.DB, {useNewUrlParser: true})
@@ -89,5 +90,8 @@ app.use('/gastos', gastos)
 
 const ahorros = require('./routes/ahorros')
 app.use('/ahorros', ahorros)
+
+const diarios = require('./routes/diarios')
+app.use('/diarios', diarios)
 
 module.exports = app;
