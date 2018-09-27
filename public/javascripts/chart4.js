@@ -14,7 +14,7 @@ const drawGraph4 = () => {
     
     console.log(cantidad)
     var myChart = new Chart(ctx4, {
-    type: 'bar',
+    type: 'line',
     data: {
         labels,
         datasets: [{
@@ -39,6 +39,11 @@ const drawGraph4 = () => {
             borderWidth: 1
         }]
     },
+    options: {
+        legend: {
+            display: false
+        }
+    }
     
 });
   })

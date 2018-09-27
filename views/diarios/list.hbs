@@ -2,9 +2,19 @@
 {{> sidenav}}
 
 <body>
-  <h1>Mis Gastos Extra</h1>
 
-<section>
+<div class="row center-xs">
+  <div class="col-md-10 offset-2">
+    <div class="box">
+      <h1>Mis Gastitos Extra</h1>
+    </div>
+  </div>
+</div>
+
+<section class="container">
+  <div class="row center-xs">
+    <div class="col-md-10 offset-2">
+      <div class="box">
   <table class="table table-hover tabla-gastos">
    <thead> 
         <th>Concepto</th> 
@@ -23,6 +33,9 @@
         {{/each}}
     </tbody> 
   </table>
+        </div>
+    </div>
+  </div>
 </section><hr>
 <button title="Agrega un nuevo gastito" id="show"  class="btn btn-primary" placeholder="Agrega tu gastito">+</button><br><br>
 <form action="/diarios/new" method="POST" id="agregar" class="form-inline">
