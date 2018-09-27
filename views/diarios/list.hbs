@@ -17,7 +17,7 @@
   <div class="row center-xs">
     <div class="col-md-10">
       <div class="box">
-        <table id="tabla_diarios" class="table table-hover tabla-gastos">
+        <table id="tabla_gastos_diarios" class="table table-hover tabla-gastos">
           <thead> 
                 <th>Concepto</th> 
                 <th>Fecha</th>
@@ -73,9 +73,10 @@
 
 <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/js/tableexport.min.js"></script>
+
 <script>
-   window.onload=load()
-   function load() {
+  window.onload=load()
+  function load() {
     document.getElementById('agregar').style.display="none"
   }
   document.getElementById('show').addEventListener('click',function(){
@@ -111,7 +112,7 @@
   }
   //document.getElementById('field').style.display="none"
   
-  $('#tabla_diarios').tableExport({
+  $('#tabla_gastos_diarios').tableExport({
     formats: ["csv","txt"],
     filename: "mis ahorros",
     bootstrap: false,

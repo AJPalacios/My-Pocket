@@ -14,7 +14,7 @@ router.get('/list', isLogged, (req, res, next)=>{
   let user_id = req.user._id
   Diario.find({usuario:req.app.locals.loggedUser})
     .then(diarios=>{        
-      res.render('diarios/list',{diarios})
+      res.render('diarios/list',{diarios,user_id})
       //res.send(diarios)
     }).catch(e=>{
       console.log(e)
