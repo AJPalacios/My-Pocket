@@ -4,66 +4,60 @@
 {{> nav}}
 {{> sidenav}}
 
-<h1>Editar meta {{nombre}}</h1>
-<form action="/metas/edit/{{this.id}}" method="POST">
-<p>
-  <label for="nombre">Nombre:</label><br>
-  <input type="text" name="nombre" id="nombre" value="{{nombre}}">
-  <br>
-</p>
+<div class="row center-xs">
+  <div class="col-md-10 offset-2">
+    <div class="box">
+      <h1>Editar meta {{meta.nombre}}</h1>
+      <form action="/metas/edit/{{meta._id}}" method="POST">
+        <table class="table table-hover tabla-gastos">
+          <thead> 
+          </thead> 
+          <tbody> 
+              <tr> 
+                <td>Nombre</td> 
+                <td align="center">
+                  <input type="text" name="nombre" id="nombre" value="{{meta.nombre}}">
+                </td> 
+              </tr>
+              <tr> 
+                <td>Fecha objetivo:</td> 
+                <td><input type="date" name="fechaFin" id="nombre" value="{{meta.fechaFin}}"></td> 
+              </tr>
+              <tr> 
+                <td>Cantidad Objetivo:</td> 
+                <td>
+                  $ <input type="number" class="cant" step="0.01" name="cantidadObjetivo" id="cantidadObjetivo" value="{{meta.cantidadObjetivo}}"> 
+                </td> 
+              </tr>
+              <tr>
+                <td>Cantidad Inicial:</td>
+                <td>
+                  $ <input type="number" class="cant" name="cantidadInicial" id="cantidadInicial" value="{{meta.cantidadInicial}}">
+                </td>
+              </tr>
+              <tr>
+                <td>Cantidad Actual:</td>
+                <td>
+                  $ <input type="number" class="cant" name="cantidadActual" id="cantidadActual" value="{{meta.cantidadActual}}">
+                </td>
+              </tr>
+          </tbody> 
+        </table>
 
-
-<p>
-  <label for="nombre">Fecha Objetivo:</label><br>
-  <input type="text" name="nombre" id="nombre" value="{{fechaFin}}">
-  <br>
-</p>
-
-
-<p class="form-inline">
-  <div class="form-group"></div>
-  Cantidad Objetivo:
-  <div class="form-group">
-     <div class="input-group">
-      <div class="input-group-addon">$</div>
-      <label class="sr-only" for="cantidad">Cantidad</label>
-      <input type="number" name="cantidadObjetivo" id="cantidadObjetivo" value="{{cantidadObjetivo}}">
-    </div>
-  </div> 
-</p>
-
-<p class="form-inline">
-  <div class="form-group"></div>
-  Cantidad Inicial:
-  <div class="form-group">
-     <div class="input-group">
-      <div class="input-group-addon">$</div>
-      <label class="sr-only" for="cantidad">Cantidad</label>
-      <input type="number" name="cantidadInicial" id="cantidadInicial" value="{{cantidadInicial}}">
-    </div>
-  </div> 
-</p>
-
-<p class="form-inline">
-  <div class="form-group"></div>
-  Cantidad Actual:
-  <div class="form-group">
-     <div class="input-group">
-      <div class="input-group-addon">$</div>
-      <label class="sr-only" for="cantidad">Cantidad Actual</label>
-      <input type="number" name="cantidadActual" id="cantidadActual" value="{{cantidadActual}}">
-    </div>
-  </div> 
-</p>
-
-
-
-<input type="submit" value="Guardar" class="btn btn-primary">
+    
+        <input type="submit" value="Guardar" class="btn btn-primary">
 </form>
+    </div>
+  </div>
+</div>
+
 <a href="/metas/list">Atrás</a>
 <style>
   .bd{
     width: 70%;
     margin-left: 20%;
+  }
+  .cant{
+    text-align: right;
   }
 </style>

@@ -1,32 +1,21 @@
 {{> nav}}
 {{> sidenav}}
 
-<div class="sidenav">
-  <div class="profile">
-    <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
-  </div>
-  <a href="/ahorros/list">Mis Ahorros</a>
-  <a href="/gastos/list">Mis Gastos</a>
-  <a href="/ingresos/list">Mis Ingresos</a>
-  <a id="dolar"></a>
-  <p id="frase"></p>
-</div>
-
   <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
 <div class="row center-xs">
-  <div class="col-md-12">
+  <div class="col-md-10 offset-2">
     <div class="box">
-      <h1>Mis metas</h1> <br><br>
+      <h1>Mis metas</h1>
     </div>
   </div>
 </div>
 
 <section class="container">
   <div class="row center-xs">
-    <div class="col-md-10">
+    <div class="col-md-10 offset-2">
       <div class="box">
         <table class="table table-hover tabla-ahorros">
    <thead> 
@@ -41,7 +30,7 @@
             <td>{{this.nombre}}</td> 
             <td>{{dateFormat this.fechaFin "D-MMMM-YYYY"}} </td> 
             <td>{{this.porcentaje}}%</td>
-            <td><a href="/metas/detail/{{this.id}}"><i class="fas fa-pencil-alt" id="editar"></i></a></td>
+            <td><a href="/metas/edit/{{this.id}}"><i class="fas fa-pencil-alt" id="editar"></i></a></td>
             <td><a href="/metas/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
         </tr>
         {{/each}}
@@ -51,10 +40,10 @@
     </div>
   </div>
  
-</section><hr>
+</section>
 
 <div class="row center-xs">
-  <div class="col-md-10">
+  <div class="col-md-10  offset-2">
     <div class="box">
       <button title="Agrega una nueva meta" id="show"  class="btn btn-primary" placeholder="Agrega tu meta">+</button><br><br>
       <form action="/metas/new" method="POST" id="agregar" class="form-inline">
@@ -99,11 +88,10 @@
     document.getElementById("nombre").focus()
   }
   function inputsHide(){
-    document.getElementById('nombre').value=""
-    document.getElementById('cantidad').value=""
+    if(document.getElementById('nombre')) document.getElementById('nombre').value=""
+    if(document.getElementById('cantidad')) document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
   }
-
 </script>
 
 <style>
