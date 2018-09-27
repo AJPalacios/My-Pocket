@@ -2,22 +2,32 @@ const router = require('express').Router()
 const Ahorro = require('../models/Ahorro')
 const User = require('../models/User')
 
-
+const isLogged = (req,res,next)=>{
+  if (req.isAuthenticated())return next()
+    return res.redirect('/login')
+}
 
 //R-lista de ahorros
-router.get('/list', (req, res, next)=>{
-  Ahorro.find()//.populate('user')
+router.get('/list', isLogged, (req, res, next)=>{
+  Ahorro.find().populate('user')
     .then(ahorros=>{ 
       let total=0;
       ahorros.forEach(ahorro=> {
-        total+=ahorro.cantidad;
-        return res.json(ahorros)
+        total+=ahorro.cantidad;  
       })
       res.render('ahorros/list',{ahorros,total})
+      //return res.json(ahorros)
       //res.send(ahorros)
     }).catch(e=>{
       console.log(e)
     })
+})
+
+router.get('/list-for-chart', (req, res) => {
+  Ahorro.find().populate('user')
+  .then(ahorros => {
+    return res.json(ahorros)
+  })
 })
 
 //R-detalle de ahorros
@@ -66,10 +76,10 @@ router.post('/detailmenos/:id', (req, res, next) => {
 // router.get('/new',(req,res,next)=>{
 //   res.render('ahorros/new')
 // })
-router.post('/new',(req, res, next)=>{
+router.post('/new',isLogged,(req, res, next)=>{
   if(req.body.tipoAhorro) req.body.tipo=req.body.tipoAhorro
   //console.log(req.body)
-  Ahorro.create({...req.body,cantidadInicial:req.body.cantidad})
+  Ahorro.create({...req.body,cantidadInicial:req.body.cantidad,usuario:req.user._id})
   //Ahorro.create({...req.body,owner:req.user._id})
     .then(ahorros=>{
       res.redirect('/ahorros/list')
