@@ -1,4 +1,4 @@
-const ctx = document.getElementById('canvas2').getContext('2d')
+const ctx2 = document.getElementById('canvas2').getContext('2d')
 
 const drawGraph2 = () => {
   return fetch('http://localhost:3000/ingresos/list-for-chart')
@@ -13,7 +13,7 @@ const drawGraph2 = () => {
     }
     
     console.log(cantidad)
-    var myChart = new Chart(ctx, {
+    var myChart = new Chart(ctx2, {
     type: 'line',
     data: {
         labels,
