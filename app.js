@@ -97,4 +97,7 @@ app.use('/ahorros', ahorros)
 const diarios = require('./routes/diarios')
 app.use('/diarios', diarios)
 
+const metas = require('./routes/metas')
+app.use('/metas', metas)
+
 module.exports = app;

@@ -1,0 +1,93 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body class="bd">
+  <h1>Meta {{nombre}}</h1>
+    <section>
+      <table class="table table-hover tabla-ahorros">
+        <tbody>
+          <tr>
+            <td>
+              Cantidad Objetivo: ${{cantidadObjetivo}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Iniciaste con: ${{cantidadInicial}}
+            </td>
+        </tr>
+        <tr>
+          <td>
+            Hoy tienes: ${{cantidadActual}}
+          </td>
+        </tr>
+        <tr>
+            <td>
+              Fecha Límite: {{dateFormat fechaFin "D-MMMM-YYYY"}}
+            </td>
+          </tr>
+        </tbody> 
+      </table>
+
+      <button id="see1" class="btn btn-primary">+</button>
+      <button id="see2" class="btn btn-primary">-</button>
+
+      <form action="/ahorros/detailmas/{{_id}}" method="POST" id="mas" class="form-inline">
+      <div class="form-group">
+        Añadir:  
+        <div class="input-group"></div>
+        <div class="input-group-addon">$</div>
+        <label class="sr-only" for="cantidad">Cantidad</label>
+        <input type="number" name="cantidad" placeholder="¿Cuánto añadirás?" id="cantidad" class="form-control" required>
+        <button type="submit" name="add" class="btn btn-primary">✓</button>
+        <button onclick="inputs1Hide()" class="btn btn-primary">✖</button>
+        </div>
+      </form>
+      
+      <form action="/ahorros/detailmenos/{{_id}}" method="POST" id="menos" class="form-inline">
+      <div class="form-group">
+        Quitar: 
+        <div class="input-group"></div>
+        <div class="input-group-addon">$</div>
+        <label class="sr-only" for="cantidad">Cantidad</label>
+        <input type="number" name="cantidad" placeholder="¿Cuánto retirarás?" id="cantidad"class="form-control" required>
+        <button type="submit" name="less" class="btn btn-primary">✓</button>
+        <button onclick="inputs2Hide()" class="btn btn-primary">✖</button>
+      </div>
+      </form>
+    </section> 
+    <br><br><br>
+    <a href="/ahorros/edit/{{this.id}}">Editar</a>
+    <a href="/ahorros/list">Atrás</a>
+</body>
+
+<script>
+   window.onload=load()
+  function load() {
+    if(document.getElementById('mas'))document.getElementById('mas').style.display="none"
+    if(document.getElementById('menos'))document.getElementById('menos').style.display="none"
+  }
+  
+  document.getElementById('see1').addEventListener('click',function(){
+    document.getElementById('mas').style.display="block";
+    document.getElementById('menos').style.display="none"
+  })
+  document.getElementById('see2').addEventListener('click',function(){
+    document.getElementById('menos').style.display="block";
+    document.getElementById('mas').style.display="none"
+  })
+  function inputs1Hide(){
+    document.getElementById('mas').style.display="none"
+  }
+  function inputs2Hide(){
+    document.getElementById('menos').style.display="none"
+  }
+</script>
+
+<style>
+  .bd{
+    width: 70%;
+    margin-left: 20%;
+  }
+</style>

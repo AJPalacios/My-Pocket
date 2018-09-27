@@ -1,0 +1,114 @@
+   
+{{> nav}}
+
+<div class="sidenav">
+  <div class="profile">
+    <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
+  </div>
+  <a href="/ahorros/list">Mis Ahorros</a>
+  <a href="/gastos/list">Mis Gastos</a>
+  <a href="/ingresos/list">Mis Ingresos</a>
+  <a id="dolar"></a>
+  <p id="frase"></p>
+</div>
+
+  <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<div class="row center-xs">
+  <div class="col-md-12">
+    <div class="box">
+      <h1>Mis metas</h1> <br><br>
+    </div>
+  </div>
+</div>
+
+<section class="container">
+  <div class="row center-xs">
+    <div class="col-md-10">
+      <div class="box">
+        <table class="table table-hover tabla-ahorros">
+   <thead> 
+        <th>Concepto</th> 
+        <th>Fecha Límite</th>
+        <th>% completado</th>
+        <th></th>
+    </thead> 
+    <tbody> 
+        {{#each metas}} 
+        <tr> 
+            <td>{{this.nombre}}</td> 
+            <td>{{dateFormat this.fechaFin "D-MMMM-YYYY"}} </td> 
+            <td>{{this.porcentaje}}%</td>
+            <td><a href="/metas/detail/{{this.id}}"><i class="fas fa-pencil-alt" id="editar"></i></a></td>
+            <td><a href="/metas/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+        </tr>
+        {{/each}}
+    </tbody> 
+  </table>
+      </div>
+    </div>
+  </div>
+ 
+</section><hr>
+
+<div class="row center-xs">
+  <div class="col-md-10">
+    <div class="box">
+      <button title="Agrega una nueva meta" id="show"  class="btn btn-primary" placeholder="Agrega tu meta">+</button><br><br>
+      <form action="/metas/new" method="POST" id="agregar" class="form-inline">
+        <div class="form-group">
+          <input type="text" name="nombre" placeholder="Concepto de tu meta" id="nombre" class="form-control" required>
+          <input type="date" name="fechaFin" id="fecha" title="Fecha Límite" required>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <label class="sr-only" for="cantidad">Cantidad</label>
+            <input type="number" name="cantidadObjetivo" placeholder="Cantidad Necesaria" id="cantidadObjetivo" class="form-control" required>
+          </div>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <label class="sr-only" for="cantidad">Cantidad</label>
+            <input type="number" name="cantidadInicial" placeholder="Cantidad Inicial" id="cantidadInicial" class="form-control" required>
+          </div>
+          <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
+          <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+   window.onload=load()
+   function load() {
+    document.getElementById('agregar').style.display="none"
+  }
+  document.getElementById('show').addEventListener('click',function(){
+    showInputs()
+  })
+  
+  document.getElementById('editar').addEventListener('click',function(){
+    showInputsEditar()
+  })
+
+  function showInputs(){
+    document.getElementById('agregar').style.display="block"
+    document.getElementById("nombre").focus()
+  }
+  function inputsHide(){
+    document.getElementById('nombre').value=""
+    document.getElementById('cantidad').value=""
+    document.getElementById('agregar').style.display="none"
+  }
+
+</script>
+
+<style>
+  .bd{
+    width: 70%;
+    margin-left: 20%;
+  }
+</style>
