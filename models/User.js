@@ -16,6 +16,22 @@ const userSchema = new Schema({
     type: String,
     enum: ['Active', 'Pending'],
     default: 'Pending'
+  },
+  ahorros: {
+    type:Schema.Types.ObjectId,
+    ref:'Ahorro'
+  },
+  diarios: {
+    type:Schema.Types.ObjectId,
+    ref:'Diario'
+  },
+  gastos: {
+    type:Schema.Types.ObjectId,
+    ref:'Gastos'
+  },
+  ingresos: {
+    type:Schema.Types.ObjectId,
+    ref:'Ingreso'
   }
 },{
   timestamps:{
