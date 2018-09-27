@@ -19,7 +19,7 @@ const metaSchema = new Schema({
     type:Number,
     default:0
   },
-  fechaFin: Date,
+  fechaFin: String,
   usuario: {
     type: Schema.Types.ObjectId,
     ref: "User"

@@ -79,17 +79,12 @@ router.post('/detailmenos/:id',isLogged, (req, res, next) => {
 //   res.render('metas/new')
 // })
 router.post('/new',isLogged,(req, res, next)=>{
-  
   //CALCULAR EL PORCENTAJE
-
     //let req.body
     let cantIni=parseFloat(req.body.cantidadInicial) //10
     let cantObj=parseFloat(req.body.cantidadObjetivo) //
     let porcent=(cantIni*100)/cantObj
-    
- 
   console.log(typeof(cantObj))
-
   Meta.create({...req.body,cantidadActual:req.body.cantidadInicial,porcentaje:porcent,usuario:req.user._id})
   //Meta.create({...req.body,owner:req.user._id})
     .then(metas=>{
@@ -112,18 +107,16 @@ router.get('/edit/:id',isLogged,(req,res,next)=>{
 
 router.post('/edit/:id',isLogged,(req, res, next)=>{
   const {id} = req.params
-  Meta.findByIdAndUpdate(id,{$set:req.body},{new:true})
-    .then(metas=>{
-      res.redirect(`/metas/detail/${id}`)
-    }).catch(e=>{
-      console.log(e)
-    })
-})
+  console.log(req.body.nombre)
+  //if(req.body.tipoMeta) req.body.tipo=req.body.tipoMeta
 
-router.post('/edit/:id',isLogged,(req, res, next)=>{
-  const {id} = req.params
-  if(req.body.tipoMeta) req.body.tipo=req.body.tipoMeta
-  Meta.findByIdAndUpdate(id,{$set:req.body},{new:true})
+//CALCULAR EL PORCENTAJE
+    //let req.body
+    let cantAct=parseFloat(req.body.cantidadActual) //10
+    let cantObj=parseFloat(req.body.cantidadObjetivo) //
+    let porcent=(cantAct*100)/cantObj
+
+  Meta.findByIdAndUpdate(id, {...req.body, porcentaje: porcent}, {new:true})
   //Meta.create({...req.body,owner:req.user._id})
     .then(metas=>{
       res.redirect(`/metas/detail/${id}`)
