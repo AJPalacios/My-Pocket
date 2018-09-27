@@ -9,7 +9,10 @@ const isLogged = (req,res,next)=>{
 
 //R-lista de ahorros
 router.get('/list', isLogged, (req, res, next)=>{
-  Ahorro.find().populate('user')
+  //User.findById(req.app.locals.loggedUser._id).populate('notitas')
+  req.app.locals.loggedUser = req.user;
+  console.log(req.app.locals.loggedUser._id)
+  Ahorro.find({usuario:req.app.locals.loggedUser})
     .then(ahorros=>{ 
       let total=0;
       ahorros.forEach(ahorro=> {
