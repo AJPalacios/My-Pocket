@@ -18,8 +18,9 @@ router.get('/list', isLogged, (req, res, next)=>{
         total+=ahorro.cantidad;  
       })
       let user=req.app.locals.loggedUser.usuario;
+      let photoURL=req.app.locals.loggedUser.photoURL;
       let user_id = req.user._id
-      res.render('ahorros/list',{ahorros,total,user_id,user})
+      res.render('ahorros/list',{ahorros,total,user_id,user,photoURL})
       //return res.json(ahorros)
       //res.send(ahorros)
     }).catch(e=>{
