@@ -15,25 +15,25 @@
   <div class="row center-xs">
     <div class="col-md-10 offset-2">
       <div class="box">
-  <table class="table table-hover tabla-gastos">
-   <thead> 
-        <th>Concepto</th> 
-        <th>Fecha</th>
-        <th>Cantidad</th>
-        <th></th>
-    </thead> 
-    <tbody> 
-        {{#each diarios}} 
-        <tr> 
-            <td>{{this.tipo}}</td> 
-            <td>{{dateFormat fecha "D-MMMM-YYYY"}} </td> 
-            <td>{{this.cantidad}}</td> 
-            <td><a href="/diarios/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
-        </tr>
-        {{/each}}
-    </tbody> 
-  </table>
-        </div>
+        <table id="tabla_gastos_diarios" class="table table-hover tabla-gastos">
+          <thead> 
+                <th>Concepto</th> 
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th></th>
+            </thead> 
+            <tbody> 
+                {{#each diarios}} 
+                <tr> 
+                    <td>{{this.tipo}}</td> 
+                    <td>{{dateFormat fecha "D-MMMM-YYYY"}} </td> 
+                    <td>{{this.cantidad}}</td> 
+                    <td><a href="/diarios/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+                </tr>
+                {{/each}}
+            </tbody> 
+        </table>
+      </div>
     </div>
   </div>
 </section><hr>
@@ -69,9 +69,10 @@
 
 <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/js/tableexport.min.js"></script>
+
 <script>
-   window.onload=load()
-   function load() {
+  window.onload=load()
+  function load() {
     document.getElementById('agregar').style.display="none"
   }
   document.getElementById('show').addEventListener('click',function(){
@@ -107,7 +108,7 @@
   }
   //document.getElementById('field').style.display="none"
   
-  $('#tabla_diarios').tableExport({
+  $('#tabla_gastos_diarios').tableExport({
     formats: ["csv","txt"],
     filename: "mis ahorros",
     bootstrap: false,
