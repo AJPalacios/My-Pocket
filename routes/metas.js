@@ -18,15 +18,13 @@ router.get('/list', isLogged, (req, res, next)=>{
       })
       let user=req.app.locals.loggedUser.usuario;
       let user_id = req.user._id
-      
-
       res.render('metas/list',{metas,user_id,user})
     }).catch(e=>{
       console.log(e)
     })
 })
 
-router.get('/list-for-chart', (req, res) => {
+router.get('/list-for-chart',isLogged, (req, res) => {
   req.app.locals.loggedUser = req.user;
   Meta.find({usuario:req.app.locals.loggedUser})//.populate('user')
   .then(metas => {
@@ -35,7 +33,7 @@ router.get('/list-for-chart', (req, res) => {
 })
 
 //R-detalle de metas
-router.get('/detail/:id',(req,res,next)=>{
+router.get('/detail/:id',isLogged,(req,res,next)=>{
   const {id} =req.params
   Meta.findById(id)
   .then(meta=>{
@@ -47,7 +45,7 @@ router.get('/detail/:id',(req,res,next)=>{
   })
 });
 
-router.post('/detailmas/:id', (req, res, next) => {
+router.post('/detailmas/:id',isLogged, (req, res, next) => {
   const {id} = req.params
   Meta.findById(id)
   .then(meta => {
@@ -61,7 +59,7 @@ router.post('/detailmas/:id', (req, res, next) => {
   })
   })
 })
-router.post('/detailmenos/:id', (req, res, next) => {
+router.post('/detailmenos/:id',isLogged, (req, res, next) => {
   const {id} = req.params
   Meta.findById(id)
   .then(meta => {
@@ -102,7 +100,7 @@ router.post('/new',isLogged,(req, res, next)=>{
 })
 
 //U-editar un meta
-router.get('/edit/:id',(req,res,next)=>{
+router.get('/edit/:id',isLogged,(req,res,next)=>{
   const {id} =req.params
   req.app.locals.loggedUser = req.user;
   Meta.findById(id)
@@ -112,7 +110,7 @@ router.get('/edit/:id',(req,res,next)=>{
   }).catch(e=>next(e))
 })
 
-router.post('/edit/:id',(req, res, next)=>{
+router.post('/edit/:id',isLogged,(req, res, next)=>{
   const {id} = req.params
   Meta.findByIdAndUpdate(id,{$set:req.body},{new:true})
     .then(metas=>{
@@ -122,7 +120,7 @@ router.post('/edit/:id',(req, res, next)=>{
     })
 })
 
-router.post('/edit/:id',(req, res, next)=>{
+router.post('/edit/:id',isLogged,(req, res, next)=>{
   const {id} = req.params
   if(req.body.tipoMeta) req.body.tipo=req.body.tipoMeta
   Meta.findByIdAndUpdate(id,{$set:req.body},{new:true})
@@ -135,7 +133,7 @@ router.post('/edit/:id',(req, res, next)=>{
 })
 
 //D-borrar un meta
-router.get('/delete/:id',(req,res,next)=>{
+router.get('/delete/:id',isLogged,(req,res,next)=>{
   const {id}=req.params
   Meta.findByIdAndRemove(id)
   .then(metas=>{

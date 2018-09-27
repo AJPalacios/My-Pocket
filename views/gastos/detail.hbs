@@ -3,13 +3,38 @@
 </head>
 {{> nav}}
 {{> sidenav}}
-<body>
-    <section>
-      <h3>{{tipo}}</h3>
-      <p><b>Cantidad:</b>{{cantidad}}</p>
-      <p><b>Periodicidad:</b>{{periodicidad}}</p>
+<div class="row center-xs">
+  <div class="col-md-10 offset-2">
+    <div class="box">
+      <h1>Detalle de gasto</h1>
+      <section>
+        <table class="table table-hover tabla-gastos">
+          <thead> 
+          </thead> 
+          <tbody> 
+              <tr> 
+                <td>Tipo:</td> 
+                <td>{{tipo}}</td> 
+              </tr>
+              <tr> 
+                <td>Cantidad:</td> 
+                <td>{{cantidad}}</td> 
+              </tr>
+              <tr> 
+                <td>Periodicidad:</td> 
+                <td>{{periodicidad}}</td> 
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+          </tbody> 
+        </table>
     </section>
-  <a href="/gastos/edit/{{this.id}}">Editar</a>
-  <a href="/gastos/delete/{{this.id}}">Eliminar</a>  
-  <a href="/gastos/list">Atrás</a>
-</body>
+  <button class="btn btn-primary"><a href="/gastos/edit/{{this.id}}">Editar</a></button>
+  <button class="btn btn-primary"><a href="/gastos/list">Atrás</a></button>
+    </div>
+  </div>
+</div>
+
+    

@@ -8,9 +8,8 @@ const isLogged = (req,res,next)=>{
     return res.redirect('/login')
 }
 
-//R-lista de ahorros
+//lista de ahorros
 router.get('/list', isLogged, (req, res, next)=>{
-  //User.findById(req.app.locals.loggedUser._id).populate('notitas')
   req.app.locals.loggedUser = req.user;
   Ahorro.find({usuario:req.app.locals.loggedUser})
     .then(ahorros=>{ 
@@ -22,14 +21,13 @@ router.get('/list', isLogged, (req, res, next)=>{
       let photoURL=req.app.locals.loggedUser.photoURL;
       let user_id = req.user._id
       res.render('ahorros/list',{ahorros,total,user_id,user,photoURL})
-      //return res.json(ahorros)
-      //res.send(ahorros)
     }).catch(e=>{
       console.log(e)
     })
 })
 
-router.get('/list-for-chart', (req, res) => {
+//Get para la gráfica
+router.get('/list-for-chart', isLogged,(req, res) => {
   req.app.locals.loggedUser = req.user;
   Ahorro.find({usuario:req.app.locals.loggedUser})
   .then(ahorros => {
@@ -37,10 +35,8 @@ router.get('/list-for-chart', (req, res) => {
   }).catch(e=>console.log(e))
 })
 
-
-
-//R-detalle de ahorros
-router.get('/detail/:id',(req,res,next)=>{
+//Detalle de ahorros
+router.get('/detail/:id',isLogged,(req,res,next)=>{
   const {id} =req.params
   Ahorro.findById(id)
   .then(ahorro=>{
@@ -52,7 +48,8 @@ router.get('/detail/:id',(req,res,next)=>{
   })
 });
 
-router.post('/detailmas/:id', (req, res, next) => {
+//Añadir dinero al ahorro
+router.post('/detailmas/:id',isLogged, (req, res, next) => {
   const {id} = req.params
   Ahorro.findById(id)
   .then(ahorro => {
@@ -66,14 +63,15 @@ router.post('/detailmas/:id', (req, res, next) => {
   })
   })
 })
-router.post('/detailmenos/:id', (req, res, next) => {
+
+//Retirar dinero del ahorro
+router.post('/detailmenos/:id', isLogged,(req, res, next) => {
   const {id} = req.params
   Ahorro.findById(id)
   .then(ahorro => {
     let total = ahorro.cantidad
     let suma = parseFloat(req.body.cantidad)
     total -= suma
-    console.log(typeof total)
     Ahorro.findByIdAndUpdate(id, {cantidad: total}, {new: true})
     .then(result => {
       res.redirect(`/ahorros/detail/${result._id}`)
@@ -81,15 +79,10 @@ router.post('/detailmenos/:id', (req, res, next) => {
   })
 })
 
-//C-agregar un ahorro
-// router.get('/new',(req,res,next)=>{
-//   res.render('ahorros/new')
-// })
+//Agregar un ahorro nuevo
 router.post('/new',isLogged,(req, res, next)=>{
   if(req.body.tipoAhorro) req.body.tipo=req.body.tipoAhorro
-  //console.log(req.body)
   Ahorro.create({...req.body,cantidadInicial:req.body.cantidad,usuario:req.user._id})
-  //Ahorro.create({...req.body,owner:req.user._id})
     .then(ahorros=>{
       res.redirect('/ahorros/list')
     }).catch(e=>{
@@ -97,18 +90,19 @@ router.post('/new',isLogged,(req, res, next)=>{
     })
 })
 
-//U-editar un ahorro
-router.get('/edit/:id',(req,res,next)=>{
+//Editar un ahorro
+router.get('/edit/:id',isLogged,(req,res,next)=>{
   const {id} =req.params
   req.app.locals.loggedUser = req.user;
   Ahorro.findById(id)
   .then(ahorro=>{
+    console.log(ahorro)
     user=req.app.locals.loggedUser.usuario;
     res.render('ahorros/edit',{ahorro,user})
   }).catch(e=>next(e))
 })
 
-router.post('/edit/:id',(req, res, next)=>{
+router.post('/edit/:id',isLogged,(req, res, next)=>{
   const {id} = req.params
   Ahorro.findByIdAndUpdate(id,{$set:req.body},{new:true})
     .then(ahorros=>{
@@ -118,7 +112,7 @@ router.post('/edit/:id',(req, res, next)=>{
     })
 })
 
-router.post('/edit/:id',(req, res, next)=>{
+router.post('/edit/:id',isLogged,(req, res, next)=>{
   const {id} = req.params
   if(req.body.tipoAhorro) req.body.tipo=req.body.tipoAhorro
   Ahorro.findByIdAndUpdate(id,{$set:req.body},{new:true})
