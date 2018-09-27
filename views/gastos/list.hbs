@@ -102,8 +102,8 @@
     document.getElementById("nombre").focus()
   }
   function inputsHide(){
-    document.getElementById('nombre').value=""
-    document.getElementById('cantidad').value=""
+    if(document.getElementById('nombre')) document.getElementById('nombre').value=""
+    if(document.getElementById('cantidad'))document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
   }
   document.getElementById('field').style.display="none"
