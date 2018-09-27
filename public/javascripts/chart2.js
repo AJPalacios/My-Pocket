@@ -1,6 +1,14 @@
 const ctx2 = document.getElementById('canvas2').getContext('2d')
 
+Chart.defaults.scale.gridLines.display = false
+Chart.scaleService.updateScaleDefaults('linear', {
+    ticks: {
+        min: 0
+    }
+});
+
 const drawGraph2 = () => {
+    
   return fetch('http://localhost:3000/ingresos/list-for-chart')
   .then(result => result.json())
   .then(ingresos => {
@@ -18,7 +26,6 @@ const drawGraph2 = () => {
     data: {
         labels,
         datasets: [{
-
             data: cantidad,
             backgroundColor: [
                 '#FF6283',
@@ -36,10 +43,15 @@ const drawGraph2 = () => {
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 1,
+
         }]
     },
-    
+    options: {
+        legend: {
+            display: false
+        }
+    }
 });
   })
 }
