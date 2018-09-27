@@ -1,36 +1,23 @@
 
-  <ul class="navbar navbar-dark justify-content-end ">
-    <li class="nav-link active"><a href="#">{{usuario}}</a></li>
-    <li>
-      <a class="nav-link active" href="/logout">Cerrar Sesión</a>
-    </li>
-  </ul>
-
-<div class="sidenav">
-  <div class="profile">
-    <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
-  </div>
-  <a href="/ahorros/list">Mis Ahorros</a>
-  <a href="/gastos/list">Mis Gastos</a>
-  <a href="/ingresos/list">Mis Ingresos</a>
-  <a id="dolar"></a>
-  <p id="frase"></p>
-</div>
+{{> nav}}
+{{> sidenav}}
 
 <div class="container">
 
 <div class="row center-xs">
-  <div class="col-md-8">
+  <div class="col-md-8 offset-2">
     <div class="box">
-      <h1>Bienvenido</h1>
-      <h3>¿Cuánto has gastado?
-        <br> y ¿Cuál es tu objetivo para hoy?</h3>      
+      <div>
+        <img class="logo-perfil" src="https://res.cloudinary.com/mishulicious/image/upload/v1537910791/myPocket/logo-mypocket-03.png" alt="myPocket">
+      </div>
+      <br>
+      <h4>¿Cuánto has gastado? y ¿Cuál es tu objetivo para hoy?</h5>      
     </div>
   </div>
 </div>
 
 <div class="row center-xs">
-  <div class="col-md-5">
+  <div class="col-md-5 offset-2">
     <div class="box">
 
       <div class="card">
@@ -59,7 +46,7 @@
   </div>
 </div>
 <div class="row center-xs">
-  <div class="col-md-5">
+  <div class="col-md-5 offset-2">
     <div class="box">
       <div class="card">
         <div class="card-header">
@@ -108,7 +95,6 @@
           'En la medida que más gente te deba, más rico serás, en la medida en que le debas a más personas, más pobre serás.',
           'Definición de Riqueza: Número de días que puedes sobrevivir sin trabajar físicamente mientras mantienes su estándar de vida.',
           'La mayor parte de la gente piensa, pero nunca hace.',
-          'La razón por la cual la mayoría de la gente tiene problemas financieros es porque aceptan el consejo de personas que también están ciegas mentalmente con respecto del dinero.',
           'La mayoría de la gente invierte el 95% con los ojos y sólo el 5% con la mente. A menudo compran de manera emocional, en vez de hacerlo racionalmente.',
           'Un activo coloca dinero en tu bolsillo. Un pasivo saca dinero de tu bolsillo.',
           'No es cuánto dinero ganes, sino cuánto dinero conservas, qué tan duro trabaja para ti y para cuántas generaciones lo conserva.',
@@ -119,6 +105,7 @@
           'Si no transformas tu sueño en un plan, este no durará mucho.',
           'Tu Calificación de Crédito no es una representación de Dinero. Es una representación de Deuda.',
           'El Dinero no toma las decisiones, tú lo haces.',
+          'El mejor modo de predecir el futuro es inventándolo. –Alan Key',
           'Todos tus sueños pueden hacerse realidad si tienes el coraje de perseguirlos. –Walt Disney',
           'No es lo que tu tienes, sino como usas lo que tienes lo que marca la diferencia. –Zig Ziglar',
           'El mejor modo de predecir el futuro es inventándolo. –Alan Key',
@@ -126,7 +113,7 @@
           'El dinero ahorrado es un fiel amigo en la adversidad y un positivo colaborador en el aprovechamiento de las oportunidades. -O. S. Marden',
           'Un viaje de mil millas comienza con el primer paso. -Lao Tse',
           'El secreto del éxito está en prepararse para aprovechar las oportunidades en cuanto se presenten. -Disraeli'] 
-let random= Math.floor(Math.random() * 26);
+let random= Math.floor(Math.random() * 25);
 let frase = frases[random];
 
 document.getElementById('frase').innerHTML = '"'+frase+'"'
