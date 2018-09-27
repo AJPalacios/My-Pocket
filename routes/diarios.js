@@ -2,12 +2,17 @@ const router = require('express').Router()
 const Diario = require('../models/Diario')
 const User = require('../models/User')
 
+const isLogged = (req,res,next)=>{
+  if (req.isAuthenticated())return next()
+    return res.redirect('/login')
+}
+
 //R-lista de diarios
-router.get('/list', (req, res, next)=>{
+router.get('/list', isLogged, (req, res, next)=>{
   req.app.locals.loggedUser = req.user;
   let user = req.user.usuario
   let user_id = req.user._id
-  Diario.find().populate('user')
+  Diario.find({usuario:req.app.locals.loggedUser})
     .then(diarios=>{        
       res.render('diarios/list',{diarios})
       //res.send(diarios)
@@ -16,7 +21,7 @@ router.get('/list', (req, res, next)=>{
     })
 })
 
-router.get('/list-for-chart', (req, res) => {
+router.get('/list-for-chart', isLogged,(req, res) => {
   req.app.locals.loggedUser = req.user;
   Diario.find({usuario:req.app.locals.loggedUser})//.populate('user')
   .then(diarios => {
@@ -25,7 +30,7 @@ router.get('/list-for-chart', (req, res) => {
 })
 
 //R-detalle de diarios
-router.get('/detail/:id',(req,res,next)=>{
+router.get('/detail/:id',isLogged,(req,res,next)=>{
   const {id} =req.params
   Diario.findById(id)
   .then(diario=>{
@@ -38,10 +43,10 @@ router.get('/detail/:id',(req,res,next)=>{
 });
 
 //C-agregar un diario
-router.get('/new',(req,res,next)=>{
+router.get('/new',isLogged,(req,res,next)=>{
   res.render('diarios/new')
 })
-router.post('/new',(req, res, next)=>{
+router.post('/new',isLogged,(req, res, next)=>{
   if(req.body.tipoDiario) req.body.tipo=req.body.tipoDiario
   //console.log(req.body)
   Diario.create(req.body)
@@ -54,14 +59,14 @@ router.post('/new',(req, res, next)=>{
 })
 
 //U-editar un diario
-router.get('/edit/:id',(req,res,next)=>{
+router.get('/edit/:id',isLogged,(req,res,next)=>{
   const {id} =req.params
   Diario.findById(id)
   .then(diario=>{
     res.render('diarios/edit',diario)
   }).catch(e=>next(e))
 })
-router.post('/edit/:id',(req, res, next)=>{
+router.post('/edit/:id',isLogged,(req, res, next)=>{
   const {id} = req.params
   if(req.body.tipoDiario) req.body.tipo=req.body.tipoDiario
   Diario.findByIdAndUpdate(id,{$set:req.body},{new:true})
