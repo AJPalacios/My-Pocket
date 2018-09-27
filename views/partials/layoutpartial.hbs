@@ -1,93 +1,49 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="icon" href="/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.css">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<body>
+  <header>
   <ul class="navbar navbar-dark justify-content-end ">
-    <li class="nav-link active"><a href="#">{{usuario}}</a></li>
-    <li>
-      <a class="nav-link active" href="/logout">Cerrar Sesión</a>
-    </li>
-  </ul>
+      <li class="nav-link active"><a href="#">{{usuario}}</a></li>
+      <li>
+        <a class="nav-link active" href="/logout">Cerrar Sesión</a>
+      </li>
+    </ul>
+</header>
 
 <div class="sidenav">
-  <div class="profile">
-    <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
+    <div class="profile">
+      <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
+    </div>
+    <a href="/ahorros/list">Mis Ahorros</a>
+    <a href="/gastos/list">Mis Gastos</a>
+    <a href="/ingresos/list">Mis Ingresos</a>
+    <a id="dolar"></a>
+    <p id="frase"></p>
   </div>
-  <a href="/ahorros/list">Mis Ahorros</a>
-  <a href="/gastos/list">Mis Gastos</a>
-  <a href="/ingresos/list">Mis Ingresos</a>
-  <a id="dolar"></a>
-  <p id="frase"></p>
-</div>
 
-<div class="row center-xs">
+  <div class="row center-xs">
   <div class="col-md-8">
     <div class="box">
-      <h1>Bienvenido</h1>
-      <h3>¿Cuánto has gastado?
-        <br> y ¿Cuál es tu objetivo para hoy?</h3>      
+      
     </div>
   </div>
 </div>
 
-<div class="row center-xs">
-  <div class="col-md-4">
-    <div class="box">
 
-      <div class="card">
-        <div class="card-header">
-          <h5>Mis Ahorros</h5>
-        </div>
-        <div class="card-body">
-          {{!-- <p><a href="/ahorros/list">Lista de ahorros</a></p> --}}
-          <canvas width="200" height="200" id="canvas1"></canvas>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="box">
-      <div class="card">
-        <div class="card-header">
-          Card Two
-        </div>
-        <div class="card-body">
-          <canvas width="200" height="200" id="canvas2"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row center-xs">
-  <div class="col-md-4">
-    <div class="box">
-      <div class="card">
-        <div class="card-header">
-          Card Two
-        </div>
-        <div class="card-body">
-          <canvas width="200" height="200" id="canvas3"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="box">
-      <div class="card">
-        <div class="card-header">
-          Card Two
-        </div>
-        <div class="card-body">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda error placeat labore impedit quibusdam dolor nostrum porro doloribus voluptatem dolores. 
-          Reprehenderit voluptates blanditiis earum architecto, culpa ad sed. Sunt, rem.
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-</div>
-
-
+</body>
+</html>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
@@ -142,3 +98,10 @@ axios.get('https://api.exchangeratesapi.io/latest?base=USD')
       })
 </script>
 
+{{!-- <style>
+  .navbar{
+    width:100%;
+    height:10%;
+    position: fixed;
+  }
+</style> --}}
