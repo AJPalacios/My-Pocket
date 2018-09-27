@@ -1,7 +1,5 @@
 <head>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-
 </head>
 <div class="sidenav">
   <div class="logo-nav">
@@ -14,7 +12,7 @@
     <a href="/ahorros/list"><i class="fas fa-piggy-bank"></i>   Mis Ahorros</a>
     <a href="/gastos/list"><i class="fas fa-coins"></i>   Mis Gastos</a>
     <a href="/ingresos/list"><i class="fas fa-hand-holding-usd"></i>   Mis Ingresos</a>
-    <a href="/ingresos/list"><i class="fas fa-flag-checkered"></i>   Mis Metas</a>
+    <a href="/metas/list"><i class="fas fa-flag-checkered"></i>   Mis Metas</a>
 
     <p id="dolar"></p>
 
@@ -60,8 +58,8 @@ axios.get('https://api.exchangeratesapi.io/latest?base=USD')
       .then(res => {
         let dolar = Math.floor(res.data.rates.MXN)
         let template = `
-        <div class="cajaCambio"><span class="tipoCambio"> <i class="fas fa-dollar-sign"></i> Tipo de cambio</span><br>
-        <span class="totalDolar">USD/MXN: ${dolar}</span></div>
+        <div class="cajaCambioPadre"><div class="cajaCambio"><div class="tipoCambio"><span>TIPO DE CAMBIO</span></div>
+        <span class="totalDolar">USD/MXN $ ${dolar}</span></div></div>
         `;
         document.getElementById('dolar').innerHTML = template
         console.log(res.data.rates.MXN)

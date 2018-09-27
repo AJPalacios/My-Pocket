@@ -80,56 +80,7 @@
 </div>
 
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="/javascripts/chart1.js"></script>
 <script src="/javascripts/chart2.js"></script>
 <script src="/javascripts/chart3.js"></script>
-<script>
-  const frases =
-  ['La pasión construye negocios, el miedo no.',
-          'Recuerda que tú puedes ser lo que deseas ser en cualquier cuadrante, incluso un maestro.',
-          'Toma tu pasión y haz que suceda',
-          'El mundo del dinero es sólo un sistema: Un "E" trabaja para el sistema. Un "A" es el sistema. Un "D" crea, posee y controla el sistema. Un "I" invierte en el sistema.',
-          'Si quieres estar en el lado derecho del Cuadrante, debes conocer la diferencia entre los hechos y las opiniones.',
-          'En la medida que más gente te deba, más rico serás, en la medida en que le debas a más personas, más pobre serás.',
-          'Definición de Riqueza: Número de días que puedes sobrevivir sin trabajar físicamente mientras mantienes su estándar de vida.',
-          'La mayor parte de la gente piensa, pero nunca hace.',
-          'La mayoría de la gente invierte el 95% con los ojos y sólo el 5% con la mente. A menudo compran de manera emocional, en vez de hacerlo racionalmente.',
-          'Un activo coloca dinero en tu bolsillo. Un pasivo saca dinero de tu bolsillo.',
-          'No es cuánto dinero ganes, sino cuánto dinero conservas, qué tan duro trabaja para ti y para cuántas generaciones lo conserva.',
-          'Cómo predecir tu libertad financiera: ¿Cuánto dinero gastas? ¿Cuánto dinero ahorras? ¿Cuánto dinero inviertes?',
-          'Si haces algo, cometes errores y es de los errores de lo que aprendemos más',
-          'Construir riqueza es una maratón, no una carrera.',
-          'Los Bancos no tratan de ayudarte cuando te ofrecen Crédito.',
-          'Si no transformas tu sueño en un plan, este no durará mucho.',
-          'Tu Calificación de Crédito no es una representación de Dinero. Es una representación de Deuda.',
-          'El Dinero no toma las decisiones, tú lo haces.',
-          'El mejor modo de predecir el futuro es inventándolo. –Alan Key',
-          'Todos tus sueños pueden hacerse realidad si tienes el coraje de perseguirlos. –Walt Disney',
-          'No es lo que tu tienes, sino como usas lo que tienes lo que marca la diferencia. –Zig Ziglar',
-          'El mejor modo de predecir el futuro es inventándolo. –Alan Key',
-          'Recuerda, hoy es el mañana acerca del cual te preocupabas ayer. -Dale Carnegie',
-          'El dinero ahorrado es un fiel amigo en la adversidad y un positivo colaborador en el aprovechamiento de las oportunidades. -O. S. Marden',
-          'Un viaje de mil millas comienza con el primer paso. -Lao Tse',
-          'El secreto del éxito está en prepararse para aprovechar las oportunidades en cuanto se presenten. -Disraeli'] 
-let random= Math.floor(Math.random() * 25);
-let frase = frases[random];
-
-document.getElementById('frase').innerHTML = '"'+frase+'"'
-
-axios.get('https://api.exchangeratesapi.io/latest?base=USD')
-      .then(res => {
-        let dolar = Math.floor(res.data.rates.MXN)
-        let template = `
-        <span> <i class="fas fa-dollar-sign"></i> Tipo de cambio</span>
-        USD/MXN: ${dolar}
-        `;
-        document.getElementById('dolar').innerHTML = template
-        console.log(res.data.rates.MXN)
-      })
-      .catch(err=>{
-        console.log(err)
-      })
-</script>
-

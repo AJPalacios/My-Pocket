@@ -120,12 +120,26 @@ li {
   text-align: center;
   padding-bottom: 10%; }
 
+.cajaCambioPadre {
+  margin: 8%;
+  padding: 10px; }
+
+.cajaCambio {
+  border: 3px solid #004595;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.1rem; }
+
 .tipoCambio {
-  color: red; }
+  font-weight: bolder;
+  color: #E5E5EB;
+  background-color: #004595;
+  padding: 10px; }
 
 #frase {
-  margin-top: 60px;
-  margin-right: 10px;
+  margin-top: 50px;
+  margin-right: 20px;
+  margin-left: 20px;
   font-size: 14px;
   font-style: oblique;
   color: #4E93F7;

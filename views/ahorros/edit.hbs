@@ -1,25 +1,11 @@
+{{> nav}}
+{{> sidenav}}
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
 <body class="bd">
-    <ul class="navbar navbar-dark justify-content-end ">
-    <li class="nav-link active"><a href="#">{{user}}</a></li>
-    <li>
-      <a class="nav-link active" href="/logout">Cerrar Sesión</a>
-    </li>
-  </ul>
 
-<div class="sidenav">
-  <div class="profile">
-    <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
-  </div>
-  <a href="/ahorros/list">Mis Ahorros</a>
-  <a href="/gastos/list">Mis Gastos</a>
-  <a href="/ingresos/list">Mis Ingresos</a>
-  <a id="dolar"></a>
-  <p id="frase"></p>
-</div>
 
 <h1>Editar ahorro {{nombre}}</h1>
 <form action="/ahorros/edit/{{this.id}}" method="POST">
