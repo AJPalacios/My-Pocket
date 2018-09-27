@@ -17,8 +17,9 @@ router.get('/list', isLogged, (req, res, next)=>{
       ahorros.forEach(ahorro=> {
         total+=ahorro.cantidad;  
       })
-      user=req.app.locals.loggedUser.usuario;
-      res.render('ahorros/list',{ahorros,total,user})
+      let user=req.app.locals.loggedUser.usuario;
+      let user_id = req.user._id
+      res.render('ahorros/list',{ahorros,total,user_id,user})
       //return res.json(ahorros)
       //res.send(ahorros)
     }).catch(e=>{

@@ -4,10 +4,13 @@ const User = require ('../models/User')
 
 //LISTA DE INGRESOS
 router.get('/list', (req, res, next)=>{
-  req.app.locals.loggedUser = req.user;
+  req.app.locals.loggedUser = req.user
+  let user = req.user.usuario
+  let user_id = req.user._id
+  console.log(user_id)
   Ingreso.find({usuario:req.app.locals.loggedUser})
   .then (ingresos=>{
-    res.render('ingresos/list', {ingresos})
+    res.render('ingresos/list', {ingresos,user_id,user})
   }) .catch(e=>console.log(e))
 })
 

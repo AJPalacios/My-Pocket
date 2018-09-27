@@ -12,8 +12,9 @@ const passport = require('./helpers/passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash')
-hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
 
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+hbs.registerPartial('nav',path.join(__dirname+'/views/partials'))
 mongoose
   .connect(process.env.DB, {useNewUrlParser: true})
   .then(x => {

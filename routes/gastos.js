@@ -5,9 +5,11 @@ const User = require('../models/User')
 //R-lista de gastos
 router.get('/list', (req, res, next)=>{
   req.app.locals.loggedUser = req.user;
+  let user = req.user.usuario
+  let user_id = req.user._id
   Gasto.find({usuario:req.app.locals.loggedUser})//.populate('user')
     .then(gastos=>{        
-      res.render('gastos/list',{gastos})
+      res.render('gastos/list',{gastos,user_id,user})
       //res.send(gastos)
     }).catch(e=>{
       console.log(e)

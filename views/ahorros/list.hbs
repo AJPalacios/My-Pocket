@@ -1,10 +1,5 @@
-<body class="bd">
-    <ul class="navbar navbar-dark justify-content-end ">
-    <li class="nav-link active"><a href="#">{{user}}</a></li>
-    <li>
-      <a class="nav-link active" href="/logout">Cerrar Sesión</a>
-    </li>
-  </ul>
+   
+{{> nav}}
 
 <div class="sidenav">
   <div class="profile">
@@ -20,6 +15,7 @@
   <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
+
 <div class="row center-xs">
   <div class="col-md-12">
     <div class="box">
@@ -27,8 +23,12 @@
     </div>
   </div>
 </div>
-<section>
-  <table class="table table-hover tabla-ahorros">
+
+<section class="container">
+  <div class="row center-xs">
+    <div class="col-md-10">
+      <div class="box">
+        <table class="table table-hover tabla-ahorros">
    <thead> 
         <th>Concepto</th> 
         <th>Cantidad</th>
@@ -48,21 +48,34 @@
         </tr> 
     </tbody> 
   </table>
-</section><hr>
-<button title="Agrega un nuevo ahorro" id="show"  class="btn btn-primary" placeholder="Agrega tu ahorro">+</button><br><br>
-<form action="/ahorros/new" method="POST" id="agregar" class="form-inline">
-  <div class="form-group">
-    <input type="text" name="nombre" placeholder="Concepto de tu ahorro" id="nombre" class="form-control" required>
-    <div class="input-group">
-      <div class="input-group-addon">$</div>
-      <label class="sr-only" for="cantidad">Cantidad</label>
-      <input type="number" name="cantidad" placeholder="¿Con cuánto comienzas?" id="cantidad" class="form-control" required>
+      </div>
     </div>
-    <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
-    <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
   </div>
-</form>
-</body>
+ 
+</section><hr>
+
+<div class="row center-xs">
+  <div class="col-md-10">
+    <div class="box">
+      <button title="Agrega un nuevo ahorro" id="show"  class="btn btn-primary" placeholder="Agrega tu ahorro">+</button><br><br>
+      <form action="/ahorros/new" method="POST" id="agregar" class="form-inline">
+        <div class="form-group">
+          <input type="text" name="nombre" placeholder="Concepto de tu ahorro" id="nombre" class="form-control" required>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <label class="sr-only" for="cantidad">Cantidad</label>
+            <input type="number" name="cantidad" placeholder="¿Con cuánto comienzas?" id="cantidad" class="form-control" required>
+          </div>
+          <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
+          <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
 
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
