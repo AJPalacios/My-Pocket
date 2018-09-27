@@ -111,6 +111,7 @@ li{
   background-color: #111;
   overflow-x: hidden;
   padding-top: 20px;
+  text-align: center;
 }
 
 .sidenav a {
@@ -121,9 +122,13 @@ li{
   display: block;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
+.sidenav a:nth-child(4){
+  color: white;
 }
+.sidenav a:nth-child(5){
+  color: white;
+}
+
 
 
 //**********datos perfil
@@ -142,5 +147,5 @@ li{
   font-style: oblique;
   color: #f1f1f1;
   text-align: center;
-  
+
 }

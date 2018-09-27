@@ -102,8 +102,11 @@ li {
   color: #818181;
   display: block; }
 
-.sidenav a:hover {
-  color: #f1f1f1; }
+.sidenav a:nth-child(4) {
+  color: white; }
+
+.sidenav a:nth-child(5) {
+  color: white; }
 
 .fotoperfil {
   border-radius: 150px;

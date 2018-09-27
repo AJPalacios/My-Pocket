@@ -11,6 +11,7 @@ router.get('/list', (req, res, next)=>{
       let total=0;
       ahorros.forEach(ahorro=> {
         total+=ahorro.cantidad;
+        return res.json(ahorros)
       })
       res.render('ahorros/list',{ahorros,total})
       //res.send(ahorros)

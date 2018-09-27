@@ -8,11 +8,12 @@
 
 <div class="sidenav">
   <div class="profile">
-  <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
-</div>
+    <img class="fotoperfil" src="{{photoURL}}" alt="Foto_de_perfil">
+  </div>
   <a href="/ahorros/list">Mis Ahorros</a>
   <a href="/gastos/list">Mis Gastos</a>
   <a href="/ingresos/list">Mis Ingresos</a>
+  <a id="dolar"></a>
   <p id="frase"></p>
 </div>
 
@@ -35,7 +36,8 @@
           <h5>Mis Ahorros</h5>
         </div>
         <div class="card-body">
-          <p><a href="/ahorros/list">Lista de ahorros</a></p>
+          {{!-- <p><a href="/ahorros/list">Lista de ahorros</a></p> --}}
+          <canvas width="200" height="200" id="canvas1"></canvas>
         </div>
 
       </div>
@@ -89,8 +91,65 @@
 
 
 
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script>
+
+
+const ctx = document.getElementById('canvas1').getContext('2d')
+  
+const drawGraph1 = () => {
+  return fetch('http://localhost:3000/ahorros/list')
+  .then(result => result.json())
+  .then(ahorros => {
+    console.log(ahorros[0].cantidad)
+    cantidad = []
+    labels = []
+    for(i = 0; i < ahorros.length; i++){
+      cantidad.push(ahorros[i].cantidad)
+      labels.push(ahorros[i].nombre)
+    }
+    
+    console.log(cantidad)
+    var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels,
+        datasets: [{
+
+            data: cantidad,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    
+});
+  })
+}
+    
+
+
+drawGraph1()
+
+
+
+
+
   const frases =
   ['La pasión construye negocios, el miedo no.',
           'Recuerda que tú puedes ser lo que deseas ser en cualquier cuadrante, incluso un maestro.',
@@ -120,6 +179,24 @@
           'El secreto del éxito está en prepararse para aprovechar las oportunidades en cuanto se presenten. -Disraeli'] 
 let random= Math.floor(Math.random() * 26);
 let frase = frases[random];
-document.getElementById('frase').innerHTML = '"'+ frase+'"'
+
+document.getElementById('frase').innerHTML = '"'+frase+'"'
+
+axios.get('https://api.exchangeratesapi.io/latest?base=USD')
+      .then(res => {
+        let dolar = Math.floor(res.data.rates.MXN)
+        let template = `
+        <span> <i class="fas fa-dollar-sign"></i> Tipo de cambio</span>
+        USD/MXN: ${dolar}
+        `;
+        document.getElementById('dolar').innerHTML = template
+        console.log(res.data.rates.MXN)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+
+
+
 </script>
 
