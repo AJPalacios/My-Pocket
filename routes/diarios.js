@@ -9,7 +9,7 @@ router.get('/list', (req, res, next)=>{
   let user_id = req.user._id
   Diario.find().populate('user')
     .then(diarios=>{        
-      res.render('diarios/list',{diarios})
+      res.render('diarios/list',{diarios,user_id})
       //res.send(diarios)
     }).catch(e=>{
       console.log(e)
