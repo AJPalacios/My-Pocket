@@ -14,19 +14,19 @@ const drawGraph1 = () => {
     
     console.log(cantidad)
     var myChart = new Chart(ctx, {
-    type: 'doughnut',
+    type: 'pie',
     data: {
         labels,
         datasets: [{
 
             data: cantidad,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                '#FF6283',
+                '#009DF8',
+                '#FFCC6A',
+                '#3DC0BF',
+                '#C9CBCF',
+                '#FFB880'
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
