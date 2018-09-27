@@ -8,7 +8,8 @@ body {
 
 a {
   color: #00B7FF;
-  text-decoration: none; }
+  text-decoration: none;
+  text-transform: capitalize; }
 
 li {
   font-size: 1.5em; }
@@ -82,7 +83,7 @@ li {
   list-style: none; }
 
 .card {
-  margin: 50px !important; }
+  margin: 40px !important; }
 
 .sidenav {
   height: 100%;
@@ -91,7 +92,7 @@ li {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #999;
+  background-color: #acacac;
   overflow-x: hidden;
   padding-top: 20px;
   text-align: center; }
@@ -103,11 +104,12 @@ li {
   color: #818181;
   display: block; }
 
-.sidenav a:nth-child(4) {
-  color: white; }
-
 .sidenav a:nth-child(5) {
   color: white; }
+
+.logo-nav {
+  width: 70%;
+  padding-bottom: 10%; }
 
 .fotoperfil {
   border-radius: 150px;
@@ -116,10 +118,20 @@ li {
   margin: 40px auto; }
 
 #frase {
-  margin: 150px 30px 0px 30px;
+  margin: 60px 20px 0px 20px;
   font-size: 14px;
   font-style: oblique;
   color: #f1f1f1;
   text-align: center; }
+
+thead th {
+  text-align: center;
+  text-transform: uppercase; }
+
+h1 {
+  padding-bottom: 5%; }
+
+.logo-perfil {
+  height: 80px; }
 
 /*# sourceMappingURL=style.css.map */
