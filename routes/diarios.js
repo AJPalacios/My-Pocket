@@ -4,6 +4,9 @@ const User = require('../models/User')
 
 //R-lista de diarios
 router.get('/list', (req, res, next)=>{
+  req.app.locals.loggedUser = req.user;
+  let user = req.user.usuario
+  let user_id = req.user._id
   Diario.find().populate('user')
     .then(diarios=>{        
       res.render('diarios/list',{diarios})
@@ -11,6 +14,14 @@ router.get('/list', (req, res, next)=>{
     }).catch(e=>{
       console.log(e)
     })
+})
+
+router.get('/list-for-chart', (req, res) => {
+  req.app.locals.loggedUser = req.user;
+  Diario.find({usuario:req.app.locals.loggedUser})//.populate('user')
+  .then(diarios => {
+    return res.json(diarios)
+  }).catch(e=>console.log(e))
 })
 
 //R-detalle de diarios
@@ -62,6 +73,9 @@ router.post('/edit/:id',(req, res, next)=>{
     })
 })
 
+
+
+
 //D-borrar un diario
 router.get('/delete/:id',(req,res,next)=>{
   const {id}=req.params
@@ -70,5 +84,6 @@ router.get('/delete/:id',(req,res,next)=>{
     res.redirect('/diarios/list')
   }).catch(e=>next(e))
 })
+
 
 module.exports = router
