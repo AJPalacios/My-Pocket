@@ -42,8 +42,8 @@ router.get('/new',(req,res,next)=>{
 router.post('/new',(req, res, next)=>{
   if(req.body.tipoGasto) req.body.tipo=req.body.tipoGasto
   //console.log(req.body)
-  Gasto.create(req.body)
-  //Gasto.create({...req.body,owner:req.user._id})
+  //Gasto.create(req.body)
+  Gasto.create({...req.body,usuario:req.user._id})
     .then(gastos=>{
       res.redirect('/gastos/list')
     }).catch(e=>{

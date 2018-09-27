@@ -36,7 +36,7 @@ router.get('/detail/:id', (req, res, next)=>{
 //NUEVO INGRESO
 router.post('/new',(req, res, next)=>{
   console.log(req.body)
-  Ingreso.create(req.body)
+  Ingreso.create({...req.body,usuario:req.user._id})
     .then(ahorros=>{
       res.redirect('/ingresos/list')
     }).catch(e=>{
