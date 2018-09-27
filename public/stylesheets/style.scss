@@ -14,6 +14,13 @@ a {
   text-decoration: none !important;
   text-transform: capitalize;
 }
+caption>button{
+  margin: 10px !important;
+  background-color: #286090;
+  color: white !important;
+  font-family: 'Montserrat', sans-serif !important;
+  border-radius: 10px;
+}
 
 //index.hbs
 
