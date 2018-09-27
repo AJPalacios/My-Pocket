@@ -17,7 +17,8 @@ router.get('/list', isLogged, (req, res, next)=>{
       ahorros.forEach(ahorro=> {
         total+=ahorro.cantidad;  
       })
-      res.render('ahorros/list',{ahorros,total})
+      user=req.app.locals.loggedUser.usuario;
+      res.render('ahorros/list',{ahorros,total,user})
       //return res.json(ahorros)
       //res.send(ahorros)
     }).catch(e=>{
@@ -94,9 +95,11 @@ router.post('/new',isLogged,(req, res, next)=>{
 //U-editar un ahorro
 router.get('/edit/:id',(req,res,next)=>{
   const {id} =req.params
+  req.app.locals.loggedUser = req.user;
   Ahorro.findById(id)
   .then(ahorro=>{
-    res.render('ahorros/edit',ahorro)
+    user=req.app.locals.loggedUser.usuario;
+    res.render('ahorros/edit',{ahorro,user})
   }).catch(e=>next(e))
 })
 
