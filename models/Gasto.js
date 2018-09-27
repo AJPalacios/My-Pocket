@@ -14,7 +14,7 @@ const gastoSchema = new Schema({
     enum:["Diario","Semanal","Quincenal","Mensual"],
     default:"Mensual"
   },
-  owner:{
+  usuario:{
     type:Schema.Types.ObjectId,
     ref:'User'
   }

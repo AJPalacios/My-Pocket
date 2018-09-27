@@ -10,7 +10,7 @@ const diarioSchema = new Schema({
     default:0
   },
   fecha:Date,
-  owner:{
+  usuario:{
     type:Schema.Types.ObjectId,
     ref:'User'
   }
