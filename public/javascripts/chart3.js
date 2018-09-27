@@ -9,7 +9,7 @@ const drawGraph3 = () => {
     labels = []
     for(i = 0; i < gastos.length; i++){
       cantidad.push(gastos[i].cantidad)
-      labels.push(gastos[i].nombre)
+      labels.push(gastos[i].tipo)
     }
     
     console.log(cantidad)
