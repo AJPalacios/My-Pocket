@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Ahorro = require('../models/Ahorro')
 const User = require('../models/User')
+const json2xls = require('json2xls')
 
 const isLogged = (req,res,next)=>{
   if (req.isAuthenticated())return next()
@@ -30,11 +31,13 @@ router.get('/list', isLogged, (req, res, next)=>{
 
 router.get('/list-for-chart', (req, res) => {
   req.app.locals.loggedUser = req.user;
-  Ahorro.find({usuario:req.app.locals.loggedUser})//.populate('user')
+  Ahorro.find({usuario:req.app.locals.loggedUser})
   .then(ahorros => {
     return res.json(ahorros)
   }).catch(e=>console.log(e))
 })
+
+
 
 //R-detalle de ahorros
 router.get('/detail/:id',(req,res,next)=>{

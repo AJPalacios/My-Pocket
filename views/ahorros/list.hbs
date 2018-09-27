@@ -1,11 +1,13 @@
+
 {{> nav}}
 {{> sidenav}}
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/css/tableexport.min.css">
 </head>
 
 <div class="row center-xs">
-  <div class="col-md-12 offset-2">
+  <div class="col-md-10 offset-2">
     <div class="box">
       <h1>Mis Ahorros</h1>
     </div>
@@ -16,27 +18,27 @@
   <div class="row center-xs">
     <div class="col-md-10 offset-2">
       <div class="box">
-        <table class="table table-hover tabla-ahorros">
-   <thead> 
-        <th>Concepto</th> 
-        <th>Cantidad</th>
-        <th></th>
-    </thead> 
-    <tbody> 
-        {{#each ahorros}} 
-        <tr> 
-            <td><a href="/ahorros/detail/{{this.id}}">{{this.nombre}}</a></td> 
-            <td>{{this.cantidad}}</td> 
-            <td><a href="/ahorros/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
-        </tr>
-        {{/each}}
-        <tr> 
-            <td><b>TOTAL</b></td> 
-            <td>{{total}} </td>
-            <td></td>
-        </tr> 
-    </tbody> 
-  </table>
+        <table id="tabla_ahorros" class="table table-hover tabla-ahorros">
+          <thead> 
+                <th>Concepto</th> 
+                <th>Cantidad</th>
+                <th></th>
+            </thead> 
+            <tbody> 
+                {{#each ahorros}} 
+                <tr> 
+                    <td><a href="/ahorros/detail/{{this.id}}">{{this.nombre}}</a></td> 
+                    <td>{{this.cantidad}}</td> 
+                    <td><a href="/ahorros/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+                </tr>
+                {{/each}}
+                <tr> 
+                    <td><b>TOTAL</b></td> 
+                    <td>{{total}} </td>
+                    <td></td>
+                </tr> 
+            </tbody> 
+        </table>
       </div>
     </div>
   </div>
@@ -66,8 +68,13 @@
 
 
 
-
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/js/tableexport.min.js"></script>
 <script>
    window.onload=load()
    function load() {
@@ -86,6 +93,16 @@
     document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
   }
+
+  $('#tabla_ahorros').tableExport({
+    formats: ["csv","txt"],
+    filename: "mis ahorros",
+    bootstrap: false,
+    position: "bottom"
+  })
+
+  
+
 </script>
 
 <style>
