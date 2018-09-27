@@ -11,7 +11,6 @@ const isLogged = (req,res,next)=>{
 router.get('/list', isLogged, (req, res, next)=>{
   //User.findById(req.app.locals.loggedUser._id).populate('notitas')
   req.app.locals.loggedUser = req.user;
-  console.log(req.app.locals.loggedUser._id)
   Ahorro.find({usuario:req.app.locals.loggedUser})
     .then(ahorros=>{ 
       let total=0;

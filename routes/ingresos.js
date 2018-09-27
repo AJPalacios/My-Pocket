@@ -4,10 +4,19 @@ const User = require ('../models/User')
 
 //LISTA DE INGRESOS
 router.get('/list', (req, res, next)=>{
-  Ingreso.find()
+  req.app.locals.loggedUser = req.user;
+  Ingreso.find({usuario:req.app.locals.loggedUser})
   .then (ingresos=>{
     res.render('ingresos/list', {ingresos})
   }) .catch(e=>console.log(e))
+})
+
+router.get('/list-for-chart', (req, res) => {
+  req.app.locals.loggedUser = req.user;
+  Ingreso.find({usuario:req.app.locals.loggedUser})//.populate('user')
+  .then(ingresos => {
+    return res.json(ingresos)
+  }).catch(e=>console.log(e))
 })
 
 //DETALLE DE INGRESO

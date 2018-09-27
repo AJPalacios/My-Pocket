@@ -4,13 +4,22 @@ const User = require('../models/User')
 
 //R-lista de gastos
 router.get('/list', (req, res, next)=>{
-  Gasto.find().populate('user')
+  req.app.locals.loggedUser = req.user;
+  Gasto.find({usuario:req.app.locals.loggedUser})//.populate('user')
     .then(gastos=>{        
       res.render('gastos/list',{gastos})
       //res.send(gastos)
     }).catch(e=>{
       console.log(e)
     })
+})
+
+router.get('/list-for-chart', (req, res) => {
+  req.app.locals.loggedUser = req.user;
+  Gasto.find({usuario:req.app.locals.loggedUser})//.populate('user')
+  .then(gastos => {
+    return res.json(gastos)
+  }).catch(e=>console.log(e))
 })
 
 //R-detalle de gastos
