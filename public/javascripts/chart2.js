@@ -14,7 +14,7 @@ const drawGraph2 = () => {
     
     console.log(cantidad)
     var myChart = new Chart(ctx2, {
-    type: 'line',
+    type: 'horizontalBar',
     data: {
         labels,
         datasets: [{
