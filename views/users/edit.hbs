@@ -1,0 +1,24 @@
+<form action="/users/edit/{{id}}" method="POST" enctype="multipart/form-data">
+  <p>
+    <input class="form-control" type="text" name="usuario" id="usuario" placeholder="@Usuario" value="{{usuario}}">
+  </p>
+  <p>
+    <input class="form-control" type="text" name="nombre" id="name" placeholder="Nombre" value="{{nombre}}">
+  </p>
+
+  <p>
+    <input class="form-control" type="text" name="apellido" id="lastName" placeholder="Apellido" value="{{apellido}}">
+  </p>
+
+  <p>
+    <input class="form-control"  type="email" name="email" id="email" placeholder="email@email.com" value="{{email}}">
+  </p>
+
+  <p>
+  Photo:
+    <input type="file" name="image" id="">
+  </p>
+
+<input type="submit" value="save">
+
+</form>

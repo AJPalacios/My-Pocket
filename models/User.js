@@ -7,12 +7,31 @@ const userSchema = new Schema({
   nombre: String,
   apellido:String,
   email:String,
-  photoURL: String,
+  photoURL: {
+    type: String,
+    default: 'https://res.cloudinary.com/mishulicious/image/upload/v1537995855/myPocket/blue-head.jpg'
+  },
   codeConfirmation: String,
   Status:{
     type: String,
     enum: ['Active', 'Pending'],
     default: 'Pending'
+  },
+  ahorros: {
+    type:Schema.Types.ObjectId,
+    ref:'Ahorro'
+  },
+  diarios: {
+    type:Schema.Types.ObjectId,
+    ref:'Diario'
+  },
+  gastos: {
+    type:Schema.Types.ObjectId,
+    ref:'Gastos'
+  },
+  ingresos: {
+    type:Schema.Types.ObjectId,
+    ref:'Ingreso'
   }
 },{
   timestamps:{

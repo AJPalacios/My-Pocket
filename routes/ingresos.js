@@ -4,10 +4,22 @@ const User = require ('../models/User')
 
 //LISTA DE INGRESOS
 router.get('/list', (req, res, next)=>{
-  Ingreso.find()
+  req.app.locals.loggedUser = req.user
+  let user = req.user.usuario
+  let user_id = req.user._id
+  console.log(user_id)
+  Ingreso.find({usuario:req.app.locals.loggedUser})
   .then (ingresos=>{
-    res.render('ingresos/list', {ingresos})
+    res.render('ingresos/list', {ingresos,user_id,user})
   }) .catch(e=>console.log(e))
+})
+
+router.get('/list-for-chart', (req, res) => {
+  req.app.locals.loggedUser = req.user;
+  Ingreso.find({usuario:req.app.locals.loggedUser})//.populate('user')
+  .then(ingresos => {
+    return res.json(ingresos)
+  }).catch(e=>console.log(e))
 })
 
 //DETALLE DE INGRESO
@@ -27,7 +39,7 @@ router.get('/detail/:id', (req, res, next)=>{
 //NUEVO INGRESO
 router.post('/new',(req, res, next)=>{
   console.log(req.body)
-  Ingreso.create(req.body)
+  Ingreso.create({...req.body,usuario:req.user._id})
     .then(ahorros=>{
       res.redirect('/ingresos/list')
     }).catch(e=>{

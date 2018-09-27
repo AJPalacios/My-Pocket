@@ -4,13 +4,24 @@ const User = require('../models/User')
 
 //R-lista de gastos
 router.get('/list', (req, res, next)=>{
-  Gasto.find().populate('user')
+  req.app.locals.loggedUser = req.user;
+  let user = req.user.usuario
+  let user_id = req.user._id
+  Gasto.find({usuario:req.app.locals.loggedUser})//.populate('user')
     .then(gastos=>{        
-      res.render('gastos/list',{gastos})
+      res.render('gastos/list',{gastos,user_id,user})
       //res.send(gastos)
     }).catch(e=>{
       console.log(e)
     })
+})
+
+router.get('/list-for-chart', (req, res) => {
+  req.app.locals.loggedUser = req.user;
+  Gasto.find({usuario:req.app.locals.loggedUser})//.populate('user')
+  .then(gastos => {
+    return res.json(gastos)
+  }).catch(e=>console.log(e))
 })
 
 //R-detalle de gastos
@@ -33,8 +44,8 @@ router.get('/new',(req,res,next)=>{
 router.post('/new',(req, res, next)=>{
   if(req.body.tipoGasto) req.body.tipo=req.body.tipoGasto
   //console.log(req.body)
-  Gasto.create(req.body)
-  //Gasto.create({...req.body,owner:req.user._id})
+  //Gasto.create(req.body)
+  Gasto.create({...req.body,usuario:req.user._id})
     .then(gastos=>{
       res.redirect('/gastos/list')
     }).catch(e=>{

@@ -13,6 +13,8 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash')
 
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+hbs.registerPartial('nav',path.join(__dirname+'/views/partials'))
 mongoose
   .connect(process.env.DB, {useNewUrlParser: true})
   .then(x => {
@@ -26,6 +28,7 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
 
 
 //passport
@@ -61,6 +64,7 @@ app.use(require('node-sass-middleware')({
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.set(hbs.registerPartials(__dirname + '/views/partials'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
@@ -89,5 +93,11 @@ app.use('/gastos', gastos)
 
 const ahorros = require('./routes/ahorros')
 app.use('/ahorros', ahorros)
+
+const diarios = require('./routes/diarios')
+app.use('/diarios', diarios)
+
+const metas = require('./routes/metas')
+app.use('/metas', metas)
 
 module.exports = app;

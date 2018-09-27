@@ -1,28 +1,23 @@
 
-  <ul class="navbar navbar-dark justify-content-end ">
-    <li class="nav-link active"><a href="#">{{usuario}}</a> </li>
-    <li>
-      <a class="nav-link active" href="/logout">Cerrar Sesión</a>
-    </li>
-  </ul>
+{{> nav}}
+{{> sidenav}}
 
-<div class="sidenav">
-  <a href="/ahorros/list">Mis Ahorros</a>
-  <a href="#">Mis gastos</a>
-  <a href="#">Mis ingresos</a>
-</div>
+<div class="container">
 
 <div class="row center-xs">
-  <div class="col-md-8">
+  <div class="col-md-8 offset-2">
     <div class="box">
-      <h1>Bienvenido</h1>
-      <h3>¿Cuanto haz gastado hoy? y ¿cual es tu objetivo de hoy?</h3>      
+      <div>
+        <img class="logo-perfil" src="https://res.cloudinary.com/mishulicious/image/upload/v1537910791/myPocket/logo-mypocket-03.png" alt="myPocket">
+      </div>
+      <br>
+      <h4>¿Cuánto has gastado? y ¿Cuál es tu objetivo para hoy?</h5>      
     </div>
   </div>
 </div>
 
 <div class="row center-xs">
-  <div class="col-md-4">
+  <div class="col-md-5 offset-2">
     <div class="box">
 
       <div class="card">
@@ -30,46 +25,45 @@
           <h5>Mis Ahorros</h5>
         </div>
         <div class="card-body">
-          <p><a href="/ahorros/list">Lista de ahorros</a></p>
+          {{!-- <p><a href="/ahorros/list">Lista de ahorros</a></p> --}}
+          <canvas width="200" height="200" id="canvas1"></canvas>
         </div>
 
       </div>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-5">
     <div class="box">
       <div class="card">
         <div class="card-header">
-          Card Two
+          <h5>Mis Ingresos</h5>
         </div>
         <div class="card-body">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem aliquam voluptatibus eius ab ex facilis natus? Ducimus, commodi iure corporis eius mollitia 
-          dignissimos sed beatae quos doloribus, nobis culpa distinctio.
+          <canvas width="200" height="200" id="canvas2"></canvas>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="row center-xs">
-  <div class="col-md-4">
+  <div class="col-md-5 offset-2">
     <div class="box">
       <div class="card">
         <div class="card-header">
-          Card Two
+          <h5>Mis Gastos</h5>
         </div>
         <div class="card-body">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci iusto minus, cumque corrupti dignissimos doloribus asperiores quos temporibus repellat quia? 
-          Delectus perspiciatis doloribus quod quo officiis consequuntur voluptatibus itaque eveniet!
+          <canvas width="200" height="200" id="canvas3"></canvas>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-5">
     <div class="box">
       <div class="card">
         <div class="card-header">
-          Card Two
+          <h5>Gastos Extras</h5>
         </div>
         <div class="card-body">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda error placeat labore impedit quibusdam dolor nostrum porro doloribus voluptatem dolores. 
@@ -83,6 +77,10 @@
 </div>
 
 
+</div>
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="/javascripts/chart1.js"></script>
+<script src="/javascripts/chart2.js"></script>
+<script src="/javascripts/chart3.js"></script>

@@ -2,21 +2,38 @@ const router = require('express').Router()
 const Ahorro = require('../models/Ahorro')
 const User = require('../models/User')
 
-
+const isLogged = (req,res,next)=>{
+  if (req.isAuthenticated())return next()
+    return res.redirect('/login')
+}
 
 //R-lista de ahorros
-router.get('/list', (req, res, next)=>{
-  Ahorro.find()//.populate('user')
+router.get('/list', isLogged, (req, res, next)=>{
+  //User.findById(req.app.locals.loggedUser._id).populate('notitas')
+  req.app.locals.loggedUser = req.user;
+  Ahorro.find({usuario:req.app.locals.loggedUser})
     .then(ahorros=>{ 
       let total=0;
       ahorros.forEach(ahorro=> {
-        total+=ahorro.cantidad;
+        total+=ahorro.cantidad;  
       })
-      res.render('ahorros/list',{ahorros,total})
+      let user=req.app.locals.loggedUser.usuario;
+      let photoURL=req.app.locals.loggedUser.photoURL;
+      let user_id = req.user._id
+      res.render('ahorros/list',{ahorros,total,user_id,user,photoURL})
+      //return res.json(ahorros)
       //res.send(ahorros)
     }).catch(e=>{
       console.log(e)
     })
+})
+
+router.get('/list-for-chart', (req, res) => {
+  req.app.locals.loggedUser = req.user;
+  Ahorro.find({usuario:req.app.locals.loggedUser})//.populate('user')
+  .then(ahorros => {
+    return res.json(ahorros)
+  }).catch(e=>console.log(e))
 })
 
 //R-detalle de ahorros
@@ -65,10 +82,10 @@ router.post('/detailmenos/:id', (req, res, next) => {
 // router.get('/new',(req,res,next)=>{
 //   res.render('ahorros/new')
 // })
-router.post('/new',(req, res, next)=>{
+router.post('/new',isLogged,(req, res, next)=>{
   if(req.body.tipoAhorro) req.body.tipo=req.body.tipoAhorro
   //console.log(req.body)
-  Ahorro.create({...req.body,cantidadInicial:req.body.cantidad})
+  Ahorro.create({...req.body,cantidadInicial:req.body.cantidad,usuario:req.user._id})
   //Ahorro.create({...req.body,owner:req.user._id})
     .then(ahorros=>{
       res.redirect('/ahorros/list')
@@ -80,9 +97,11 @@ router.post('/new',(req, res, next)=>{
 //U-editar un ahorro
 router.get('/edit/:id',(req,res,next)=>{
   const {id} =req.params
+  req.app.locals.loggedUser = req.user;
   Ahorro.findById(id)
   .then(ahorro=>{
-    res.render('ahorros/edit',ahorro)
+    user=req.app.locals.loggedUser.usuario;
+    res.render('ahorros/edit',{ahorro,user})
   }).catch(e=>next(e))
 })
 

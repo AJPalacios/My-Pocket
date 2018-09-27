@@ -1,19 +1,37 @@
-{{> nav}}
-{{> sidenav}}
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
+{{> nav}}
+{{> sidenav}}
 
-<body class="bd">
-
-
-<h1>Editar ahorro {{nombre}}</h1>
-<form action="/ahorros/edit/{{this.id}}" method="POST">
+<h1>Editar meta {{nombre}}</h1>
+<form action="/metas/edit/{{this.id}}" method="POST">
 <p>
   <label for="nombre">Nombre:</label><br>
   <input type="text" name="nombre" id="nombre" value="{{nombre}}">
   <br>
 </p>
+
+
+<p>
+  <label for="nombre">Fecha Objetivo:</label><br>
+  <input type="text" name="nombre" id="nombre" value="{{fechaFin}}">
+  <br>
+</p>
+
+
+<p class="form-inline">
+  <div class="form-group"></div>
+  Cantidad Objetivo:
+  <div class="form-group">
+     <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <label class="sr-only" for="cantidad">Cantidad</label>
+      <input type="number" name="cantidadObjetivo" id="cantidadObjetivo" value="{{cantidadObjetivo}}">
+    </div>
+  </div> 
+</p>
+
 <p class="form-inline">
   <div class="form-group"></div>
   Cantidad Inicial:
@@ -21,7 +39,7 @@
      <div class="input-group">
       <div class="input-group-addon">$</div>
       <label class="sr-only" for="cantidad">Cantidad</label>
-      <input type="number" name="cantidadInicial" id="inicial" value="{{cantidadInicial}}">
+      <input type="number" name="cantidadInicial" id="cantidadInicial" value="{{cantidadInicial}}">
     </div>
   </div> 
 </p>
@@ -32,15 +50,17 @@
   <div class="form-group">
      <div class="input-group">
       <div class="input-group-addon">$</div>
-      <label class="sr-only" for="cantidad">Cantidad</label>
-      <input type="number" name="cantidad" id="cantidad" value="{{cantidad}}">
+      <label class="sr-only" for="cantidad">Cantidad Actual</label>
+      <input type="number" name="cantidadActual" id="cantidadActual" value="{{cantidadActual}}">
     </div>
   </div> 
 </p>
 
+
+
 <input type="submit" value="Guardar" class="btn btn-primary">
 </form>
-<a href="/ahorros/list">Atrás</a>
+<a href="/metas/list">Atrás</a>
 <style>
   .bd{
     width: 70%;

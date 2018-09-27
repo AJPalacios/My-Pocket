@@ -1,7 +1,17 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<h1>Mis gastos recurrentes</h1>
+{{> nav}}
+{{> sidenav}}
+<div class="row center-xs">
+  <div class="col-md-10 offset-2">
+    <div class="box">
+      <h1>Mis Gastos Recurrentes</h1>
+    </div>
+  </div>
+</div>
+
+
 {{!-- <section>
 {{#each gastos}}
   <div>
@@ -12,58 +22,75 @@
 </section>
 
 <a href="/gastos/new">Agregar nuevo gasto</a> --}}
-<section>
-  <table class="table table-hover tabla-gastos">
-   <thead> 
-        <th>Concepto</th> 
-        <th>Cantidad</th>
-        <th>Periodicidad</th>
-        <th></th>
-    </thead> 
-    <tbody> 
-        {{#each gastos}} 
-        <tr> 
-            <td><a href="/gastos/detail/{{this.id}}">{{this.tipo}}</a></td> 
-            <td>{{this.cantidad}}</td> 
-            <td>{{this.periodicidad}}</td> 
-            <td><a href="/gastos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
-        </tr>
-        {{/each}}
-    </tbody> 
-  </table>
-</section><hr>
-<button title="Agrega un nuevo gasto recurrente" id="show"  class="btn btn-primary" placeholder="Agrega tu gasto recurrente">+</button><br><br>
-<form action="/gastos/new" method="POST" id="agregar" class="form-inline">
-  <div class="form-group">
-    <label for="tipo">Tipo de gasto:</label>
-    <select name="tipo" id="tipo" onchange="showfield(this.options[this.selectedIndex].value)">
-      <option value="Casa">Casa</option>
-      <option value="Transporte">Transporte</option>
-      <option value="Alimentación">Alimentación</option>
-      <option value="Servicios">Servicios</option>
-      <option value="Otro">Otro</option><input type="text" name="tipoGasto" id="field" placeholder="Tipo de gasto"/>
-    </select>
-    <div class="input-group">
-      <div class="input-group-addon">$</div>
-      <label class="sr-only" for="cantidad">Cantidad</label>
-      <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad" class="form-control" required>
+<section class="container">
+
+  <div class="row center-xs">
+    <div class="col-md-10 offset-2">
+      <div class="box">
+        <table class="table table-hover tabla-gastos">
+          <thead> 
+            <th>Concepto</th> 
+            <th>Cantidad</th>
+            <th>Periodicidad</th>
+          </thead> 
+          <tbody> 
+            {{#each gastos}} 
+              <tr> 
+                <td><a href="/gastos/detail/{{this.id}}">{{this.tipo}}</a></td> 
+                <td>{{this.cantidad}}</td> 
+                <td>{{this.periodicidad}}</td> 
+                <td><a href="/gastos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+              </tr>
+            {{/each}}
+          </tbody> 
+        </table>
+      </div>
     </div>
-    <select name="periodicidad">
-        <option value="Diario">Diario</option>
-        <option value="Semanal">Semanal</option>
-        <option value="Quincenal">Quincenal</option>
-        <option value="Mensual" selected>Mensual</option>
-        <option value="Anual">Anual</option>
-    </select>
-    <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
-    <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
   </div>
-</form>
+
+  
+</section><hr>
+
+<div class="row center-xs">
+  <div class="col-md-6">
+    <div class="box">
+
+      <button title="Agrega un nuevo gasto recurrente" id="show"  class="btn btn-primary" placeholder="Agrega tu gasto recurrente">+</button><br><br>
+      <form action="/gastos/new" method="POST" id="agregar" class="form-inline">
+        <div class="form-group">
+          <label class="form-label" for="tipo">Tipo de gasto:</label>
+          <select class="form-control" name="tipo" id="tipo" onchange="showfield(this.options[this.selectedIndex].value)">
+            <option value="Casa">Casa</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Alimentación">Alimentación</option>
+            <option value="Servicios">Servicios</option>
+            <option value="Otro">Otro</option><input type="text" name="tipoGasto" id="field" placeholder="Tipo de gasto"/>
+          </select>
+          <div class="input-group">
+            <div class="input-group-addon">$</div>
+            <label class="sr-only" for="cantidad">Cantidad</label>
+            <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad" class="form-control" required>
+          </div>
+          <select class="form-control" name="periodicidad">
+              <option value="Diario">Diario</option>
+              <option value="Semanal">Semanal</option>
+              <option value="Quincenal">Quincenal</option>
+              <option value="Mensual" selected>Mensual</option>
+              <option value="Anual">Anual</option>
+          </select>
+          <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
+          <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
 
 
 <script>
-   window.onload=load()
-   function load() {
+  window.onload=load()
+  function load() {
     document.getElementById('agregar').style.display="none"
   }
   document.getElementById('show').addEventListener('click',function(){

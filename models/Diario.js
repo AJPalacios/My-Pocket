@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const gastoSchema = new Schema({
+const diarioSchema = new Schema({
   tipo:{
     type:String
   },
@@ -9,11 +9,7 @@ const gastoSchema = new Schema({
     type:Number,
     default:0
   },
-  periodicidad:{
-    type:String,
-    enum:["Diario","Semanal","Quincenal","Mensual"],
-    default:"Mensual"
-  },
+  fecha:Date,
   usuario:{
     type:Schema.Types.ObjectId,
     ref:'User'
@@ -25,5 +21,5 @@ const gastoSchema = new Schema({
   }
 });
 
-const Gasto = mongoose.model('Gasto', gastoSchema);
-module.exports = Gasto;
+const Diario = mongoose.model('Diario', diarioSchema);
+module.exports = Diario;

@@ -1,28 +1,55 @@
+   
+{{> nav}}
+{{> sidenav}}
+
+
+
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<h1>Mis Ingresos</h1>
-<section>
-  <table class="table table-hover tabla-ingresos">
-   <thead> 
-        <th>Concepto</th> 
-        <th>Cantidad</th>
-        <th>Periodicidad</th>
-        <th></th>
-    </thead> 
-    <tbody> 
-        {{#each ingresos}} 
-        <tr> 
-            <td><a href="/ingresos/detail/{{this.id}}">{{this.concepto}}</a></td> 
-            <td>{{this.cantidad}}</td> 
-            <td>{{this.periodicidad}}</td> 
-            <td><a href="/ingresos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
-        </tr>
-        {{/each}}
-    </tbody> 
-  </table>
+
+
+<div class="row center-xs">
+  <div class="col-md-10 offset-2">
+    <div class="box">
+      <h1>Mis Ingresos</h1>
+    </div>
+  </div>
+</div>
+
+
+<section class="container">
+  <div class="row center-xs">
+    <div class="col-md-10 offset-2">
+      <div class="box">
+        <table class="table table-hover tabla-ingresos">
+          <thead> 
+              <th>Concepto</th> 
+              <th>Cantidad</th>
+              <th>Periodicidad</th>
+              <th></th>
+          </thead> 
+          <tbody> 
+              {{#each ingresos}} 
+              <tr> 
+                  <td><a href="/ingresos/detail/{{this.id}}">{{this.concepto}}</a></td> 
+                  <td>{{this.cantidad}}</td> 
+                  <td>{{this.periodicidad}}</td> 
+                  <td><a href="/ingresos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+              </tr>
+              {{/each}}
+          </tbody> 
+        </table>
+      </div>
+    </div>
+  </div>
 </section><hr>
-<button title="Agrega un nuevo ingreso" id="show"  class="btn btn-primary" placeholder="Agrega tu ingreso">+</button><br><br>
+
+
+<div class="row center-xs">
+  <div class="col-md-10 offset-2">
+    <div class="box">
+      <button title="Agrega un nuevo ingreso" id="show"  class="btn btn-primary" placeholder="Agrega tu ingreso">+</button><br><br>
 <form action="/ingresos/new" method="POST" id="agregar" class="form-inline">
   <div class="form-group">
     <input type="text" name="concepto" placeholder="Concepto de tu ingreso" id="nombre" class="form-control" required>
@@ -31,7 +58,7 @@
       <label class="sr-only" for="cantidad">Cantidad</label>
       <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad" class="form-control" required>
     </div>
-    <select name="periodicidad">
+    <select class="form-control" name="periodicidad">
         <option value="Diario">Diario</option>
         <option value="Semanal">Semanal</option>
         <option value="Quincenal">Quincenal</option>
@@ -42,6 +69,11 @@
     <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
   </div>
 </form>
+    </div>
+  </div>
+</div>
+
+
 
 
 <script>
