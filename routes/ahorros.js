@@ -27,10 +27,11 @@ router.get('/list', isLogged, (req, res, next)=>{
 })
 
 router.get('/list-for-chart', (req, res) => {
-  Ahorro.find().populate('user')
+  req.app.locals.loggedUser = req.user;
+  Ahorro.find({usuario:req.app.locals.loggedUser})//.populate('user')
   .then(ahorros => {
     return res.json(ahorros)
-  })
+  }).catch(e=>console.log(e))
 })
 
 //R-detalle de ahorros
