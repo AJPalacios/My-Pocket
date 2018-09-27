@@ -1,18 +1,25 @@
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+</head>
 <div class="sidenav">
-  <div>
+  <div class="logo-nav">
     <a href="/users/{{user_id}}">
-      <img class="logo-nav" src="https://res.cloudinary.com/mishulicious/image/upload/v1537910791/myPocket/logo-mypocket-02.png" alt="myPocket">
+      <img src="https://res.cloudinary.com/mishulicious/image/upload/v1537910791/myPocket/logo-mypocket-02.png" alt="myPocket">
     </a>
-    
   </div>
-  <a href="/ahorros/list">Mis Ahorros</a>
-  <a href="/gastos/list">Mis Gastos</a>
-  <a href="/ingresos/list">Mis Ingresos</a>
 
-  <a id="dolar"></a>
+  <div class="menu">
+    <a href="/ahorros/list"><i class="fas fa-piggy-bank"></i>   Mis Ahorros</a>
+    <a href="/gastos/list"><i class="fas fa-coins"></i>   Mis Gastos</a>
+    <a href="/ingresos/list"><i class="fas fa-hand-holding-usd"></i>   Mis Ingresos</a>
+    <a href="/ingresos/list"><i class="fas fa-flag-checkered"></i>   Mis Metas</a>
 
+    <p id="dolar"></p>
+
+  </div>
   <p id="frase"></p>
-
 </div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
@@ -53,8 +60,8 @@ axios.get('https://api.exchangeratesapi.io/latest?base=USD')
       .then(res => {
         let dolar = Math.floor(res.data.rates.MXN)
         let template = `
-        <span> <i class="fas fa-dollar-sign"></i> Tipo de cambio</span>
-        USD/MXN: ${dolar}
+        <div class="cajaCambio"><span class="tipoCambio"> <i class="fas fa-dollar-sign"></i> Tipo de cambio</span><br>
+        <span class="totalDolar">USD/MXN: ${dolar}</span></div>
         `;
         document.getElementById('dolar').innerHTML = template
         console.log(res.data.rates.MXN)

@@ -10,8 +10,8 @@ body {
 
 
 a {
-  color: #00B7FF;
-  text-decoration: none;
+
+  text-decoration: none !important;
   text-transform: capitalize;
 }
 
@@ -112,39 +112,54 @@ li{
   background-color: #E5E5EB;
   overflow-x: hidden;
   padding-top: 20px;
-  text-align: center;
 }
+
 
 .sidenav a {
   padding: 10px 0px 10px 0px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 22px;
   color: #004595;
   display: block;
 }
-.sidenav a:nth-child(5){
+
+.sidenav a:nth-child(6){
   color: rgb(114, 114, 114);
 }
 
+.menu a{
+  padding-left: 15%;
+}
+.menu a:hover{
+  background-color: #004595;
+  color: white;
+}
+
 .logo-nav{
-  width: 70%;
-  padding-bottom: 10%;
+  text-align: center;
 }
 
-
-
-//**********datos perfil
-
-.fotoperfil {
-  border-radius: 150px;
-  width: 60%;
-  display: block;
-  margin: 40px auto;
-  
+.logo-nav img{
+  width: 140px;
+  text-align: center;
+  padding-bottom: 10%; 
 }
+
+.tipoCambio{
+  color:red;
+}
+.totalDolar{
+
+}
+
+.cajaCambio{
+
+}
+
 
 #frase{
-  margin: 60px 20px 0px 20px;
+  margin-top: 60px; 
+  margin-right: 10px;
   font-size: 14px;
   font-style: oblique;
   color: #4E93F7;
@@ -162,5 +177,5 @@ h1{
 }
 
 .logo-perfil{
-  height: 80px;;
+  height: 80px;
 }
