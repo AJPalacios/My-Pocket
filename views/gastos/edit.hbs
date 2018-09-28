@@ -5,7 +5,7 @@
 {{> sidenav}}
 
 <div class="row center-xs">
-  <div class="col-md-10 offset-2">
+  <div class="col-md-7 offset-2">
     <div class="box">
       <h1>Editar gasto {{tipo}}</h1>
         <form action="/gastos/edit/{{this.id}}" method="POST">
@@ -23,12 +23,12 @@
                     <option value="Servicios">Servicios</option>
                     <option value="Otro">Otro</option>
                   </select>
-                  <br><br><input type="text" name="tipoGasto" id="field" placeholder="Tipo de gasto"/>
+                  <br><br><input type="text" name="tipoGasto" class="nombre" id="field" placeholder="Tipo de gasto"/>
                 </td> 
               </tr>
               <tr> 
                 <td>Cantidad:</td> 
-                <td><input type="number" name="cantidad" id="cantidad" value="{{cantidad}}"></td> 
+                <td>$ <input type="number" name="cantidad" class="cant" id="cantidad" value="{{cantidad}}"></td> 
               </tr>
               <tr> 
                 <td>Periodicidad:</td> 
@@ -58,7 +58,9 @@
 <script type="text/javascript">
   document.getElementById('field').style.display="none"
   function showfield(name){
-    if(name=='Otro')document.getElementById('field').style.display="block";
+    if(name=='Otro'){
+      document.getElementById('field').style.display="block";
+    }
     else document.getElementById('field').style.display="none";
   }
 
@@ -71,3 +73,12 @@
 
   document.getElementById('periodicidad').value = "{{periodicidad}}";
 </script>
+
+<style>
+  .cant{
+    text-align: right;
+  }
+  .nombre{
+    text-align: center;
+  }
+</style>

@@ -26,7 +26,7 @@
                 {{#each diarios}} 
                 <tr> 
                     <td>{{this.tipo}}</td> 
-                    <td>{{dateFormat fecha "D-MMMM-YYYY"}} </td> 
+                    <td>{{this.fecha}} </td> 
                     <td>{{this.cantidad}}</td> 
                     <td><a href="/diarios/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
                 </tr>

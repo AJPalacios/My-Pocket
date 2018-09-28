@@ -27,8 +27,9 @@
             <tbody> 
                 {{#each ahorros}} 
                 <tr> 
-                    <td><a href="/ahorros/detail/{{this.id}}">{{this.nombre}}</a></td> 
+                    <td>{{this.nombre}}</td> 
                     <td>{{this.cantidad}}</td> 
+                    <td><a href="/ahorros/edit/{{this.id}}"><i class="fas fa-pencil-alt" id="editar"></i></a></td>
                     <td><a href="/ahorros/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
                 </tr>
                 {{/each}}
@@ -51,11 +52,11 @@
       <button title="Agrega un nuevo ahorro" id="show"  class="btn btn-primary" placeholder="Agrega tu ahorro">+</button><br><br>
       <form action="/ahorros/new" method="POST" id="agregar" class="form-inline">
         <div class="form-group">
-          <input type="text" name="nombre" placeholder="Concepto de tu ahorro" id="nombre" class="form-control" required>
+          <input type="text" name="nombre" placeholder="Concepto de ahorro" id="nombre" class="form-control" required>
           <div class="input-group">
             <div class="input-group-addon">$</div>
             <label class="sr-only" for="cantidad">Cantidad</label>
-            <input type="number" name="cantidad" placeholder="¿Con cuánto comienzas?" id="cantidad" class="form-control" required>
+            <input type="number" name="cantidad" placeholder="Cantidad inicial" id="cantidad" class="form-control" required>
           </div>
           <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
           <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
@@ -89,8 +90,8 @@
     document.getElementById("nombre").focus()
   }
   function inputsHide(){
-    document.getElementById('nombre').value=""
-    document.getElementById('cantidad').value=""
+    if(document.getElementById('nombre'))document.getElementById('nombre').value=""
+    if(document.getElementById('cantidad'))document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
   }
 

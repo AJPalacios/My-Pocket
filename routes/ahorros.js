@@ -96,7 +96,6 @@ router.get('/edit/:id',isLogged,(req,res,next)=>{
   req.app.locals.loggedUser = req.user;
   Ahorro.findById(id)
   .then(ahorro=>{
-    console.log(ahorro)
     user=req.app.locals.loggedUser.usuario;
     res.render('ahorros/edit',{ahorro,user})
   }).catch(e=>next(e))
@@ -105,20 +104,10 @@ router.get('/edit/:id',isLogged,(req,res,next)=>{
 router.post('/edit/:id',isLogged,(req, res, next)=>{
   const {id} = req.params
   Ahorro.findByIdAndUpdate(id,{$set:req.body},{new:true})
-    .then(ahorros=>{
-      res.redirect(`/ahorros/detail/${id}`)
-    }).catch(e=>{
-      console.log(e)
-    })
-})
-
-router.post('/edit/:id',isLogged,(req, res, next)=>{
-  const {id} = req.params
-  if(req.body.tipoAhorro) req.body.tipo=req.body.tipoAhorro
-  Ahorro.findByIdAndUpdate(id,{$set:req.body},{new:true})
   //Ahorro.create({...req.body,owner:req.user._id})
     .then(ahorros=>{
-      res.redirect(`/ahorros/detail/${id}`)
+      res.redirect('/ahorros/list')
+      //res.redirect(`/ahorros/detail/${id}`)
     }).catch(e=>{
       console.log(e)
     })
