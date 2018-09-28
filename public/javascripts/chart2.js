@@ -7,9 +7,9 @@ Chart.scaleService.updateScaleDefaults('linear', {
     }
 });
 
-const drawGraph2 = () => {
-    
-  return fetch('http://localhost:3000/ingresos/list-for-chart')
+const drawGraph2 = () => {    
+  //return fetch('http://localhost:3000/ingresos/list-for-chart')
+  return fetch('https://my-pocket.herokuapp.com/ingresos/list-for-chart')
   .then(result => result.json())
   .then(ingresos => {
     console.log(ingresos[0].cantidad)
