@@ -2,8 +2,13 @@ const router = require('express').Router()
 const Ingreso = require ('../models/Ingreso')
 const User = require ('../models/User')
 
+const isLogged = (req,res,next)=>{
+  if (req.isAuthenticated())return next()
+    return res.redirect('/login')
+}
+
 //LISTA DE INGRESOS
-router.get('/list', (req, res, next)=>{
+router.get('/list', isLogged,(req, res, next)=>{
   req.app.locals.loggedUser = req.user
   let user = req.user.usuario
   let user_id = req.user._id
@@ -14,7 +19,7 @@ router.get('/list', (req, res, next)=>{
   }) .catch(e=>console.log(e))
 })
 
-router.get('/list-for-chart', (req, res) => {
+router.get('/list-for-chart', isLogged,(req, res) => {
   req.app.locals.loggedUser = req.user;
   Ingreso.find({usuario:req.app.locals.loggedUser})//.populate('user')
   .then(ingresos => {
@@ -23,7 +28,7 @@ router.get('/list-for-chart', (req, res) => {
 })
 
 //DETALLE DE INGRESO
-router.get('/detail/:id', (req, res, next)=>{
+router.get('/detail/:id', isLogged,(req, res, next)=>{
   const {id} = req.params
   Ingreso.findById(id)
   .then(ingresos=>{
@@ -37,7 +42,7 @@ router.get('/detail/:id', (req, res, next)=>{
 
 
 //NUEVO INGRESO
-router.post('/new',(req, res, next)=>{
+router.post('/new',isLogged,(req, res, next)=>{
   console.log(req.body)
   Ingreso.create({...req.body,usuario:req.user._id})
     .then(ahorros=>{
@@ -49,7 +54,7 @@ router.post('/new',(req, res, next)=>{
 
 //EDITAR
 
-router.get('/edit/:id', (req, res, next)=>{
+router.get('/edit/:id',isLogged, (req, res, next)=>{
   const {id} = req.params
   Ingreso.findById(id)
     .then(ingresos=>{
@@ -57,7 +62,7 @@ router.get('/edit/:id', (req, res, next)=>{
     }).catch (error=>next(error))
 })
 
-router.post('/edit/:id', (req, res, next)=>{
+router.post('/edit/:id', isLogged,(req, res, next)=>{
   const {id} = req.params
   Ingreso.findByIdAndUpdate(id, {$set:req.body}, {new: true})
   .then(ingresos=>{
@@ -68,7 +73,7 @@ router.post('/edit/:id', (req, res, next)=>{
 
 
 //BORRAR
-router.get('/delete/:id', (req, res, next)=>{
+router.get('/delete/:id', isLogged,(req, res, next)=>{
   const {id} = req.params
   Ingreso.findByIdAndRemove(id)
   .then(ingreso=>{

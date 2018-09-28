@@ -82,7 +82,7 @@ router.post('/edit/:id',isLogged,(req, res, next)=>{
 
 
 //D-borrar un diario
-router.get('/delete/:id',(req,res,next)=>{
+router.get('/delete/:id',isLogged,(req,res,next)=>{
   const {id}=req.params
   Diario.findByIdAndRemove(id)
   .then(diarios=>{
