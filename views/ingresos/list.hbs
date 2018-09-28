@@ -32,9 +32,10 @@
           <tbody> 
               {{#each ingresos}} 
               <tr> 
-                  <td><a href="/ingresos/detail/{{this.id}}">{{this.concepto}}</a></td> 
+                  <td>{{this.concepto}}</td> 
                   <td>{{this.cantidad}}</td> 
                   <td>{{this.periodicidad}}</td> 
+                  <td><a href="/ingresos/edit/{{this.id}}"><i class="fas fa-pencil-alt" id="editar"></i></a></td>
                   <td><a href="/ingresos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
               </tr>
               {{/each}}

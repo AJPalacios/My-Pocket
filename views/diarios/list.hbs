@@ -33,15 +33,16 @@
                 {{/each}}
             </tbody> 
         </table>
+        <button title="Agrega un nuevo gastito" id="show"  class="btn btn-primary" placeholder="Agrega tu gastito">+</button><br><br>
       </div>
     </div>
   </div>
-</section><hr>
+</section>
 
 <div class="row center-xs">
-  <div class="col-md-10">
+  <div class="col-md-6">
     <div class="box">
-      <button title="Agrega un nuevo gastito" id="show"  class="btn btn-primary" placeholder="Agrega tu gastito">+</button><br><br>
+      
       <form action="/diarios/new" method="POST" id="agregar" class="form-inline">
         <div class="form-group">
           <input type="text" name="tipo" id="tipo" placeholder="Concepto de tu gastito" required>
@@ -114,6 +115,4 @@
     bootstrap: false,
     position: "bottom"
   })
-
-
 </script>

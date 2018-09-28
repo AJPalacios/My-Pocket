@@ -5,32 +5,45 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
-<h1>Editar Ingreso {{concepto}}</h1>
+
+<div class="row center-xs">
+  <div class="col-md-10 offset-2">
+    <div class="box">
+      <h1>Editar Ingreso {{concepto}}</h1>
 
 <form action="/ingresos/edit/{{_id}}" method="POST">
-  <div>
-    <label for="concepto">Concepto</label>
-    <input type="text" name="concepto" id="concepto" value="{{concepto}}">
-  </div>
-  <div>
-    <label for="cantidad">Cantidad</label>
-    <input type="number" name="cantidad" id="cantidad" value="{{cantidad}}">
-  </div>
-
-  <div>
-    <label for="periodicidad">Periodicidad</label>
-    <select name="periodicidad" id="periodicidad">
+<table class="table table-hover tabla-gastos">
+  <tr>
+    <td>Concepto</td>
+    <td><input type="text" name="concepto" id="concepto" value="{{concepto}}"></td>
+  </tr>
+  <tr>
+    <td>Cantidad</td>
+    <td><input type="number" name="cantidad" id="cantidad" value="{{cantidad}}"></td>
+  </tr>
+  <tr>
+    <td>Periodicidad</td>
+    <td>
+      <select name="periodicidad" id="periodicidad">
       <option value="Diario">Diario</option>
       <option value="Semanal">Semanal</option>
       <option value="Quincenal">Quincenal</option>
       <option value="Mensual">Mensual</option>
       <option value="Anual">Anual</option>
     </select>
-  </div>
+    </td>
+  </tr>
+</table>
 
-  <button type="submit">Guardar Cambios</button>
-  <a href="/ingresos/lista"><button>Ingresos</button></a>
+  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  <button class="btn btn-primary"><a href="/ingresos/list">Atrás</a></button>
 </form>
+    </div>
+  </div>
+</div>
+
+
+
 
 <script type="text/javascript">
 document.getElementById('periodicidad').value='{{periodicidad}}'
