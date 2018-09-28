@@ -1,7 +1,7 @@
 const ctx2 = document.getElementById('canvas2').getContext('2d')
 
 const drawGraph2 = () => {
-  return fetch('https://herokuapp.com/ingresos/list-for-chart')
+  return fetch('https://my-pocket.herokuapp.com/ingresos/list-for-chart')
   .then(result => result.json())
   .then(ingresos => {
     console.log(ingresos[0].cantidad)
