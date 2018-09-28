@@ -47,9 +47,9 @@ router.get('/new',isLogged,(req,res,next)=>{
   res.render('diarios/new')
 })
 router.post('/new',isLogged,(req, res, next)=>{
-  if(req.body.tipoDiario) req.body.tipo=req.body.tipoDiario
+  //if(req.body.tipoDiario) req.body.tipo=req.body.tipoDiario
   //console.log(req.body)
-  Diario.create(req.body)
+  Diario.create({...req.body,usuario:req.user._id})
   //Diario.create({...req.body,owner:req.user._id})
     .then(diarios=>{
       res.redirect('/diarios/list')

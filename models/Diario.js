@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const diarioSchema = new Schema({
-  tipo:{
+  concepto:{
     type:String
   },
   cantidad: {
