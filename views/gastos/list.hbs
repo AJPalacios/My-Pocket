@@ -49,7 +49,6 @@
       <button title="Agrega un nuevo gasto recurrente" id="show"  class="btn btn-primary" placeholder="Agrega tu gasto recurrente">+</button><br><br>
       <form action="/gastos/new" method="POST" id="agregar" class="form-inline">
         <div class="form-group">
-          <label class="form-label" for="tipo">Tipo de gasto:</label>
           <select class="form-control" name="tipo" id="tipo" onchange="showfield(this.options[this.selectedIndex].value)">
             <option value="Casa">Casa</option>
             <option value="Transporte">Transporte</option>
