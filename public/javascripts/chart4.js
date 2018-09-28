@@ -1,7 +1,7 @@
 const ctx4 = document.getElementById('canvas4').getContext('2d')
 
 const drawGraph4 = () => {
-  return fetch('http://localhost:3000/diarios/list-for-chart')
+  return fetch('https://my-pocket.herokuapp.com/diarios/list-for-chart')
   .then(result => result.json())
   .then(diarios => {
     console.log(diarios)
