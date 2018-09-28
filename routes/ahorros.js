@@ -92,13 +92,13 @@ router.post('/new',isLogged,(req, res, next)=>{
 
 //Editar un ahorro
 router.get('/edit/:id',isLogged,(req,res,next)=>{
-  const {user_id} =req.params
+  const {id} =req.params
   req.app.locals.loggedUser = req.user;
   
   Ahorro.findById(id)
   .then(ahorro=>{
     user=req.app.locals.loggedUser.usuario;
-    res.render('ahorros/edit',{ahorro,user,user_id})
+    res.render('ahorros/edit',{ahorro,user,id})
   }).catch(e=>next(e))
 })
 
