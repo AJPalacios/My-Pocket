@@ -9,7 +9,7 @@ Chart.scaleService.updateScaleDefaults('linear', {
 
 const drawGraph5 = () => {
     
-  return fetch('http://localhost:3000/metas/list-for-chart')
+  return fetch('https://my-pocket.herokuapp.com/metas/list-for-chart')
   .then(result => result.json())
   .then(metas => {
     console.log(metas[0].porcentaje)
