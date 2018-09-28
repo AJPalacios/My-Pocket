@@ -1,11 +1,13 @@
+
 {{> nav}}
 {{> sidenav}}
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/css/tableexport.min.css">
 </head>
 
 <div class="row center-xs">
-  <div class="col-md-12 offset-2">
+  <div class="col-md-10 offset-2">
     <div class="box">
       <h1>Mis Ahorros</h1>
     </div>
@@ -16,27 +18,28 @@
   <div class="row center-xs">
     <div class="col-md-10 offset-2">
       <div class="box">
-        <table class="table table-hover tabla-ahorros">
-   <thead> 
-        <th>Concepto</th> 
-        <th>Cantidad</th>
-        <th></th>
-    </thead> 
-    <tbody> 
-        {{#each ahorros}} 
-        <tr> 
-            <td><a href="/ahorros/detail/{{this.id}}">{{this.nombre}}</a></td> 
-            <td>{{this.cantidad}}</td> 
-            <td><a href="/ahorros/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
-        </tr>
-        {{/each}}
-        <tr> 
-            <td><b>TOTAL</b></td> 
-            <td>{{total}} </td>
-            <td></td>
-        </tr> 
-    </tbody> 
-  </table>
+        <table id="tabla_ahorros" class="table table-hover tabla-ahorros">
+          <thead> 
+                <th>Concepto</th> 
+                <th>Cantidad</th>
+                <th></th>
+            </thead> 
+            <tbody> 
+                {{#each ahorros}} 
+                <tr> 
+                    <td>{{this.nombre}}</td> 
+                    <td>{{this.cantidad}}</td> 
+                    <td><a href="/ahorros/edit/{{this.id}}"><i class="fas fa-pencil-alt" id="editar"></i></a></td>
+                    <td><a href="/ahorros/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+                </tr>
+                {{/each}}
+                <tr> 
+                    <td><b>TOTAL</b></td> 
+                    <td>{{total}} </td>
+                    <td></td>
+                </tr> 
+            </tbody> 
+        </table>
       </div>
     </div>
   </div>
@@ -44,16 +47,16 @@
 </section><hr>
 
 <div class="row center-xs">
-  <div class="col-md-10">
+  <div class="col-md-10 offset-2">
     <div class="box">
       <button title="Agrega un nuevo ahorro" id="show"  class="btn btn-primary" placeholder="Agrega tu ahorro">+</button><br><br>
       <form action="/ahorros/new" method="POST" id="agregar" class="form-inline">
         <div class="form-group">
-          <input type="text" name="nombre" placeholder="Concepto de tu ahorro" id="nombre" class="form-control" required>
+          <input type="text" name="nombre" placeholder="Concepto de ahorro" id="nombre" class="form-control" required>
           <div class="input-group">
             <div class="input-group-addon">$</div>
             <label class="sr-only" for="cantidad">Cantidad</label>
-            <input type="number" name="cantidad" placeholder="¿Con cuánto comienzas?" id="cantidad" class="form-control" required>
+            <input type="number" name="cantidad" placeholder="Cantidad inicial" id="cantidad" class="form-control" required>
           </div>
           <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
           <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
@@ -66,8 +69,13 @@
 
 
 
-
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/js/tableexport.min.js"></script>
 <script>
    window.onload=load()
    function load() {
@@ -82,10 +90,20 @@
     document.getElementById("nombre").focus()
   }
   function inputsHide(){
-    document.getElementById('nombre').value=""
-    document.getElementById('cantidad').value=""
+    if(document.getElementById('nombre'))document.getElementById('nombre').value=""
+    if(document.getElementById('cantidad'))document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
   }
+
+  $('#tabla_ahorros').tableExport({
+    formats: ["csv","txt"],
+    filename: "mis ahorros",
+    bootstrap: false,
+    position: "bottom"
+  })
+
+  
+
 </script>
 
 <style>

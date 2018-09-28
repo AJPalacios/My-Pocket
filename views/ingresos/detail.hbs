@@ -3,11 +3,26 @@
 </head>
 {{> nav}}
 {{> sidenav}}
-<h2>Concepto: {{concepto}}</h2>
-<h3>Cantidad:{{cantidad}}</h3>
-<h4>Periodicidad: {{periodicidad}}</h4>
 
-<a href="/ingresos/edit/{{_id}}"><button>Editar</button></a>
+<div class="row center-xs">
+  <div class="col-md-4 offset-2">
+    <div class="box">
+      <h1>Mis Ingresos</h1>
+      <div class="card">
+        <div class="card-header">
+          <h2>{{concepto}}</h2>
+        </div>
+        <div class="card-body">
+          <h3>${{cantidad}}.-</h3>
+          <h4>{{periodicidad}}</h4>
+          <a href="/ingresos/edit/{{_id}}"><button>Editar</button></a>
+          <a href="/ingresos/list"><button>Atrás</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<a href="/ingresos/list"><button>Atrás</button></a>
+
+
  

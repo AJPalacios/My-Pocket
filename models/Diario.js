@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const diarioSchema = new Schema({
-  tipo:{
+  concepto:{
     type:String
   },
   cantidad: {
     type:Number,
     default:0
   },
-  fecha:Date,
+  fecha:String,
   usuario:{
     type:Schema.Types.ObjectId,
     ref:'User'

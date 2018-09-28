@@ -18,15 +18,13 @@ router.get('/list', isLogged, (req, res, next)=>{
       })
       let user=req.app.locals.loggedUser.usuario;
       let user_id = req.user._id
-      
-
       res.render('metas/list',{metas,user_id,user})
     }).catch(e=>{
       console.log(e)
     })
 })
 
-router.get('/list-for-chart', (req, res) => {
+router.get('/list-for-chart',isLogged, (req, res) => {
   req.app.locals.loggedUser = req.user;
   Meta.find({usuario:req.app.locals.loggedUser})//.populate('user')
   .then(metas => {
@@ -35,7 +33,7 @@ router.get('/list-for-chart', (req, res) => {
 })
 
 //R-detalle de metas
-router.get('/detail/:id',(req,res,next)=>{
+router.get('/detail/:id',isLogged,(req,res,next)=>{
   const {id} =req.params
   Meta.findById(id)
   .then(meta=>{
@@ -47,7 +45,7 @@ router.get('/detail/:id',(req,res,next)=>{
   })
 });
 
-router.post('/detailmas/:id', (req, res, next) => {
+router.post('/detailmas/:id',isLogged, (req, res, next) => {
   const {id} = req.params
   Meta.findById(id)
   .then(meta => {
@@ -61,7 +59,7 @@ router.post('/detailmas/:id', (req, res, next) => {
   })
   })
 })
-router.post('/detailmenos/:id', (req, res, next) => {
+router.post('/detailmenos/:id',isLogged, (req, res, next) => {
   const {id} = req.params
   Meta.findById(id)
   .then(meta => {
@@ -81,17 +79,12 @@ router.post('/detailmenos/:id', (req, res, next) => {
 //   res.render('metas/new')
 // })
 router.post('/new',isLogged,(req, res, next)=>{
-  
   //CALCULAR EL PORCENTAJE
-
     //let req.body
     let cantIni=parseFloat(req.body.cantidadInicial) //10
     let cantObj=parseFloat(req.body.cantidadObjetivo) //
     let porcent=(cantIni*100)/cantObj
-    
- 
   console.log(typeof(cantObj))
-
   Meta.create({...req.body,cantidadActual:req.body.cantidadInicial,porcentaje:porcent,usuario:req.user._id})
   //Meta.create({...req.body,owner:req.user._id})
     .then(metas=>{
@@ -102,7 +95,7 @@ router.post('/new',isLogged,(req, res, next)=>{
 })
 
 //U-editar un meta
-router.get('/edit/:id',(req,res,next)=>{
+router.get('/edit/:id',isLogged,(req,res,next)=>{
   const {id} =req.params
   req.app.locals.loggedUser = req.user;
   Meta.findById(id)
@@ -112,20 +105,18 @@ router.get('/edit/:id',(req,res,next)=>{
   }).catch(e=>next(e))
 })
 
-router.post('/edit/:id',(req, res, next)=>{
+router.post('/edit/:id',isLogged,(req, res, next)=>{
   const {id} = req.params
-  Meta.findByIdAndUpdate(id,{$set:req.body},{new:true})
-    .then(metas=>{
-      res.redirect(`/metas/detail/${id}`)
-    }).catch(e=>{
-      console.log(e)
-    })
-})
+  console.log(req.body.nombre)
+  //if(req.body.tipoMeta) req.body.tipo=req.body.tipoMeta
 
-router.post('/edit/:id',(req, res, next)=>{
-  const {id} = req.params
-  if(req.body.tipoMeta) req.body.tipo=req.body.tipoMeta
-  Meta.findByIdAndUpdate(id,{$set:req.body},{new:true})
+//CALCULAR EL PORCENTAJE
+    //let req.body
+    let cantAct=parseFloat(req.body.cantidadActual) //10
+    let cantObj=parseFloat(req.body.cantidadObjetivo) //
+    let porcent=(cantAct*100)/cantObj
+
+  Meta.findByIdAndUpdate(id, {...req.body, porcentaje: porcent}, {new:true})
   //Meta.create({...req.body,owner:req.user._id})
     .then(metas=>{
       res.redirect(`/metas/detail/${id}`)
@@ -135,7 +126,7 @@ router.post('/edit/:id',(req, res, next)=>{
 })
 
 //D-borrar un meta
-router.get('/delete/:id',(req,res,next)=>{
+router.get('/delete/:id',isLogged,(req,res,next)=>{
   const {id}=req.params
   Meta.findByIdAndRemove(id)
   .then(metas=>{

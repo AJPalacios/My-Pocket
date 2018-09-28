@@ -1,4 +1,4 @@
-const ctx2 = document.getElementById('canvas2').getContext('2d')
+const ctx5 = document.getElementById('canvas5').getContext('2d')
 
 Chart.defaults.scale.gridLines.display = false
 Chart.scaleService.updateScaleDefaults('linear', {
@@ -7,21 +7,21 @@ Chart.scaleService.updateScaleDefaults('linear', {
     }
 });
 
-const drawGraph2 = () => {    
-  //return fetch('http://localhost:3000/ingresos/list-for-chart')
-  return fetch('https://my-pocket.herokuapp.com/ingresos/list-for-chart')
+const drawGraph5 = () => {
+    
+  return fetch('http://localhost:3000/metas/list-for-chart')
   .then(result => result.json())
-  .then(ingresos => {
-    console.log(ingresos[0].cantidad)
-    cantidad = []
+  .then(metas => {
+    console.log(metas[0].porcentaje)
+    porcentaje = []
     labels = []
-    for(i = 0; i < ingresos.length; i++){
-      cantidad.push(ingresos[i].cantidad)
-      labels.push(ingresos[i].concepto)
+    for(i = 0; i < metas.length; i++){
+      porcentaje.push(metas[i].porcentaje)
+      labels.push(metas[i].nombre)
     }
     
-    console.log(cantidad)
-    var myChart = new Chart(ctx2, {
+    console.log(porcentaje)
+    var myChart = new Chart(ctx5, {
     type: 'horizontalBar',
     data: {
         labels,
@@ -50,10 +50,21 @@ const drawGraph2 = () => {
     options: {
         legend: {
             display: false
-        }
+        },
+       
+        scales: {
+            yAxes: [{
+                barThickness : 10,
+
+                
+
+                }]
+
+            }
+        
     }
 });
   })
 }
     
-drawGraph2()
+drawGraph5()

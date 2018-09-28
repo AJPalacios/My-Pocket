@@ -22,7 +22,7 @@
   <div class="row center-xs">
     <div class="col-md-10 offset-2">
       <div class="box">
-        <table class="table table-hover tabla-ingresos">
+        <table id="tabla_ingresos" class="table table-hover tabla-ingresos">
           <thead> 
               <th>Concepto</th> 
               <th>Cantidad</th>
@@ -32,9 +32,10 @@
           <tbody> 
               {{#each ingresos}} 
               <tr> 
-                  <td><a href="/ingresos/detail/{{this.id}}">{{this.concepto}}</a></td> 
+                  <td>{{this.concepto}}</td> 
                   <td>{{this.cantidad}}</td> 
                   <td>{{this.periodicidad}}</td> 
+                  <td><a href="/ingresos/edit/{{this.id}}"><i class="fas fa-pencil-alt" id="editar"></i></a></td>
                   <td><a href="/ingresos/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
               </tr>
               {{/each}}
@@ -73,7 +74,14 @@
   </div>
 </div>
 
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
 
+<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/js/tableexport.min.js"></script>
 
 
 <script>
@@ -94,4 +102,12 @@
     document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
   }
+
+     $('#tabla_ingresos').tableExport({
+    formats: ["csv","txt"],
+    filename: "mis ahorros",
+    bootstrap: false,
+    position: "bottom"
+  })
+
 </script>

@@ -1,3 +1,4 @@
+
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
@@ -12,22 +13,12 @@
 </div>
 
 
-{{!-- <section>
-{{#each gastos}}
-  <div>
-    <a href="/gastos/detail/{{this.id}}">{{this.tipo}}</a>
-  </div>  
-{{/each}}
-
-</section>
-
-<a href="/gastos/new">Agregar nuevo gasto</a> --}}
 <section class="container">
 
   <div class="row center-xs">
     <div class="col-md-10 offset-2">
       <div class="box">
-        <table class="table table-hover tabla-gastos">
+        <table id="tabla_gastos" class="table table-hover tabla-gastos">
           <thead> 
             <th>Concepto</th> 
             <th>Cantidad</th>
@@ -58,7 +49,6 @@
       <button title="Agrega un nuevo gasto recurrente" id="show"  class="btn btn-primary" placeholder="Agrega tu gasto recurrente">+</button><br><br>
       <form action="/gastos/new" method="POST" id="agregar" class="form-inline">
         <div class="form-group">
-          <label class="form-label" for="tipo">Tipo de gasto:</label>
           <select class="form-control" name="tipo" id="tipo" onchange="showfield(this.options[this.selectedIndex].value)">
             <option value="Casa">Casa</option>
             <option value="Transporte">Transporte</option>
@@ -87,6 +77,14 @@
   </div>
 </div>
 
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+
+<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/js/tableexport.min.js"></script>
 
 <script>
   window.onload=load()
@@ -102,8 +100,8 @@
     document.getElementById("nombre").focus()
   }
   function inputsHide(){
-    document.getElementById('nombre').value=""
-    document.getElementById('cantidad').value=""
+    if(document.getElementById('nombre')) document.getElementById('nombre').value=""
+    if(document.getElementById('cantidad'))document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
   }
   document.getElementById('field').style.display="none"
@@ -111,4 +109,13 @@
     if(name=='Otro')document.getElementById('field').style.display="block";
     else document.getElementById('field').style.display="none";
   }
+
+   $('#tabla_gastos').tableExport({
+    formats: ["csv","txt"],
+    filename: "mis ahorros",
+    bootstrap: false,
+    position: "bottom"
+  })
+
+
 </script>

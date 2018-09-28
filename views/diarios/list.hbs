@@ -1,51 +1,76 @@
+
 {{> nav}}
 {{> sidenav}}
 
 <body>
-  <h1>Mis Gastos Extra</h1>
-
-<section>
-  <table class="table table-hover tabla-gastos">
-   <thead> 
-        <th>Concepto</th> 
-        <th>Fecha</th>
-        <th>Cantidad</th>
-        <th></th>
-    </thead> 
-    <tbody> 
-        {{#each diarios}} 
-        <tr> 
-            <td>{{this.tipo}}</td> 
-            <td>{{dateFormat fecha "D-MMMM-YYYY"}} </td> 
-            <td>{{this.cantidad}}</td> 
-            <td><a href="/diarios/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
-        </tr>
-        {{/each}}
-    </tbody> 
-  </table>
-</section><hr>
-<button title="Agrega un nuevo gastito" id="show"  class="btn btn-primary" placeholder="Agrega tu gastito">+</button><br><br>
-<form action="/diarios/new" method="POST" id="agregar" class="form-inline">
-  <div class="form-group">
-    <input type="text" name="tipo" id="tipo" placeholder="Concepto de tu gastito" required>
-    <input type="date" name="fecha" id="fecha" required>
-    <div class="input-group">
-      <div class="input-group-addon">$</div>
-      <label class="sr-only" for="cantidad">Cantidad</label>
-      <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad" class="form-control" required>
+<div class="row center-xs">
+  <div class="col-md-10 offset-2">
+    <div class="box">
+      <h1>Gastos Extra</h1>
     </div>
-    <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
-    <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
   </div>
-</form>
+</div>
 
-</body>
+<section class="container">
+  <div class="row center-xs">
+    <div class="col-md-10 offset-2">
+      <div class="box">
+        <table id="tabla_gastos_diarios" class="table table-hover tabla-gastos">
+          <thead> 
+                <th>Concepto</th> 
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th></th>
+            </thead> 
+            <tbody> 
+                {{#each diarios}} 
+                <tr> 
+                    <td>{{this.concepto}}</td> 
+                    <td>{{this.fecha}} </td> 
+                    <td>{{this.cantidad}}</td> 
+                    <td><a href="/diarios/delete/{{this.id}}"><i class="far fa-trash-alt"></i></a></td>
+                </tr>
+                {{/each}}
+            </tbody> 
+        </table>
+        <button title="Agrega un nuevo gastito" id="show"  class="btn btn-primary" placeholder="Agrega tu gastito">+</button><br><br>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="row center-xs">
+  <div class="col-md-6 offset-2">
+    <div class="box">
+      
+      <form action="/diarios/new" method="POST" id="agregar" class="form-inline">
+        <div class="form-group">
+          <input type="text" name="concepto" id="concepto" class="form-control"  placeholder="Concepto gasto" required>
+          <input type="date" name="fecha" id="fecha" class="form-control"  required>
+          <input type="number" name="cantidad" placeholder="Cantidad" id="cantidad" class="form-control" required>
+          </div>
+          <button id="check" type="submit" name="check" class="btn btn-primary" title="OK"><i class="fas fa-check"></i></button>
+          <button onclick="inputsHide()" class="btn btn-primary" title="Cancel"><i class="fas fa-times"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+
+<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/js/tableexport.min.js"></script>
 
 <script>
-   window.onload=load()
-   function load() {
+  window.onload=load()
+  function load() {
     document.getElementById('agregar').style.display="none"
   }
   document.getElementById('show').addEventListener('click',function(){
@@ -74,11 +99,17 @@
     document.getElementById('fecha').value=today
   }
   function inputsHide(){
-    document.getElementById('tipo').value=""
-    document.getElementById('fecha').value=""
-    document.getElementById('cantidad').value=""
+    if(document.getElementById('concepto'))document.getElementById('concepto').value=""
+    if(document.getElementById('fecha'))document.getElementById('fecha').value=""
+    if(document.getElementById('cantidad'))document.getElementById('cantidad').value=""
     document.getElementById('agregar').style.display="none"
   }
-  document.getElementById('field').style.display="none"
+  //document.getElementById('field').style.display="none"
   
+  $('#tabla_gastos_diarios').tableExport({
+    formats: ["csv","txt"],
+    filename: "mis ahorros",
+    bootstrap: false,
+    position: "bottom"
+  })
 </script>

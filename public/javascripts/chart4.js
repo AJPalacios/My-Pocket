@@ -1,33 +1,26 @@
-const ctx3 = document.getElementById('canvas3').getContext('2d')
+const ctx4 = document.getElementById('canvas4').getContext('2d')
 
-const drawGraph3 = () => {
-  return fetch('https://my-pocket.herokuapp.com/gastos/list-for-chart')
+const drawGraph4 = () => {
+  return fetch('http://localhost:3000/diarios/list-for-chart')
   .then(result => result.json())
-  .then(gastos => {
-    console.log(gastos[0].cantidad)
+  .then(diarios => {
+    console.log(diarios)
     cantidad = []
     labels = []
-    for(i = 0; i < gastos.length; i++){
-      cantidad.push(gastos[i].cantidad)
-      labels.push(gastos[i].tipo)
+    for(i = 0; i < diarios.length; i++){
+      cantidad.push(diarios[i].cantidad)
+      labels.push(diarios[i].concepto)
     }
     
     console.log(cantidad)
-    var myChart = new Chart(ctx3, {
-    type: 'bar',
+    var myChart = new Chart(ctx4, {
+    type: 'line',
     data: {
         labels,
         datasets: [{
 
             data: cantidad,
-            backgroundColor: [
-                '#FF6283',
-                '#009DF8',
-                '#FFCC6A',
-                '#3DC0BF',
-                '#C9CBCF',
-                '#FFB880'
-            ],
+
             borderColor: [
                 'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
@@ -49,4 +42,4 @@ const drawGraph3 = () => {
   })
 }
     
-drawGraph3()
+drawGraph4()

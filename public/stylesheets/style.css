@@ -10,6 +10,13 @@ a {
   text-decoration: none !important;
   text-transform: capitalize; }
 
+caption > button {
+  margin: 10px !important;
+  background-color: #286090;
+  color: white !important;
+  font-family: 'Montserrat', sans-serif !important;
+  border-radius: 10px; }
+
 li {
   font-size: 1.5em; }
 
@@ -128,7 +135,7 @@ li {
   border: 3px solid #004595;
   border-radius: 10px;
   text-align: center;
-  font-size: 1.1rem; }
+  font-size: 1.5rem; }
 
 .tipoCambio {
   font-weight: bolder;
