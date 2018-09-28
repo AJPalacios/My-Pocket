@@ -7,20 +7,20 @@ Chart.scaleService.updateScaleDefaults('linear', {
     }
 });
 
-const drawGraph2 = () => {
+const drawGraph5 = () => {
     
   return fetch('http://localhost:3000/metas/list-for-chart')
   .then(result => result.json())
   .then(metas => {
-    console.log(metas[0].cantidad)
-    cantidad = []
+    console.log(metas[0].porcentaje)
+    porcentaje = []
     labels = []
     for(i = 0; i < metas.length; i++){
-      cantidad.push(metas[i].cantidad)
-      labels.push(metas[i].concepto)
+      porcentaje.push(metas[i].porcentaje)
+      labels.push(metas[i].nombre)
     }
     
-    console.log(cantidad)
+    console.log(porcentaje)
     var myChart = new Chart(ctx5, {
     type: 'horizontalBar',
     data: {
@@ -50,7 +50,18 @@ const drawGraph2 = () => {
     options: {
         legend: {
             display: false
-        }
+        },
+       
+        scales: {
+            yAxes: [{
+                barThickness : 10,
+
+                
+
+                }]
+
+            }
+        
     }
 });
   })
