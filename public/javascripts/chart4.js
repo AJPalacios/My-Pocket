@@ -9,7 +9,7 @@ const drawGraph4 = () => {
     labels = []
     for(i = 0; i < diarios.length; i++){
       cantidad.push(diarios[i].cantidad)
-      labels.push(diarios[i].tipo)
+      labels.push(diarios[i].concepto)
     }
     
     console.log(cantidad)
@@ -20,14 +20,7 @@ const drawGraph4 = () => {
         datasets: [{
 
             data: cantidad,
-            backgroundColor: [
-                '#FF6283',
-                '#009DF8',
-                '#FFCC6A',
-                '#3DC0BF',
-                '#C9CBCF',
-                '#FFB880'
-            ],
+
             borderColor: [
                 'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
